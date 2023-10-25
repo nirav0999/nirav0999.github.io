@@ -16,7 +16,7 @@ keywords: academic-website, portfolio-website # add your own keywords or leave e
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon:   # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://sgomber.github.io # the base hostname & protocol for your site
+url: https://nirav0999.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/
 last_updated: true # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -53,10 +53,10 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: sgomber # your GitHub user name
+github_username: nirav0999 # your GitHub user name
 gitlab_username: # your GitLab user name
-twitter_username: s_gomber # your Twitter handle
-linkedin_username: sgomber # your LinkedIn user name
+twitter_username: ocean_drifters # your Twitter handle
+linkedin_username: nirav-diwan-cse # your LinkedIn user name
 fb_username: shaurya.gomber.9 # Facebook profile username
 scholar_userid: # your Google Scholar ID
 orcid_id: # your ORCID ID

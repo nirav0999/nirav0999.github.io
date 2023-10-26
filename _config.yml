@@ -3,10 +3,10 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: Shaurya
+first_name: Nirav
 middle_name: 
-last_name: Gomber
-email: shaurya.gomber98@gmail.com
+last_name: Diwan
+email: nirdiwan@gmail.com  
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Profile website of Shaurya Gomber.
 footer_text: >
@@ -57,8 +57,8 @@ github_username: nirav0999 # your GitHub user name
 gitlab_username: # your GitLab user name
 twitter_username: ocean_drifters # your Twitter handle
 linkedin_username: nirav-diwan-cse # your LinkedIn user name
-fb_username: shaurya.gomber.9 # Facebook profile username
-scholar_userid: # your Google Scholar ID
+fb_username:  # Facebook profile username
+scholar_userid: -ADOnuAAAAAJ&hl=en # your Google Scholar ID
 orcid_id: # your ORCID ID
 medium_username: # your Medium username
 quora_username: # your Quora username

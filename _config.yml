@@ -121,6 +121,8 @@ collections:
     permalink: /projects/:path/
   talks:
     output: false
+  publications:
+    output: false
 news_limit: 15
 
 # -----------------------------------------------------------------------------

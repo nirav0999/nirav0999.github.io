@@ -14,7 +14,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
-I am a 2nd year research-track Master in Computer Science (MS CS) student at the [University of Illinois, Urbana-Champaign](https://cs.illinois.edu/). I am interested in the real-world applications of Trustworthy Machine Learning (TML), Natural Language Processing (NLP), and Security & Privacy. My work in these areas has been published review in ACL, USENIX Security Symposium, ICWSM.
+I am a 2nd year research-track Master in Computer Science (MS CS) student at the [University of Illinois, Urbana-Champaign](https://cs.illinois.edu/). I am interested in the real-world applications of Trustworthy Machine Learning (TML), Natural Language Processing (NLP), and Security & Privacy. My work in these areas has been published/under review in ACL, USENIX Security Symposium, ICWSM.
 
 I am presently working on Adversarial Image and Text generation using Foundation Models under the guidance of [Prof. Gang Wang](https://gangw.cs.illinois.edu/). I have also worked on watermarking fine-tuned AI-generated text under the guidance of [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and  [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi). I am a Graduate Teaching Assistant for CS124: Introduction to Computer Science course this semester (Fall 2023).
 

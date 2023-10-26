@@ -121,7 +121,7 @@ collections:
     permalink: /projects/:path/
   talks:
     output: false
-news_limit: 6
+news_limit: 15
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

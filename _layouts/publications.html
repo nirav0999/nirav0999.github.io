@@ -6,14 +6,14 @@ layout: default
     <header class="post-header">
       <h1 class="post-title">{{ page.pg_title }}</h1>
     </header>
-    
+
     <ul class="list-group">
         {%- assign publications = site.publications | reverse -%} 
         {% for publication in publications %} 
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <h3 class="title font-weight-bold">{{ publication.title }}</h3>
-            <p>Date: {{ publication.date | date: "%Y-%m-%d" }}</p>
-            <p>Venue: {{ publication.venue }}</p>
+            <p>Date: {{ publication.date | date: "%Y-%m-%d" }}<br>
+            Venue: {{ publication.venue }}</p>
             {% if publication.link %}
             <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Link</a>
             {% endif %}

@@ -16,10 +16,19 @@ layout: default
         {% for publication in publications %} 
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <h3 class="title font-weight-bold">{{ publication.title }}</h3>
-            <p>{{ publication.authors }}</p>
-            <h4>{{ publication.date | date: "%Y" }}</h4>
+            <p>Date: {{ publication.date | date: "%Y-%m-%d" }}</p>
+            <p>Venue: {{ publication.venue }}</p>
             {% if publication.link %}
-            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">[PDF]</a>
+            <p><a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Link</a></p>
+            {% endif %}
+            {% if publication.code %}
+            <p><a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a></p>
+            {% endif %}
+            {% if publication.slides %}
+            <p><a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer">Slides</a></p>
+            {% endif %}
+            {% if publication.poster %}
+            <p><a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer">Poster</a></p>
             {% endif %}
         </li>
       {%- endfor %}

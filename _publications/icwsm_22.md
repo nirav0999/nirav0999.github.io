@@ -1,7 +1,7 @@
 ---
 layout: publications
 date: 2022-05-01
-title: Weakening the Inner strength spotting core collusive users in youtubeblackmarket network
+title: Weakening the Inner strength spotting core collusive users in th YouTube Blackmarket
 venue: AAAI ICWSM
 link: "https://ojs.aaai.org/index.php/ICWSM/article/view/19280/19052"
 slides: 

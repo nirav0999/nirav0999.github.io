@@ -16,9 +16,6 @@ layout: default
             Venue: {{ publication.venue }}</p>
             <p><i> {{ publication.authors }} </i></p>
             <p> TLDR : {{ publication.tldr }} </p>
-            <!-- {% if publication.tldr %} -->
-            <!-- <p><a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a></p>
-            {% endif %} -->
             {% if publication.link %}
             <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link</a>
             {% endif %}

@@ -14,7 +14,10 @@ layout: default
             <h3 class="title font-weight-bold">{{ publication.title }}</h3>
             <p>Date: {{ publication.date | date: "%Y-%m-%d" }}<br>
             Venue: {{ publication.venue }}</p>
-            <p> {{ publication.authors }}</p>
+            <p><i> {{ publication.authors }} </i></p>
+            {% if publication.link %}
+            <a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a>
+            {% endif %}
             {% if publication.link %}
             <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link, </a>
             {% endif %}

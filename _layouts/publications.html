@@ -16,16 +16,16 @@ layout: default
             Venue: {{ publication.venue }}</p>
             <p> {{ publication.authors }}</p>
             {% if publication.link %}
-            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Link</a>
+            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link, </a>
             {% endif %}
             {% if publication.code %}
-            <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
+            <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code, </a>
             {% endif %}
             {% if publication.slides %}
-            <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer">Slides</a>
+            <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer">Slides, </a>
             {% endif %}
             {% if publication.poster %}
-            <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer">Poster</a>
+            <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer">Poster, </a>
             {% endif %}
         </li>
       {%- endfor %}

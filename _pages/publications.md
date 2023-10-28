@@ -5,5 +5,5 @@ nav: true
 title: publications
 
 pg_title: Publications
-description: One at a time!
+description:
 ---

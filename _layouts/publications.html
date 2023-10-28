@@ -15,20 +15,22 @@ layout: default
             <p>Date: {{ publication.date | date: "%Y-%m-%d" }}<br>
             Venue: {{ publication.venue }}</p>
             <p><i> {{ publication.authors }} </i></p>
-            {% if publication.link %}
-            <a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a>
+            <p>
+            {% if publication.tldr %}
+            <a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a> 
             {% endif %}
+            </p>
             {% if publication.link %}
-            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link, </a>
+            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link</a>
             {% endif %}
             {% if publication.code %}
-            <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code, </a>
+            <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">, Code</a>
             {% endif %}
             {% if publication.slides %}
-            <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer">Slides, </a>
+            <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer">, Slides</a>
             {% endif %}
             {% if publication.poster %}
-            <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer">Poster, </a>
+            <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer">, Poster </a>
             {% endif %}
         </li>
       {%- endfor %}

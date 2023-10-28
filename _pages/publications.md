@@ -4,6 +4,6 @@ permalink: /publications/
 nav: true
 title: publications
 
-pg_title: publications
-description: One day at a time!
+pg_title: Publications
+description: One at a time!
 ---

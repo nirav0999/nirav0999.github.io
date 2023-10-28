@@ -15,11 +15,10 @@ layout: default
             <p>Date: {{ publication.date | date: "%Y-%m-%d" }}<br>
             Venue: {{ publication.venue }}</p>
             <p><i> {{ publication.authors }} </i></p>
-            
-            {% if publication.tldr %}
-            <p><a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a></p>
-            {% endif %}
-
+            <p> TLDR : {{ publication.tldr }} </p>
+            <!-- {% if publication.tldr %} -->
+            <!-- <p><a href="{{ publication.tldr}}" target="_blank" rel="noopener noreferrer">TLDR</a></p>
+            {% endif %} -->
             {% if publication.link %}
             <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link</a>
             {% endif %}

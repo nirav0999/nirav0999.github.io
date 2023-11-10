@@ -6,7 +6,7 @@ subtitle: MS CS '24 @ <a href="https://cs.illinois.edu/">UIUC</a>
 
 profile:
   align: right
-  image: photo.jpeg
+  image: formal_profile.JPG
   image_cicular: true # crops the image to make it circular
 
 news: true  # includes a list of news items

@@ -2,7 +2,7 @@
 layout: talks
 permalink: /talks/
 nav: true
-title: talks
+title: Talks
 
 pg_title: Talks
 description: "Disclaimer - I love talking, maybe too much!"

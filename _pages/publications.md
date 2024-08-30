@@ -2,7 +2,7 @@
 layout: publications
 permalink: /publications/
 nav: true
-title: publications
+title: Publications
 
 pg_title: Publications
 description:

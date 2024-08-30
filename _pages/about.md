@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: PhD @ <a href="https://cs.illinois.edu/">UIUC</a>
 

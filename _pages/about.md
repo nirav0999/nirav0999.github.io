@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: MS CS '24 @ <a href="https://cs.illinois.edu/">UIUC</a>
+subtitle: PhD @ <a href="https://cs.illinois.edu/">UIUC</a>
 
 profile:
   align: right

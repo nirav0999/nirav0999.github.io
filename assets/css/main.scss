@@ -40,18 +40,19 @@ h5.title {
 
 .affiliation-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px; /* Adds space between items */
+  flex-wrap: nowrap; /* Prevents wrapping on larger screens */
+  justify-content: space-between; /* Distributes items evenly across the container */
+  gap: 20px;
   padding: 20px;
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
 }
 
 .affiliation-item {
-  flex: 1 0 200px; /* Allows each item to have a minimum width of 200px and to grow proportionally */
-  max-width: 250px; /* Maximum width to ensure consistent sizing on larger screens */
+  flex: 1 1 auto; /* Each item takes equal space and adjusts automatically */
   text-align: center;
   margin: 10px;
-  padding: 10px;
+  min-width: 150px; /* Minimum width for each item */
+  max-width: 200px; /* Maximum width for each item */
 }
 
 .affiliation-text {
@@ -59,15 +60,16 @@ h5.title {
   padding-top: 10px;
 }
 
-@media (min-width: 1024px) {
-  .affiliation-container {
-      justify-content: space-around; /* Distributes items evenly across the container */
-  }
-}
-
+/* Media Query for Mobile Devices */
 @media (max-width: 768px) {
+  .affiliation-container {
+      flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+      justify-content: center; /* Centers items horizontally in a vertical layout */
+  }
+
   .affiliation-item {
-      flex: 1 1 100%; /* Takes full width on smaller screens */
+      flex: 1 1 100%; /* Each item takes full width on smaller screens */
       margin-bottom: 20px;
+      max-width: none; /* Removes the maximum width constraint for better stacking */
   }
 }

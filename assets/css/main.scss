@@ -40,36 +40,27 @@ h5.title {
 
 .affiliation-container {
   display: flex;
-  flex-wrap: nowrap; /* Prevents wrapping on larger screens */
-  justify-content: space-between; /* Distributes items evenly across the container */
-  gap: 20px;
-  padding: 20px;
-  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  justify-content: center; /* Centers items horizontally */
+  gap: 20px; /* Adds space between items */
+  padding: 10px;
 }
 
 .affiliation-item {
-  flex: 1 1 auto; /* Each item takes equal space and adjusts automatically */
+  flex: 1 1 200px; /* Allows items to grow and shrink, with a minimum width of 200px */
   text-align: center;
   margin: 10px;
-  min-width: 150px; /* Minimum width for each item */
-  max-width: 200px; /* Maximum width for each item */
+  max-width: 300px; /* Optional max width to prevent items from growing too large */
 }
 
 .affiliation-text {
   font-size: 14px;
-  padding-top: 10px;
+  padding-top: 10px; /* Adds space between the image and text */
 }
 
-/* Media Query for Mobile Devices */
 @media (max-width: 768px) {
-  .affiliation-container {
-      flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-      justify-content: center; /* Centers items horizontally in a vertical layout */
-  }
-
   .affiliation-item {
-      flex: 1 1 100%; /* Each item takes full width on smaller screens */
+      flex: 1 1 100%; /* Takes full width on smaller screens */
       margin-bottom: 20px;
-      max-width: none; /* Removes the maximum width constraint for better stacking */
   }
 }

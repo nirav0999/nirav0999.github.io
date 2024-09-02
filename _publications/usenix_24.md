@@ -3,7 +3,7 @@ layout: publications
 date: 2024-07-01
 title: "It Doesn't Look Like Anything to Me: Using Diffusion Model to Subvert Visual Phishing Detectors"
 venue: USENIX Security Symposium 2024
-authors: Qingying Hao, Nirav Diwan*, Ying Yuan, Giovanni Apruzzese, Mauro Conti, Gang Wang
+authors: Qingying Hao, <u>Nirav Diwan</u>, Ying Yuan, Giovanni Apruzzese, Mauro Conti, Gang Wang
 slides: 
 poster: 
 tldr: Used Diffusion Models to attack online phishing detectors

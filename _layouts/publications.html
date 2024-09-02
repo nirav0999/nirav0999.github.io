@@ -19,7 +19,7 @@ layout: default
             <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.venue }}</p>
             <p style="font-size: 0.95rem; margin-bottom: 0.2rem;"><b>TLDR:</b> {{ publication.tldr }}</p>
             {% if publication.link %}
-            <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer">Paper Link</a>
+            <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer">Paper</a>
             {% endif %}
             {% if publication.code %} |
             <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>

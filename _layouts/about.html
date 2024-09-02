@@ -18,13 +18,12 @@ layout: default
 
   <article>
     {% if page.profile -%}
-    <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
+    <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}" style="max-width: 150px; margin: 10px;">
       {%- if page.profile.image %}
         {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-
         {%- assign profile_image_class = "img-fluid z-dept-1" -%}
-        
-        <!-- Set image class based on the image_circular property -->
+
+        <!-- Adjust image class based on the image_circular property -->
         {%- if page.profile.image_circular %}
           {%- assign profile_image_class = profile_image_class | append: " rounded-circle" -%}
         {%- else %}

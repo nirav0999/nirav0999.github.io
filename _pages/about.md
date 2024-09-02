@@ -14,8 +14,7 @@ news: true  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-I am a PhD student at the [University of Illinois, Urbana-Champaign](https://cs.illinois.edu/).  
-My research interests are at the intersection of Security and Machine Learning, particularly in practical adversarial attacks on large language models (LLMs). My work in these areas has been published in ACL, USENIX Security Symposium, ICWSM, and ICDE Workshop.
+I am a first-year PhD student at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I am working with [Prof. Gang Wang](https://gangw.cs.illinois.edu/) at the intersection of Security and Machine Learning. I am particularly interested in practical adversarial attacks on large language models (LLMs). My work in these areas has been published in ACL, USENIX Security Symposium, ICWSM, and ICDE Workshop.
 
 I recently completed my research-track MS at [University of Illinois, Urbana-Champaign](https://cs.illinois.edu/) with [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the area of Adversarial Machine Learning with a focus on Foundation Models. Previously, I have worked on watermarking fine-tuned LLM-generated text (ACL Findings'21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi).
 

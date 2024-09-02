@@ -14,7 +14,7 @@ layout: default
         {%- assign talks = site.talks | reverse -%} 
         {% for talk in talks %} 
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
-            <h5 class="title font-weight-bold special-font special-col" style="color: black; font-size: 1rem; margin-bottom: 0.3rem;">{{talk.title}}</h5>
+            <h5 class="title font-weight-bold special-font special-col" style="color: black; font-size: 2rem; margin-bottom: 0.3rem;">{{talk.title}}</h5>
             <p style="margin-bottom: 0.3rem;">{{talk.loc}}</p>
             <p style="margin-bottom: 0.3rem;">{{ talk.date | date: "%b %-d, %Y" }}</p>
             {% if talk.slides %}

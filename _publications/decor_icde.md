@@ -4,6 +4,7 @@ date: 2020-04-01
 title: A Named Entity Based Approach to Model Recipes
 venue: 3<sup>rd</sup> International Workshop on Data Engineering meets Intelligent Food & Cooking Recipes, 2020 (<b>DECOR Workshop @ ICDE</b>)
 link: "https://arxiv.org/pdf/2004.12184.pdf"
+paper: "icdew_1.pdf"
 slides: 
 poster: 
 tldr: Created an Information Retrieval (IR) Model to extract ingredient information from recipes.

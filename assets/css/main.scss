@@ -37,3 +37,37 @@ h5.title {
   max-width: 200px; /* Set a maximum width for the profile container */
   margin: 10px auto; /* Center the container and provide margin */
 }
+
+.affiliation-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px; /* Adds space between items */
+  padding: 20px;
+}
+
+.affiliation-item {
+  flex: 1 0 200px; /* Allows each item to have a minimum width of 200px and to grow proportionally */
+  max-width: 250px; /* Maximum width to ensure consistent sizing on larger screens */
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.affiliation-text {
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+@media (min-width: 1024px) {
+  .affiliation-container {
+      justify-content: space-around; /* Distributes items evenly across the container */
+  }
+}
+
+@media (max-width: 768px) {
+  .affiliation-item {
+      flex: 1 1 100%; /* Takes full width on smaller screens */
+      margin-bottom: 20px;
+  }
+}

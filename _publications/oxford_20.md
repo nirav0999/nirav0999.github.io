@@ -1,7 +1,7 @@
 ---
 layout: publications
 date: 2020-12-01
-title: RecipeDB
+title: "RecipeDB: A resource for exploring recipes"
 venue: "Database: The Journal of Biological Databases and Curation (Oxford University Press) (Impact Factor = 5.8)"
 link: "https://academic.oup.com/database/article/doi/10.1093/database/baaa077/6006228"
 slides: 

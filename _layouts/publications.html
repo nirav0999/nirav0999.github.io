@@ -15,9 +15,9 @@ layout: default
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <h5 class="title font-weight-bold special-font special-col" style="color: black; font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
             <!-- <p style="font-size: 0.95rem; margin-bottom: 0.3rem;">Date: {{ publication.date | date: "%b %-d, %Y" }}</p> -->
-            <p style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
-            <p style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.venue }}</p>
-            <p style="font-size: 1rem; margin-bottom: 0.2rem;"><b>TLDR:</b> {{ publication.tldr }}</p>
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.venue }}</p>
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;"><b>TLDR:</b> {{ publication.tldr }}</p>
             {% if publication.link %}
             <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Paper Link</a>
             {% endif %}

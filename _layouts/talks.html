@@ -15,8 +15,8 @@ layout: default
         {% for talk in talks %} 
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <h5 class="title font-weight-bold special-font special-col" style="color: black; font-size: 1.0rem; margin-bottom: 0.2rem;">{{talk.title}}</h5>
-            <p style="color: black; font-size: 1.0rem; margin-bottom: 0.2rem;">{{talk.loc}}</p>
-            <p style="color: black; font-size: 1.0rem; margin-bottom: 0.2rem;">{{ talk.date | date: "%b %-d, %Y" }}</p>
+            <p style="color: black; font-size: 0.95rem; margin-bottom: 0.2rem;">{{talk.loc}}</p>
+            <p style="color: black; font-size: 0.95rem; margin-bottom: 0.2rem;">{{ talk.date | date: "%b %-d, %Y" }}</p>
             {% if talk.slides %}
             <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url}}" target="_blank" rel="noopener noreferrer"> Slides </a>
             {% endif %}

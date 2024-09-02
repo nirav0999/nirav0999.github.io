@@ -1,3 +1,44 @@
+// ---
+// # Only the main Sass file needs front matter (the dashes are enough)
+// ---
+// @charset "utf-8";
+
+
+// // Dimensions
+// $max-content-width: {{ site.max_width }};
+
+// @import
+//   "variables",
+//   "themes",
+//   "layout",
+//   "base",
+//   "distill"
+// ;
+
+// h5.title {
+//   color: black !important;
+// }
+
+// .square-image {
+//   width: 100%; /* Allow the image to scale with its container */
+//   height: auto; /* Maintain the aspect ratio */
+//   max-width: 200px; /* Set a maximum width for the image to avoid it becoming too large */
+//   max-height: 250px; /* Set a maximum height to keep the image aligned */
+//   object-fit: cover; /* Ensure the image fills the space while maintaining its aspect ratio */
+// }
+
+// .img-fluid {
+//   max-width: 100%; /* Ensure the image does not exceed its container width */
+//   height: auto; /* Maintain aspect ratio */
+// }
+
+// .profile {
+//   display: block;
+//   width: 100%; /* Make the container take full width of the parent element */
+//   max-width: 200px; /* Set a maximum width for the profile container */
+//   margin: 10px auto; /* Center the container and provide margin */
+// }
+
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
@@ -18,6 +59,12 @@ h5.title {
   color: black !important;
 }
 
+/* Enforce a minimum width for the entire page */
+body {
+  min-width: 1200px; /* Set your desired minimum width */
+  overflow-x: auto; /* Allow horizontal scrolling if the viewport is smaller */
+}
+
 .square-image {
   width: 100%; /* Allow the image to scale with its container */
   height: auto; /* Maintain the aspect ratio */
@@ -36,4 +83,38 @@ h5.title {
   width: 100%; /* Make the container take full width of the parent element */
   max-width: 200px; /* Set a maximum width for the profile container */
   margin: 10px auto; /* Center the container and provide margin */
+}
+
+/* Center the main content within the enforced width */
+.main-container {
+  margin: 0 auto; /* Center the main content block */
+  width: 100%; /* Full width up to the minimum width */
+  max-width: 1200px; /* Match the minimum width */
+}
+
+.affiliation-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  justify-content: center; /* Centers items horizontally */
+  gap: 20px; /* Adds space between items */
+  padding: 10px;
+}
+
+.affiliation-item {
+  flex: 1 1 200px; /* Allows items to grow and shrink, with a minimum width of 200px */
+  text-align: center;
+  margin: 10px;
+  max-width: 300px; /* Optional max width to prevent items from growing too large */
+}
+
+.affiliation-text {
+  font-size: 14px;
+  padding-top: 10px; /* Adds space between the image and text */
+}
+
+@media (max-width: 768px) {
+  .affiliation-item {
+      flex: 1 1 100%; /* Takes full width on smaller screens */
+      margin-bottom: 20px;
+  }
 }

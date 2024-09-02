@@ -16,7 +16,7 @@ layout: default
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <h5 class="title font-weight-bold special-font special-col" style="color: black;">{{publication.title}}</h5>
             <!-- <h6 style="font-size: 0.95rem;">Date: {{ publication.date | date: "%b %-d, %Y" }}</h6> -->
-            <h6 style="font-size : 0.95rem;">Venue: {{ publication.venue }}</h6>
+            <h6 style="font-size : 0.95rem;">{{ publication.venue }}</h6>
             <p> {{ publication.authors }} <br></p>
             <p> <b>TLDR:</b> {{ publication.tldr }} </p>
             {% if publication.link %}

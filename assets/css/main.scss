@@ -19,12 +19,19 @@ h5.title {
 }
 
 .square-image {
-  width: 150px; /* Adjust as necessary for your design */
-  height: 150px;
-  object-fit: cover; /* Ensures the image fits within the dimensions while preserving aspect ratio */
+  width: auto; /* Allow width to adjust automatically */
+  max-width: 200px; /* Set a maximum width for better visibility */
+  height: auto; /* Maintain the aspect ratio */
+  max-height: 250px; /* Set a maximum height to keep the image aligned */
+  object-fit: cover; /* Ensures the image fills the area while maintaining its aspect ratio */
 }
 
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.profile {
+  max-width: 200px; /* Increase the maximum width of the profile container */
+  margin: 10px; /* Adds margin around the profile picture */
 }

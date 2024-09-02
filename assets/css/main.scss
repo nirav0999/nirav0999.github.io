@@ -17,3 +17,14 @@ $max-content-width: {{ site.max_width }};
 h5.title {
   color: black !important;
 }
+
+.square-image {
+  width: 150px; /* Adjust as necessary for your design */
+  height: 150px;
+  object-fit: cover; /* Ensures the image fits within the dimensions while preserving aspect ratio */
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}

@@ -91,30 +91,3 @@ body {
   width: 100%; /* Full width up to the minimum width */
   max-width: 1200px; /* Match the minimum width */
 }
-
-.affiliation-container {
-  display: flex;
-  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-  justify-content: center; /* Centers items horizontally */
-  gap: 20px; /* Adds space between items */
-  padding: 10px;
-}
-
-.affiliation-item {
-  flex: 1 1 200px; /* Allows items to grow and shrink, with a minimum width of 200px */
-  text-align: center;
-  margin: 10px;
-  max-width: 300px; /* Optional max width to prevent items from growing too large */
-}
-
-.affiliation-text {
-  font-size: 14px;
-  padding-top: 10px; /* Adds space between the image and text */
-}
-
-@media (max-width: 768px) {
-  .affiliation-item {
-      flex: 1 1 100%; /* Takes full width on smaller screens */
-      margin-bottom: 20px;
-  }
-}

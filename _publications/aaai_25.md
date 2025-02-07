@@ -7,7 +7,7 @@ authors: <u>Nirav Diwan</u>, Tolga Ergen, Dongsub Shim, Honglak Lee
 paper: "aaai_w_25.pdf"
 slides: 
 poster: 
-tldr: 
+tldr: Fine-tuned model can identify high quality preference pairs for alignment, even when it may not know which response is better. Substantially increases alignment quality for Coding, Maths and Reasoning.
 link: "https://arxiv.org/abs/2501.15109"
 ---
 

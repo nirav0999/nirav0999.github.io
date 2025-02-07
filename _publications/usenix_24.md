@@ -7,7 +7,7 @@ authors: Qingying Hao, <u>Nirav Diwan</u>, Ying Yuan, Giovanni Apruzzese, Mauro 
 paper: "usenixsecurity24.pdf"
 slides: 
 poster: 
-tldr: Used Diffusion Models to attack online phishing detectors
+tldr: Used Diffusion Models to attack online phishing detectors. Attack empirically validated for 100+ brands across both white-box anbd black-box settings.
 link: "https://qingyinghao.web.illinois.edu/files/USENIX24-visual-phish.pdf"
 code: "https://github.com/gyNancy/Visualphish_public"
 ---

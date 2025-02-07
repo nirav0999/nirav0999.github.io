@@ -7,7 +7,7 @@ authors: <u>Nirav Diwan</u>, Tanmoy Chakraborty, Zubair Shafiq
 paper: acl_2021.pdf
 slides: 
 poster: 
-tldr: Developed a LLM based classifer to fingerprint AI-generated text to the Fine-tuned Language Model.
+tldr: Developed a LLM based classifer to fingerprint AI-generated text to the Fine-tuned Language Model for 100+ classes.
 link: "https://aclanthology.org/2021.findings-acl.409"
 code: "https://github.com/LCS2-IIITD/ACL-FFLM"
 ---

@@ -7,7 +7,7 @@ link: "https://academic.oup.com/database/article/doi/10.1093/database/baaa077/60
 paper: "recipedb.pdf"
 slides: 
 poster: 
-tldr: Developed a worldwide database of recipes.
+tldr: Developed a worldwide database of recipes with over 100,000+ recipes from 50+ countries.
 authors: Devansh Batra, <u>Nirav Diwan</u>, Utkarsh Upadhyay, Jushaan Singh Kalra, Tript Sharma, Aman Kumar Sharma, Dheeraj Khanna, Jaspreet Singh Marwah, Srilakshmi Kalathil, Navjot Singh, Rudraksh Tuwani, Ganesh Bagler
 code: 
 ---

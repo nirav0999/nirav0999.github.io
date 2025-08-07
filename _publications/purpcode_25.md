@@ -7,3 +7,4 @@ authors: Jiawei Liu*, <u> Nirav Diwan*</u>, Zhe Wang*, Haoyu Zhai, Xiaona Zhou, 
 paper: "PurpCode_arxiv_0807.pdf"
 tldr: We develop a reasoning model for secure code generation using <a href = "https://openai.com/index/deliberative-alignment/"> Deliberative Alignment </a>.
 code: "https://github.com/purpcode-uiuc/purpcode"
+---

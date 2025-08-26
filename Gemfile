@@ -1,4 +1,16 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+ruby ">= 3.0"
+
+gem "jekyll", "~> 4.3"
+gem "webrick", "~> 1.8"        # needed for `jekyll serve` on Ruby 3+
+gem "sass-embedded", "~> 1.80.0"  # Fix for compilation issues with newer versions
+# gem "mini_racer", "~> 0.6"   # OPTIONAL: only if you need ExecJS without Node
+gem "unicode_utils"
+
+# Non-Jekyll plugins you use elsewhere
+gem "httparty"
+gem "feedjira"
+
 group :jekyll_plugins do
   gem "jekyll-archives"
   gem "jekyll-diagrams"

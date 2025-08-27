@@ -123,6 +123,9 @@ collections:
     output: false
   publications:
     output: false
+  blogs:
+    output: true
+    permalink: /blogs/:name/
 news_limit: 15
 
 # -----------------------------------------------------------------------------
@@ -281,6 +284,7 @@ enable_navbar_social:       false  # enables displaying social links in the
 enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
+enable_blogs_page:          true  # enables blogs page in navigation
 
 
 # -----------------------------------------------------------------------------

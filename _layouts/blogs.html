@@ -1,0 +1,143 @@
+---
+layout: default
+---
+
+<div class="post">
+    <header class="post-header">
+        <h3 class="post-title">{{ page.pg_title }}</h3>
+        <p class="post-description">{{ page.description }}</p>
+    </header>
+
+    <!-- Search and Filter Controls -->
+    <div class="mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search blogs by title...">
+            </div>
+            <div class="col-md-6 mb-3">
+                <select id="tagFilter" class="form-control">
+                    <option value="">All Tags</option>
+                </select>
+            </div>
+        </div>
+        <div id="resultsCount" class="text-muted mb-3"></div>
+    </div>
+
+    <ul class="list-group" id="blogsList">
+        {%- assign blogs = site.blogs | sort: 'date' | reverse -%}
+        {%- assign all_tags = '' -%}
+        
+        {%- for blog in blogs -%}
+            {%- if blog.tags -%}
+                {%- for tag in blog.tags -%}
+                    {%- unless all_tags contains tag -%}
+                        {%- assign all_tags = all_tags | append: tag | append: ',' -%}
+                    {%- endunless -%}
+                {%- endfor -%}
+            {%- endif -%}
+        {%- endfor -%}
+        
+        {% for blog in blogs %}
+        <li class="list-group-item border-top-0 border-left-0 border-right-0 blog-item" 
+            data-title="{{ blog.title | downcase }}"
+            data-tags="{% if blog.tags %}{{ blog.tags | join: ',' | downcase }}{% endif %}">
+            
+            <h5 class="title font-weight-bold special-font special-col" 
+                style="color: black; font-size: 1rem; margin-bottom: 0.2rem;">
+                <a href="{{ blog.url | relative_url }}" style="color: black; text-decoration: none;">
+                    {{ blog.title }}
+                </a>
+            </h5>
+            
+            {% if blog.date %}
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #666;">
+                {{ blog.date | date: "%b %-d, %Y" }}
+            </p>
+            {% endif %}
+            
+            {% if blog.excerpt or blog.description %}
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">
+                {{ blog.excerpt | default: blog.description | strip_html | truncatewords: 30 }}
+            </p>
+            {% endif %}
+            
+            {% if blog.tags %}
+            <div class="mb-2">
+                {% for tag in blog.tags %}
+                <span class="badge badge-secondary mr-1">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <a href="{{ blog.url | relative_url }}">Read More →</a>
+            {% if blog.pdf %} |
+            <a href="{{ blog.pdf | prepend: 'assets/pdf/' | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <div id="noResults" class="text-center text-muted mt-4" style="display: none;">
+        <p>No blogs found matching your criteria.</p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const tagFilter = document.getElementById('tagFilter');
+    const blogsList = document.getElementById('blogsList');
+    const blogItems = document.querySelectorAll('.blog-item');
+    const resultsCount = document.getElementById('resultsCount');
+    const noResults = document.getElementById('noResults');
+    
+    // Populate tag filter
+    const allTagsString = '{{ all_tags }}';
+    const allTags = allTagsString.split(',').filter(tag => tag.trim() !== '').sort();
+    const uniqueTags = [...new Set(allTags)];
+    
+    uniqueTags.forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag.trim();
+        option.textContent = tag.trim();
+        tagFilter.appendChild(option);
+    });
+    
+    function updateResults() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedTag = tagFilter.value.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        blogItems.forEach(item => {
+            const title = item.dataset.title;
+            const tags = item.dataset.tags;
+            
+            const titleMatch = !searchTerm || title.includes(searchTerm);
+            const tagMatch = !selectedTag || tags.includes(selectedTag);
+            
+            if (titleMatch && tagMatch) {
+                item.style.display = 'list-item';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        resultsCount.textContent = `Showing ${visibleCount} of ${blogItems.length} blogs`;
+        
+        if (visibleCount === 0) {
+            blogsList.style.display = 'none';
+            noResults.style.display = 'block';
+        } else {
+            blogsList.style.display = 'block';
+            noResults.style.display = 'none';
+        }
+    }
+    
+    searchInput.addEventListener('input', updateResults);
+    tagFilter.addEventListener('change', updateResults);
+    
+    // Initialize results count
+    updateResults();
+});
+</script>

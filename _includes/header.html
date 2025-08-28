@@ -39,17 +39,6 @@
                   {%- endif -%}
                 </a>
               </li>
-              {% if site.enable_blogs_page %}
-              <!-- Blogs -->
-              <li class="nav-item {% if page.url contains 'blogs' %}active{% endif %}">
-                <a class="nav-link" href="{{ '/blogs/' | relative_url }}">Blogs
-                  {%- if page.url contains 'blogs' -%}
-                  <span class="sr-only">(current)</span>
-                  {%- endif -%}
-                </a>
-              </li>
-              {%- endif %}
-
               <!-- Other pages -->
               {%- assign sorted_pages = site.pages | sort: "nav_order" -%}
               {%- for p in sorted_pages -%}
@@ -82,6 +71,16 @@
               {%- endif -%}
               {%- endif -%}
               {% endfor -%}
+              {% if site.enable_blogs_page %}
+              <!-- Blogs -->
+              <li class="nav-item {% if page.url contains 'blogs' %}active{% endif %}">
+                <a class="nav-link" href="{{ '/blogs/' | relative_url }}">Blogs
+                  {%- if page.url contains 'blogs' -%}
+                  <span class="sr-only">(current)</span>
+                  {%- endif -%}
+                </a>
+              </li>
+              {%- endif %}
               {%- if site.enable_darkmode %}
 
               <!-- Toogle theme mode -->

@@ -2,24 +2,30 @@
           <div class="news">
             <h2>News</h2>
             {% if site.news != blank -%} 
-            <div class="table-responsive" style="overflow-y: scroll; max-height: 200px;">
-              <table class="table table-sm table-borderless" style="width:max-content;line-height:5px;font-size:11px">
-              {%- assign news = site.news | reverse -%} 
-              {% for item in news %} 
-                <tr>
-                  <th scope="row">{{ item.date | date: "%b %-d, %Y" }}</th>
-                  <td>
-                    {% if item.inline -%} 
-                      {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-                    {%- else -%} 
-                      <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                    {%- endif %} 
-                  </td>
-                </tr>
-              {%- endfor %} 
-              </table>
+            <div class="news-container" style="border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background-color: #fdfdfd;">
+              <div class="table-responsive" style="overflow-y: scroll; max-height: 200px;">
+                <table class="table table-sm table-borderless" style="width: 100%; font-size: 12px; line-height: 1.4;">
+                {%- assign news = site.news | reverse -%} 
+                {% for item in news %} 
+                  <tr>
+                    <td style="width: 100px; min-width: 100px; vertical-align: top; padding-right: 10px; color: #666; white-space: nowrap;">
+                      {{ item.date | date: "%b %-d, %Y" }}
+                    </td>
+                    <td style="word-wrap: break-word; word-break: break-word; max-width: 0;">
+                      {% if item.inline -%} 
+                        {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+                      {%- else -%} 
+                        <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                      {%- endif %} 
+                    </td>
+                  </tr>
+                {%- endfor %} 
+                </table>
+              </div>
             </div>
           {%- else -%} 
-            <p>No news so far...</p>
+            <div class="news-container" style="border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background-color: #fdfdfd;">
+              <p>No news so far...</p>
+            </div>
           {%- endif %} 
           </div>

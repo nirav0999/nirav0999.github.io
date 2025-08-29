@@ -12,8 +12,8 @@
   --global-hcolor: #{$uiuc-blue-dark};
   --global-theme-color: #{$uiuc-blue};
   --global-header-color: #{$uiuc-blue};
-  --global-hover-color: #{$uiuc-blue-light};
-  --global-link-color: #{$uiuc-blue};
+  --global-hover-color: #{darken($link-color, 15%)};
+  --global-link-color: #{$link-color};
   --global-social-color: #{$grey-900};
   --global-footer-bg-color: #{$grey-color-dark};
   --global-footer-text-color: #{$grey-color-light};

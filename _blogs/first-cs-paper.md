@@ -6,7 +6,7 @@ tags: ["Computer Science", "Research", "Writing"]
 description: "Some tips on writing your first computer science research paper."
 ---
 
-*These are mostly unorganized thoughts I had while giving feedback to students who were writing their first paper. If you have never written a paper, you might find this useful. I rountinely add thoughts to this.*
+*These are mostly unorganized thoughts I had while giving feedback to high school and undergrad students who were writing their first paper. If you have never written a paper, you might find this useful.*
 
 #### Starting Point
 A good starting point is to pick one of the papers you are building on top of and use that as reference for writing. An initial worry is that if your writing ends up resembling the paper you picked. Don't worry about that because as you are writing, you will get more ideas on how to differentiate.
@@ -24,9 +24,12 @@ For the paper you select, you want to ensure top quality. Two good rules of thum
 This is an unclear and unsubstantiated claim because it is not mentioned how the tools were used or applied.
 
 **Section-wise feedback.** There are a couple of sections that generally have a similar structure across most CS papers:
+
 - **Introduction** is to clearly define the motivation, giving a brief overview of the threat model, explaining the key intuition of the methodology, and highlighting the main results.
 - **Related Work.** A good related work does two things: give the reader a broad classification of the related concepts, and importantly, point out the limitations/gaps which our method tries to address.
-- **Threat Model.**
+- **Threat Model.** This is a security specific section. A good threat model is a clear and concise description of the threats, the actor that introduces the threat, the assumptions and the impact of the threat. 
+
+
 ### Images
 Almost certainly in CS papers, there will be an image in the introduction which shows your main intuition/workflow. This image is important because this is likely the first visual representation of your intuition that the reviewers will have. A good and professional impression here makes a huge difference.
 
@@ -46,6 +49,6 @@ You can find the final draft of the main workflow image here - [AI Crawler](http
 **Tools.** For drawing figures, I recommend using Google Drawings over [draw.io](http://draw.io) - but both are fine. I also strongly recommend exporting the image as a PDF - it maintains the quality of the original image better.
 ### LLM usage
 I would discourage using LLMs to write your first draft, especially if you are writing your first research paper. The whole point of doing this exercise is to develop YOUR style of writing, which is also a way of thinking. Using LLM to do ALL your writing will diminish this. If you really want to do this:
-- **First draft** - Write a first draft of the idea. This may be broken sentences/English, just the ideas should be there, and there should be some resemblance of a style and flow.
+- **First draft** - Write a first draft of the idea. This may be broken sentences/English, just the ideas should be there, and there should be some resemblance of a style and flow. Then use an LLM to polish it up.
 - **Telltale signs** - If you use LLM, make sure your writing does NOT have obvious telltale signs of AI - too many em dashes, "it's not just X, it's Y", overly verbose sentences – these will likely evolve, so no point in mentioning all of these, but reviewers are experienced researchers who have read hundreds of papers in the field so they recognize these patterns.
   

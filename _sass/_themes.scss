@@ -3,6 +3,36 @@
  ******************************************************************************/
  
 :root {
+  --global-bg-color: #{$grey-color-dark};
+  --global-nav-bg-color: #{$grey-900};
+  --global-active-nav-color: #{$uiuc-blue};
+  --global-code-bg-color: #{$code-bg-color-dark};
+  --global-text-color: #{$white-color};
+  --global-text-color-light: #{$grey-color-light};
+  --global-hcolor: #{$uiuc-blue};
+  --global-theme-color: #{$uiuc-blue};
+  --global-header-color: #{$uiuc-blue};
+  --global-hover-color: #{lighten($uiuc-blue, 10%)};
+  --global-link-color: #{lighten($uiuc-blue, 15%)};
+  --global-social-color: #{$grey-color-light};
+  --global-footer-bg-color: #{$grey-color-light};
+  --global-footer-text-color: #{$grey-color-dark};
+  --global-footer-link-color: #{$black-color};
+  --global-distill-app-color: #{$grey-color-light};
+  --global-divider-color: #424246;
+  --global-card-bg-color: #{$grey-900};
+
+  .fa-sun {
+    padding-left: 10px;
+    padding-top: 12px;
+    display : block;
+  }
+  .fa-moon {
+    display : none;
+  }
+}
+
+html[data-theme='light'] {
   --global-bg-color: #{$white-color};
   --global-nav-bg-color: #{$dark-white-color-1};
   --global-active-nav-color: #{$uiuc-blue};
@@ -12,8 +42,8 @@
   --global-hcolor: #{$uiuc-blue-dark};
   --global-theme-color: #{$uiuc-blue};
   --global-header-color: #{$uiuc-blue};
-  --global-hover-color: #{darken($link-color, 15%)};
-  --global-link-color: #{$link-color};
+  --global-hover-color: #{darken($uiuc-blue, 10%)};
+  --global-link-color: #{$uiuc-blue};
   --global-social-color: #{$grey-900};
   --global-footer-bg-color: #{$grey-color-dark};
   --global-footer-text-color: #{$grey-color-light};
@@ -29,29 +59,5 @@
     padding-left: 10px;
     padding-top: 12px;
     display : block;
-  }
-}
-
-html[data-theme='dark'] {
-  --global-bg-color: #{$grey-color-dark};
-  --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$grey-color-light};
-  --global-text-color-light: #{$grey-color-light};
-  --global-theme-color: #{$green-color};
-  --global-hover-color: #{$green-color};
-  --global-footer-bg-color: #{$grey-color-light};
-  --global-footer-text-color: #{$grey-color-dark};
-  --global-footer-link-color: #{$black-color};
-  --global-distill-app-color: #{$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{$grey-900};
-
-  .fa-sun {
-    padding-left: 10px;
-    padding-top: 12px;
-    display : block;
-  }
-  .fa-moon {
-    display : none;
   }
 }

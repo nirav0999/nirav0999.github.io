@@ -46,12 +46,12 @@ layout: default
         {%- include social_lite.html %}
       {%- endunless %}
 
-      {%- include affiliations.html %}
-
       {% if page.news -%}
       <!-- News -->
       {%- include news.html %}
       {%- endif %}
+
+      {%- include affiliations.html %}
       {% if page.selected_papers -%}
         <!-- Selected papers -->
         {%- include selected_papers.html %}

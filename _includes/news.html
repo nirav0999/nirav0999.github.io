@@ -2,16 +2,16 @@
           <div class="news">
             <h2>News</h2>
             {% if site.news != blank -%} 
-            <div class="news-container" style="border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background-color: #fdfdfd;">
+            <div class="news-container" style="border: 1px solid var(--global-divider-color); border-radius: 8px; padding: 15px; background-color: var(--global-card-bg-color);">
               <div class="table-responsive" style="overflow-y: scroll; max-height: 200px;">
                 <table class="table table-sm table-borderless" style="width: 100%; font-size: 12px; line-height: 1.4;">
                 {%- assign news = site.news | reverse -%} 
                 {% for item in news %} 
                   <tr>
-                    <td style="width: 100px; min-width: 100px; vertical-align: top; padding-right: 10px; color: #666; white-space: nowrap;">
+                    <td style="width: 100px; min-width: 100px; vertical-align: top; padding-right: 10px; color: var(--global-text-color-light); white-space: nowrap;">
                       {{ item.date | date: "%b %-d, %Y" }}
                     </td>
-                    <td style="word-wrap: break-word; word-break: break-word; max-width: 0;">
+                    <td style="word-wrap: break-word; word-break: break-word; max-width: 0; color: var(--global-text-color);">
                       {% if item.inline -%} 
                         {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
                       {%- else -%} 
@@ -24,8 +24,8 @@
               </div>
             </div>
           {%- else -%} 
-            <div class="news-container" style="border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background-color: #fdfdfd;">
-              <p>No news so far...</p>
+            <div class="news-container" style="border: 1px solid var(--global-divider-color); border-radius: 8px; padding: 15px; background-color: var(--global-card-bg-color);">
+              <p style="color: var(--global-text-color);">No news so far...</p>
             </div>
           {%- endif %} 
           </div>

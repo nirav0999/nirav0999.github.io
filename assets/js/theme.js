@@ -1,10 +1,10 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
 let toggleTheme = (theme) => {
-  if (theme == "dark") {
-    setTheme("light");
+  if (theme == "light") {
+    setTheme(null); // Switch to dark (default)
   } else {
-    setTheme("dark");
+    setTheme("light"); // Switch to light
   }
 }
 
@@ -19,7 +19,7 @@ let setTheme = (theme) =>  {
   else {
     document.documentElement.removeAttribute("data-theme");
   }
-  localStorage.setItem("theme", theme);
+  localStorage.setItem("theme", theme || "dark");
   
   // Updates the background of medium-zoom overlay.
   if (typeof medium_zoom !== 'undefined') {
@@ -31,12 +31,13 @@ let setTheme = (theme) =>  {
 };
 
 let setHighlight = (theme) => {
-  if (theme == "dark") {
-    document.getElementById("highlight_theme_light").media = "none";
-    document.getElementById("highlight_theme_dark").media = "";
-  } else {
+  if (theme == "light") {
     document.getElementById("highlight_theme_dark").media = "none";
     document.getElementById("highlight_theme_light").media = "";
+  } else {
+    // Default/dark theme
+    document.getElementById("highlight_theme_light").media = "none";
+    document.getElementById("highlight_theme_dark").media = "";
   }
 }
 
@@ -51,9 +52,11 @@ let transTheme = () => {
 
 let initTheme = (theme) => {
   if (theme == null || theme == 'null') {
+    // Default to dark theme (no data-theme attribute needed since :root is dark)
+    theme = null;
     const userPref = window.matchMedia;
-    if (userPref && userPref('(prefers-color-scheme: dark)').matches) {
-        theme = 'dark';
+    if (userPref && userPref('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
     }
   }
   

@@ -113,17 +113,16 @@ layout: default
             <div id="citation-{{ forloop.index }}" class="publication-content" style="display: none;">
                 <div class="content-box citation-content">
                     <div class="d-flex justify-content-between align-items-start">
-                        <div class="flex-grow-1">
+                        <div class="flex-grow-1" style="min-width: 0;">
                             <strong>Citation:</strong><br>
                             <pre><code style="font-size: 0.85rem; background: transparent; color: inherit;">{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.{% endif %}</code></pre>
                         </div>
-                        <button class="btn btn-sm btn-link copy-citation p-1" data-citation="{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
+                        <button class="btn btn-sm btn-link copy-citation p-1 flex-shrink-0" data-citation="{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            
         </li>
         {%- endfor %}
     </ul>
@@ -135,6 +134,21 @@ layout: default
 </div>
 
 <style>
+
+
+.citation-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.citation-content code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: block;
+}
+
 .github-link {
     display: inline-flex;
     align-items: center;

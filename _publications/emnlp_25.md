@@ -5,11 +5,11 @@ title: "Are Code Language Models Robust Against Multi-Turn Malicious Coding Prom
 venue: "30<sup>th</sup> Conference on Empirical Methods in Natural Language Processing (Findings), 2025"
 link: "https://arxiv.org/abs/2507.19598"
 paper: "mocha_arxiv_0903.pdf"
-slides: ""
-poster: ""
+slides: 
+poster: 
 tldr: "Introduced a new benchmark for evaluating code language models against multi-turn malicious coding prompts."
 authors: "Muntasir Wahed, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, Nirav Diwan, Gang Wang, Dilek Hakkani-Tür, Ismini Lourentzou"
-code: ""
+code: "https://github.com/purpcode-uiuc/mocha"
 tag: "conference"
 venue_short: "EMNLP"
 citation: |

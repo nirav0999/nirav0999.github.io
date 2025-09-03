@@ -11,7 +11,7 @@ layout: default
 
     <!-- Search Bar -->
     <div class="mb-4">
-        <input type="text" id="publication-search" class="form-control" placeholder="Search publications by title or tags...">
+        <input type="text" id="publication-search" class="form-control" placeholder="Search publications by title, venue, or tags...">
         <div id="search-results" class="mt-2 text-muted" style="font-size: 0.9rem;"></div>
     </div>
 
@@ -21,16 +21,20 @@ layout: default
         <li class="list-group-item border-top-0 border-left-0 border-right-0 publication-item" 
             data-title="{{ publication.title | downcase }}" 
             data-venue="{{ publication.venue | downcase }}"
+            data-venue-short="{{ publication.venue_short | downcase }}"
             data-tags="{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}">
             
             <div class="publication-header">
-                {% if publication.link %}
-                    <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
+                <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
+                    {% if publication.venue_short %}
+                        <span class="venue-short">{{ publication.venue_short }} / </span>
+                    {% endif %}
+                    {% if publication.link %}
                         <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">{{ publication.title }}</a>
-                    </h5>
-                {% else %}
-                    <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
-                {% endif %}
+                    {% else %}
+                        {{ publication.title }}
+                    {% endif %}
+                </h5>
                 <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
                 <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
                     <span style="font-size: 0.95rem;">{{ publication.venue }}</span>
@@ -55,11 +59,22 @@ layout: default
                 <button class="btn btn-sm btn-outline-primary action-btn tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
                 <button class="btn btn-sm btn-outline-secondary action-btn citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
                 
+                {% if publication.link %}
+                <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info action-btn">Paper</a>
+                {% endif %}
+                
                 {% if publication.code %}
                     <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link action-btn" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
                         <i class="fab fa-github"></i> <span class="star-count">★</span>
                     </a>
                 {% endif %}
+                
+                {% if publication.huggingface %}
+                    <a href="{{ publication.huggingface }}" target="_blank" rel="noopener noreferrer" class="huggingface-link action-btn">
+                        <span class="hf-icon">🤗</span> HF
+                    </a>
+                {% endif %}
+                
                 {% if publication.slides %}
                 <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-warning action-btn">Slides</a>
                 {% endif %}
@@ -73,17 +88,29 @@ layout: default
             
             <!-- Hidden TLDR content -->
             <div id="tldr-{{ forloop.index }}" class="publication-content" style="display: none;">
-                <div class="alert alert-primary compact-alert">
+                <div class="content-box tldr-content">
                     <strong>TLDR:</strong> {{ publication.tldr }}
                 </div>
             </div>
             
             <!-- Hidden Citation content -->
             <div id="citation-{{ forloop.index }}" class="publication-content" style="display: none;">
-                <div class="alert alert-secondary compact-alert">
-                    <strong>Citation:</strong><br>
-                    <code style="font-size: 0.8rem;">{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.</code>
-                    <button class="btn btn-xs btn-outline-secondary ml-2 copy-citation" data-citation="{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.">Copy</button>
+                <div class="content-box citation-content">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <strong>Citation:</strong><br>
+                            <code style="font-size: 0.85rem; background: transparent; color: inherit;">
+                                {% if publication.citation %}
+                                    {{ publication.citation }}
+                                {% else %}
+                                    {{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.
+                                {% endif %}
+                            </code>
+                        </div>
+                        <button class="btn btn-sm btn-link copy-citation p-1" data-citation="{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             
@@ -117,6 +144,30 @@ layout: default
     border-color: var(--global-theme-color);
 }
 
+.huggingface-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--global-text-color);
+    border: 1px solid var(--global-divider-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.huggingface-link:hover {
+    color: #ff6b1a;
+    text-decoration: none;
+    border-color: #ff6b1a;
+}
+
+.hf-icon {
+    margin-right: 0.25rem;
+    font-size: 0.9rem;
+}
+
 .github-link i {
     margin-right: 0.25rem;
 }
@@ -133,10 +184,23 @@ layout: default
     font-size: 0.875rem;
 }
 
-.compact-alert {
-    padding: 0.5rem 0.75rem;
+.content-box {
+    padding: 0.75rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.25rem;
+    background-color: transparent;
+}
+
+.tldr-content {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.citation-content {
+    color: #6c757d;
+    border-color: #6c757d;
 }
 
 .badge-sm {
@@ -152,6 +216,21 @@ layout: default
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.venue-short {
+    color: var(--global-text-color-light);
+    font-weight: normal;
+}
+
+.copy-citation {
+    color: var(--global-text-color-light);
+    border: none;
+    padding: 0.25rem;
+}
+
+.copy-citation:hover {
+    color: var(--global-hover-color);
 }
 
 #publication-search {
@@ -189,11 +268,13 @@ document.addEventListener('DOMContentLoaded', function() {
         publicationItems.forEach(item => {
             const title = item.getAttribute('data-title');
             const venue = item.getAttribute('data-venue');
+            const venueShort = item.getAttribute('data-venue-short') || '';
             const tags = item.getAttribute('data-tags');
             
             const matches = !searchTerm || 
                           title.includes(searchTerm) || 
                           venue.includes(searchTerm) || 
+                          venueShort.includes(searchTerm) ||
                           tags.includes(searchTerm);
 
             if (matches) {
@@ -249,10 +330,10 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const citation = this.getAttribute('data-citation');
             navigator.clipboard.writeText(citation).then(() => {
-                const originalText = this.textContent;
-                this.textContent = 'Copied!';
+                const icon = this.querySelector('i');
+                icon.className = 'fas fa-check';
                 setTimeout(() => {
-                    this.textContent = originalText;
+                    icon.className = 'fas fa-copy';
                 }, 2000);
             });
         });

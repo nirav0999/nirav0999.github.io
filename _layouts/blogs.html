@@ -43,8 +43,8 @@ layout: default
             data-tags="{% if blog.tags %}{{ blog.tags | join: ',' | downcase }}{% endif %}">
             
             <h5 class="title font-weight-bold special-font special-col" 
-                style="color: #13294B; font-size: 1rem; margin-bottom: 0.2rem;">
-                <a href="{{ blog.url | relative_url }}" style="color: #13294B; text-decoration: none;">
+                style="font-size: 1rem; margin-bottom: 0.2rem;">
+                <a href="{{ blog.url | relative_url }}" style="text-decoration: none;">
                     {{ blog.title }}
                 </a>
             </h5>

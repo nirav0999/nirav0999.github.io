@@ -18,4 +18,5 @@ citation: |
   }
 huggingface: "https://huggingface.co/purpcode"
 venue_short: "Pre-print"
+tag: "submission"
 ---

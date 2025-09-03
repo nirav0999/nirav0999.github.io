@@ -10,4 +10,15 @@ poster:
 tldr: Investigated the collusive blackmarket on YouTube using graphs to identify the most influential blackmarket users.
 authors: Hridoy Sankar Dutta*, <u>Nirav Diwan</u>*, Tanmoy Chakraborty
 code: "https://github.com/LCS2-IIITD/ICWSM-2022-Core-Collusive-Youtube-BlackMarket"
+tag: "conference"
+venue_short: "ICWSM"
+citation: |
+  @inproceedings{dutta2022weakening,
+  title={Weakening the inner strength: Spotting core collusive users in youtube blackmarket network},
+  author={Dutta, Hridoy Sankar and Diwan, Nirav and Chakraborty, Tanmoy},
+  booktitle={Proceedings of the International AAAI Conference on Web and Social Media},
+  volume={16},
+  pages={147--158},
+  year={2022}
+  }
 ---

@@ -7,6 +7,16 @@ authors: <u>Nirav Diwan</u>, Tolga Ergen, Dongsub Shim, Honglak Lee
 paper: "aaai_w_25.pdf"
 slides: 
 poster: 
-tldr: Fine-tuned model can identify high quality preference pairs for alignment, even when it may not know which response is better. Substantially increases alignment quality for Coding, Maths and Reasoning on MT-Bench.
+tldr: Unaligned model can identify high-quality preference pairs for alignment, even when it may not know it is better.
 link: "https://arxiv.org/abs/2501.15109"
+tag: "workshop"
+venue_short: "AAAI'W"
+citation: |
+  @article{ndiwan2025clear,
+  title={Clear Preferences Leave Traces: Reference Model-Guided Sampling for Preference Learning},
+  author={Diwan, Nirav and Ergen, Tolga and Shim, Dongsub and Lee, Honglak},
+  journal={arXiv preprint arXiv:2501.15109},
+  year={2025}
+  }
+tag: workshop
 ---

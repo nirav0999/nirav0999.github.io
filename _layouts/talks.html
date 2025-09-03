@@ -21,7 +21,7 @@ layout: default
     <li class="list-group-item border-top-0 border-left-0 border-right-0 talk-item"
         data-title="{{ talk.title | downcase }}"
         data-tags="{{ talk.tags | downcase }}">
-      
+
       <div class="talk-header">
         <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
           {{ talk.title }}
@@ -47,7 +47,31 @@ layout: default
              target="_blank" rel="noopener noreferrer" 
              class="btn btn-sm btn-outline-warning action-btn">Slides</a>
         {% endif %}
+
+        {% if talk.code %}
+          <a href="{{ talk.code }}" target="_blank" rel="noopener noreferrer" 
+             class="github-link action-btn" data-repo="{{ talk.code | replace: 'https://github.com/', '' }}">
+            <i class="fab fa-github"></i> <span class="star-count">★</span>
+          </a>
+        {% endif %}
+
+        {% if talk.tldr %}
+          <button class="btn btn-sm btn-outline-primary action-btn tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
+        {% endif %}
       </div>
+
+      <!-- Dynamic content area -->
+      <div class="dynamic-content mt-2"></div>
+
+      <!-- Hidden TLDR content -->
+      {% if talk.tldr %}
+      <div id="tldr-{{ forloop.index }}" class="talk-content" style="display: none;">
+        <div class="content-box tldr-content">
+          <strong>TLDR:</strong> {{ talk.tldr }}
+        </div>
+      </div>
+      {% endif %}
+
     </li>
     {% endfor %}
   </ul>
@@ -80,21 +104,44 @@ layout: default
   font-size: 0.875rem;
 }
 
-#talk-search {
-  background-color: var(--global-card-bg-color);
-  border-color: var(--global-divider-color);
-  color: var(--global-text-color);
+.content-box {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.25rem;
+  background-color: transparent;
 }
 
-#talk-search:focus {
-  background-color: var(--global-card-bg-color);
+.tldr-content {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--global-text-color);
+  border: 1px solid var(--global-divider-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.github-link:hover {
+  color: var(--global-hover-color);
+  text-decoration: none;
   border-color: var(--global-theme-color);
-  color: var(--global-text-color);
-  box-shadow: 0 0 0 0.2rem rgba(38, 152, 186, 0.25);
 }
 
-#talk-search::placeholder {
-  color: var(--global-text-color-light);
+.github-link i {
+  margin-right: 0.25rem;
+}
+
+.star-count {
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
 }
 </style>
 
@@ -128,20 +175,61 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Update search results text
     if (searchTerm) {
       searchResults.textContent = `Showing ${visibleCount} of ${totalCount} talks`;
     } else {
       searchResults.textContent = '';
     }
 
-    // Show/hide no results message
     if (visibleCount === 0 && searchTerm) {
       talksList.style.display = 'none';
       noResults.style.display = 'block';
     } else {
       talksList.style.display = 'block';
       noResults.style.display = 'none';
+    }
+  });
+
+  // Handle TLDR toggle
+  document.querySelectorAll('.tldr-toggle').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      const dynamicContent = this.closest('.list-group-item').querySelector('.dynamic-content');
+      const visibleElement = dynamicContent.querySelector('#' + targetId + '-visible');
+
+      if (visibleElement) {
+        visibleElement.remove();
+        this.classList.remove('active');
+        this.textContent = this.textContent.replace(' ✓', '');
+      } else {
+        const targetElement = document.getElementById(targetId);
+        const clonedElement = targetElement.cloneNode(true);
+        clonedElement.style.display = 'block';
+        clonedElement.id = targetId + '-visible';
+        dynamicContent.appendChild(clonedElement);
+        this.classList.add('active');
+        this.textContent = this.textContent + ' ✓';
+      }
+    });
+  });
+
+  // Fetch GitHub star counts
+  document.querySelectorAll('.github-link').forEach(link => {
+    const repo = link.getAttribute('data-repo');
+    if (repo) {
+      fetch(`https://api.github.com/repos/${repo}`)
+        .then(response => response.json())
+        .then(data => {
+          const starCount = link.querySelector('.star-count');
+          if (data.stargazers_count !== undefined) {
+            starCount.textContent = `★ ${data.stargazers_count}`;
+          }
+        })
+        .catch(error => {
+          console.log('Error fetching GitHub stars:', error);
+          const starCount = link.querySelector('.star-count');
+          starCount.textContent = '★';
+        });
     }
   });
 });

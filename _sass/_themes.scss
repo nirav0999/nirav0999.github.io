@@ -13,7 +13,7 @@
   --global-theme-color: #{$uiuc-blue};
   --global-header-color: #{$uiuc-blue};
   --global-hover-color: #{$nirav-blue};
-  --global-link-color: #{$nirav-blue-light};
+  --global-link-color: #{$light-cyan-color};
   --global-social-color: #{$grey-color-light};
   --global-footer-bg-color: #{$grey-color-light};
   --global-footer-text-color: #{$grey-color-dark};
@@ -43,7 +43,7 @@ html[data-theme='light'] {
   --global-theme-color: #{$uiuc-blue};
   --global-header-color: #{$uiuc-blue};
   --global-hover-color: #{darken($uiuc-blue, 10%)};
-  --global-link-color: #{$nirav-blue};
+  --global-link-color: #{$cyan-color};
   --global-social-color: #{$grey-900};
   --global-footer-bg-color: #{$grey-color-dark};
   --global-footer-text-color: #{$grey-color-light};

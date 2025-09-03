@@ -102,6 +102,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Fetch GitHub stars for each repo
+    document.querySelectorAll('.github-link').forEach(link => {
+        const repoPath = link.getAttribute('data-repo');
+        const starCountElement = link.querySelector('.star-count');
+        
+        if (repoPath) {
+            fetch(`https://api.github.com/repos/${repoPath}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.stargazers_count !== undefined) {
+                        starCountElement.textContent = `${data.stargazers_count} ⭐`;
+                    } else {
+                        starCountElement.textContent = '';
+                    }
+                })
+                .catch(error => {
+                    console.log('GitHub API error:', error);
+                    starCountElement.textContent = '';
+                });
+        }
+    });
+    
     // Handle copy citation
     document.querySelectorAll('.copy-citation').forEach(button => {
         button.addEventListener('click', function() {

@@ -2,31 +2,147 @@
 layout: default
 ---
 
-
 <div class="post">
 
-    <header class="post-header">
-      <h3 class="post-title" >{{ page.pg_title }}</h3>
-      <p class="post-description">{{ page.description }}</p>
-    </header>
+  <header class="post-header">
+    <h3 class="post-title">{{ page.pg_title }}</h3>
+    <p class="post-description">{{ page.description }}</p>
+  </header>
 
-    <ul class="list-group">
-        {%- assign talks = site.talks | reverse -%} 
-        {% for talk in talks %} 
-        <li class="list-group-item border-top-0 border-left-0 border-right-0">
-            <h5 class="title font-weight-bold special-font special-col" style="font-size: 1.0rem; margin-bottom: 0.2rem;">{{talk.title}}</h5>
-            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{talk.loc}}</p>
-            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ talk.date | date: "%b %-d, %Y" }}</p>
-            {% if talk.slides %}
-            <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url}}" target="_blank" rel="noopener noreferrer"> Slides </a>
+  <!-- Search Bar -->
+  <div class="mb-4">
+    <input type="text" id="talk-search" class="form-control" placeholder="Search by title or tags...">
+    <div id="search-results" class="mt-2 text-muted" style="font-size: 0.9rem;"></div>
+  </div>
+
+  <ul class="list-group" id="talks-list">
+    {%- assign talks = site.talks | reverse -%}
+    {% for talk in talks %}
+    <li class="list-group-item border-top-0 border-left-0 border-right-0 talk-item"
+        data-title="{{ talk.title | downcase }}"
+        data-tags="{{ talk.tags | downcase }}">
+      
+      <div class="talk-header">
+        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
+          {{ talk.title }}
+        </h5>
+        <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
+          <span style="font-size: 0.95rem;">{{ talk.short_venue_name }}</span>
+          <span class="ml-2">
+            {% if talk.tags %}
+              {% for tag in talk.tags %}
+                <span class="badge badge-secondary badge-sm">{{ tag | capitalize }}</span>
+              {% endfor %}
             {% endif %}
-        </li>
-      {%- endfor %}
-      </ul>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+          </span>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--global-text-color-light);">
+          {{ talk.date | date: "%B %d, %Y" }}
+        </p>
+      </div>
 
+      <div class="talk-actions mt-2">
+        {% if talk.slides %}
+          <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}" 
+             target="_blank" rel="noopener noreferrer" 
+             class="btn btn-sm btn-outline-warning action-btn">Slides</a>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div id="no-results" style="display: none;" class="text-center text-muted mt-4">
+    <p>No talks found matching your search.</p>
+  </div>
 </div>
+
+<style>
+.badge-sm {
+  font-size: 0.75rem;
+  padding: 0.25em 0.4em;
+}
+
+.talk-header {
+  margin-bottom: 0.5rem;
+}
+
+.venue-with-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+#talk-search {
+  background-color: var(--global-card-bg-color);
+  border-color: var(--global-divider-color);
+  color: var(--global-text-color);
+}
+
+#talk-search:focus {
+  background-color: var(--global-card-bg-color);
+  border-color: var(--global-theme-color);
+  color: var(--global-text-color);
+  box-shadow: 0 0 0 0.2rem rgba(38, 152, 186, 0.25);
+}
+
+#talk-search::placeholder {
+  color: var(--global-text-color-light);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('talk-search');
+  const talksList = document.getElementById('talks-list');
+  const noResults = document.getElementById('no-results');
+  const searchResults = document.getElementById('search-results');
+  const talkItems = document.querySelectorAll('.talk-item');
+  const totalCount = talkItems.length;
+
+  // Search functionality
+  searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    talkItems.forEach(item => {
+      const title = item.getAttribute('data-title');
+      const tags = item.getAttribute('data-tags') || '';
+
+      const matches = !searchTerm || 
+                      title.includes(searchTerm) || 
+                      tags.includes(searchTerm);
+
+      if (matches) {
+        item.style.display = 'list-item';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Update search results text
+    if (searchTerm) {
+      searchResults.textContent = `Showing ${visibleCount} of ${totalCount} talks`;
+    } else {
+      searchResults.textContent = '';
+    }
+
+    // Show/hide no results message
+    if (visibleCount === 0 && searchTerm) {
+      talksList.style.display = 'none';
+      noResults.style.display = 'block';
+    } else {
+      talksList.style.display = 'block';
+      noResults.style.display = 'none';
+    }
+  });
+});
+</script>

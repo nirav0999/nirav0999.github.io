@@ -638,3 +638,174 @@ html.transition *:after {
     }
   }
 }
+
+
+/* Add these styles to your _sass/_base.scss file */
+
+/* Publications styling for dark theme */
+.publications {
+  .post-header {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group-item {
+    background-color: var(--global-card-bg-color) !important;
+    border-color: var(--global-divider-color) !important;
+    color: var(--global-text-color) !important;
+    
+    .title {
+      color: var(--global-text-color) !important;
+    }
+    
+    p {
+      color: var(--global-text-color) !important;
+    }
+    
+    a {
+      color: var(--global-link-color) !important;
+      &:hover {
+        color: var(--global-hover-color) !important;
+      }
+    }
+  }
+}
+
+/* Talks styling for dark theme */
+.talks {
+  .post-header {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group-item {
+    background-color: var(--global-card-bg-color) !important;
+    border-color: var(--global-divider-color) !important;
+    color: var(--global-text-color) !important;
+    
+    .title {
+      color: var(--global-text-color) !important;
+    }
+    
+    p {
+      color: var(--global-text-color) !important;
+    }
+    
+    a {
+      color: var(--global-link-color) !important;
+      &:hover {
+        color: var(--global-hover-color) !important;
+      }
+    }
+  }
+}
+
+/* Blogs styling for dark theme */
+.blogs {
+  .post-header {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group {
+    background-color: var(--global-card-bg-color);
+  }
+  
+  .list-group-item {
+    background-color: var(--global-card-bg-color) !important;
+    border-color: var(--global-divider-color) !important;
+    color: var(--global-text-color) !important;
+    
+    .title {
+      color: var(--global-text-color) !important;
+    }
+    
+    p {
+      color: var(--global-text-color) !important;
+    }
+    
+    a {
+      color: var(--global-link-color) !important;
+      &:hover {
+        color: var(--global-hover-color) !important;
+      }
+    }
+  }
+}
+
+/* General post styling for all layouts */
+.post {
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+  
+  .post-header {
+    background-color: var(--global-bg-color);
+    color: var(--global-text-color);
+    
+    .post-title {
+      color: var(--global-text-color) !important;
+    }
+    
+    .post-description {
+      color: var(--global-text-color-light) !important;
+    }
+  }
+  
+  .post-content {
+    background-color: var(--global-bg-color);
+    color: var(--global-text-color);
+  }
+}
+
+/* Specific fix for list group items */
+.list-group-item {
+  background-color: var(--global-card-bg-color) !important;
+  border-color: var(--global-divider-color) !important;
+  
+  &:first-child {
+    border-top-color: var(--global-divider-color) !important;
+  }
+  
+  &:last-child {
+    border-bottom-color: var(--global-divider-color) !important;
+  }
+}
+
+/* Form controls for search and filter in blogs */
+.form-control {
+  background-color: var(--global-card-bg-color) !important;
+  border-color: var(--global-divider-color) !important;
+  color: var(--global-text-color) !important;
+  
+  &:focus {
+    background-color: var(--global-card-bg-color) !important;
+    border-color: var(--global-theme-color) !important;
+    color: var(--global-text-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(var(--global-theme-color), 0.25) !important;
+  }
+  
+  &::placeholder {
+    color: var(--global-text-color-light) !important;
+  }
+}
+
+/* Badge styling */
+.badge {
+  background-color: var(--global-theme-color) !important;
+  color: var(--global-card-bg-color) !important;
+  
+  &.badge-secondary {
+    background-color: var(--global-divider-color) !important;
+    color: var(--global-text-color) !important;
+  }
+}
+
+/* Results count text */
+.text-muted {
+  color: var(--global-text-color-light) !important;
+}

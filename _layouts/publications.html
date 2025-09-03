@@ -15,9 +15,18 @@ layout: default
         <li class="list-group-item border-top-0 border-left-0 border-right-0">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
-                    <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
+                    {% if publication.link %}
+                        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
+                            <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">{{ publication.title }}</a>
+                        </h5>
+                    {% else %}
+                        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
+                    {% endif %}
                     <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
                     <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.venue }}</p>
+                    {% if publication.press %}
+                        <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #ff8c00; font-weight: bold;">{{ publication.press }}</p>
+                    {% endif %}
                 </div>
                 <div class="publication-tags">
                     {% if publication.venue contains "Workshop" or publication.venue contains "workshop" %}
@@ -36,11 +45,10 @@ layout: default
                 <button class="btn btn-sm btn-outline-primary tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
                 <button class="btn btn-sm btn-outline-secondary citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
                 
-                {% if publication.link %}
-                <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info">Paper</a>
-                {% endif %}
                 {% if publication.code %}
-                <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success">Code</a>
+                    <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
+                        <i class="fab fa-github"></i> <span class="star-count">★</span>
+                    </a>
                 {% endif %}
                 {% if publication.slides %}
                 <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-warning">Slides</a>
@@ -75,6 +83,35 @@ layout: default
 
 </div>
 
+<style>
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--global-text-color);
+    border: 1px solid var(--global-divider-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+
+.github-link:hover {
+    color: var(--global-hover-color);
+    text-decoration: none;
+    border-color: var(--global-theme-color);
+}
+
+.github-link i {
+    margin-right: 0.25rem;
+}
+
+.star-count {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Handle TLDR and Citation toggles
@@ -102,28 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Fetch GitHub stars for each repo
-    document.querySelectorAll('.github-link').forEach(link => {
-        const repoPath = link.getAttribute('data-repo');
-        const starCountElement = link.querySelector('.star-count');
-        
-        if (repoPath) {
-            fetch(`https://api.github.com/repos/${repoPath}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.stargazers_count !== undefined) {
-                        starCountElement.textContent = `${data.stargazers_count} ⭐`;
-                    } else {
-                        starCountElement.textContent = '';
-                    }
-                })
-                .catch(error => {
-                    console.log('GitHub API error:', error);
-                    starCountElement.textContent = '';
-                });
-        }
-    });
-    
     // Handle copy citation
     document.querySelectorAll('.copy-citation').forEach(button => {
         button.addEventListener('click', function() {
@@ -136,6 +151,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 2000);
             });
         });
+    });
+    
+    // Fetch GitHub star counts
+    document.querySelectorAll('.github-link').forEach(link => {
+        const repo = link.getAttribute('data-repo');
+        if (repo) {
+            fetch(`https://api.github.com/repos/${repo}`)
+                .then(response => response.json())
+                .then(data => {
+                    const starCount = link.querySelector('.star-count');
+                    if (data.stargazers_count !== undefined) {
+                        starCount.textContent = `★ ${data.stargazers_count}`;
+                    }
+                })
+                .catch(error => {
+                    console.log('Error fetching GitHub stars:', error);
+                    const starCount = link.querySelector('.star-count');
+                    starCount.textContent = '★';
+                });
+        }
     });
 });
 </script>

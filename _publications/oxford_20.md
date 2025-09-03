@@ -11,7 +11,7 @@ tldr: Developed a worldwide database of recipes with over 100,000+ recipes from 
 authors: Devansh Batra, <u>Nirav Diwan</u>, Utkarsh Upadhyay, Jushaan Singh Kalra, Tript Sharma, Aman Kumar Sharma, Dheeraj Khanna, Jaspreet Singh Marwah, Srilakshmi Kalathil, Navjot Singh, Rudraksh Tuwani, Ganesh Bagler
 code: 
 tag: "journal"
-press: 'Featured in <span style="color:blue;">🌐</span> <a href="https://timesofindia.indiatimes.com/business/india-business/consuming-passion-data-and-delicious-food/articleshow/98930461.cms" target="_blank">Times of India</a>, <a href="https://www.thenationalnews.com/lifestyle/food/the-indian-academic-making-the-world-look-at-flavours-and-food-in-a-fresh-way-1.1010822" target="_blank">The National</a>,<a href="https://www.nature.com/articles/d44151-024-00109-4" target="_blank">Nature India</a>'
+press: '<span style="color:blue;">🌐</span> Featured in <a href="https://timesofindia.indiatimes.com/business/india-business/consuming-passion-data-and-delicious-food/articleshow/98930461.cms" target="_blank">Times of India</a> <a href="https://www.thenationalnews.com/lifestyle/food/the-indian-academic-making-the-world-look-at-flavours-and-food-in-a-fresh-way-1.1010822" target="_blank">The National</a> <a href="https://www.nature.com/articles/d44151-024-00109-4" target="_blank">Nature India</a>'
 venue_short: "Database (OUP)"
 citation: | 
     @article{recipedb,

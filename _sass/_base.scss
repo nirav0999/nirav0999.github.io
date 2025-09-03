@@ -658,3 +658,8 @@ html.transition *:after {
 .table th {
   background-color: var(--global-bg-color) !important;
 }
+
+/* Make publication, blog, and talk headings cyan */
+.list-group-item .title {
+  color: var(--global-theme-color) !important;
+}

@@ -9,12 +9,13 @@ tldr: Developed a reasoning model for secure code generation using <a href = "ht
 code: "https://github.com/purpcode-uiuc/purpcode"
 link: "https://arxiv.org/abs/2507.19060"
 press: "🥇 Winner of Amazon Nova AI Challenge 2025 ($250K) cash prize"
-citation: "@article{purpcode,
-  title = {PurpCode: Reasoning for Safer Code Generation},
-  author = {Liu, Jiawei and Diwan, Nirav and Wang, Zhe and Zhai, Haoyu and Zhou, Xiaona and Nguyen, Kiet A. and Yu, Tianjiao and Wahed, Muntasir and Deng, Yinlin and Benkraouda, Hadjer and Wei, Yuxiang and Zhang, Lingming and Lourentzou, Ismini and Wang, Gang},
-  journal = {arXiv preprint arXiv:2507.19060},
-  year = {2025},
-}"
+citation: |
+  @article{purpcode,
+    title = {PurpCode: Reasoning for Safer Code Generation},
+    author = {Liu, Jiawei and Diwan, Nirav and Wang, Zhe and Zhai, Haoyu and Zhou, Xiaona and Nguyen, Kiet A. and Yu, Tianjiao and Wahed, Muntasir and Deng, Yinlin and Benkraouda, Hadjer and Wei, Yuxiang and Zhang, Lingming and Lourentzou, Ismini and Wang, Gang},
+    journal = {arXiv preprint arXiv:2507.19060},
+    year = {2025},
+  }
 huggingface: "https://huggingface.co/purpcode"
 venue_short: "Pre-print"
 ---

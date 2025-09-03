@@ -662,3 +662,7 @@ html.transition *:after {
 h5.title.special-col {
   color: var(--global-theme-color) !important;
 }
+
+.post .list-group-item h5.title.special-col {
+  color: var(--global-theme-color) !important;
+}

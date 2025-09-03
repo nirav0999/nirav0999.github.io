@@ -28,7 +28,7 @@ layout: default
             <div class="publication-header">
                 <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
                     {% if publication.venue_short %}
-                        <span class="venue-short">{{ publication.venue_short }} / </span>
+                        <b><span class="venue-short">{{ publication.venue_short }} / </span> </b>
                     {% endif %}
                     {% if publication.link %}
                         <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">{{ publication.title }}</a>

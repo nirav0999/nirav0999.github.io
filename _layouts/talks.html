@@ -20,18 +20,25 @@ layout: default
     {% for talk in talks %}
     <li class="list-group-item border-top-0 border-left-0 border-right-0 talk-item"
         data-title="{{ talk.title | downcase }}"
-        data-tags="{{ talk.tags | downcase }}">
+        data-tags="{{ talk.tags | join: ' ' | downcase }}">
 
       <div class="talk-header">
-        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
-          {{ talk.title }}
+        <h5 class="title special-font" style="font-size: 1rem; margin-bottom: 0.2rem; font-weight: bold; color: gray;">
+          {% if talk.slides %}
+            <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}" 
+               target="_blank" rel="noopener noreferrer" 
+               style="color: gray; font-weight: bold; text-decoration: none;">
+              {{ talk.short_venue_name }} / {{ talk.title }}
+            </a>
+          {% else %}
+            {{ talk.short_venue_name }} / {{ talk.title }}
+          {% endif %}
         </h5>
         <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
-          <span style="font-size: 0.95rem;">{{ talk.short_venue_name }}</span>
           <span class="ml-2">
             {% if talk.tags %}
               {% for tag in talk.tags %}
-                <span class="badge badge-secondary badge-sm">{{ tag | capitalize }}</span>
+                <span class="badge badge-secondary badge-sm">{{ tag }}</span>
               {% endfor %}
             {% endif %}
           </span>
@@ -144,93 +151,3 @@ layout: default
   margin-left: 0.25rem;
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById('talk-search');
-  const talksList = document.getElementById('talks-list');
-  const noResults = document.getElementById('no-results');
-  const searchResults = document.getElementById('search-results');
-  const talkItems = document.querySelectorAll('.talk-item');
-  const totalCount = talkItems.length;
-
-  // Search functionality
-  searchInput.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase().trim();
-    let visibleCount = 0;
-
-    talkItems.forEach(item => {
-      const title = item.getAttribute('data-title');
-      const tags = item.getAttribute('data-tags') || '';
-
-      const matches = !searchTerm || 
-                      title.includes(searchTerm) || 
-                      tags.includes(searchTerm);
-
-      if (matches) {
-        item.style.display = 'list-item';
-        visibleCount++;
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    if (searchTerm) {
-      searchResults.textContent = `Showing ${visibleCount} of ${totalCount} talks`;
-    } else {
-      searchResults.textContent = '';
-    }
-
-    if (visibleCount === 0 && searchTerm) {
-      talksList.style.display = 'none';
-      noResults.style.display = 'block';
-    } else {
-      talksList.style.display = 'block';
-      noResults.style.display = 'none';
-    }
-  });
-
-  // Handle TLDR toggle
-  document.querySelectorAll('.tldr-toggle').forEach(button => {
-    button.addEventListener('click', function() {
-      const targetId = this.getAttribute('data-target');
-      const dynamicContent = this.closest('.list-group-item').querySelector('.dynamic-content');
-      const visibleElement = dynamicContent.querySelector('#' + targetId + '-visible');
-
-      if (visibleElement) {
-        visibleElement.remove();
-        this.classList.remove('active');
-        this.textContent = this.textContent.replace(' ✓', '');
-      } else {
-        const targetElement = document.getElementById(targetId);
-        const clonedElement = targetElement.cloneNode(true);
-        clonedElement.style.display = 'block';
-        clonedElement.id = targetId + '-visible';
-        dynamicContent.appendChild(clonedElement);
-        this.classList.add('active');
-        this.textContent = this.textContent + ' ✓';
-      }
-    });
-  });
-
-  // Fetch GitHub star counts
-  document.querySelectorAll('.github-link').forEach(link => {
-    const repo = link.getAttribute('data-repo');
-    if (repo) {
-      fetch(`https://api.github.com/repos/${repo}`)
-        .then(response => response.json())
-        .then(data => {
-          const starCount = link.querySelector('.star-count');
-          if (data.stargazers_count !== undefined) {
-            starCount.textContent = `★ ${data.stargazers_count}`;
-          }
-        })
-        .catch(error => {
-          console.log('Error fetching GitHub stars:', error);
-          const starCount = link.querySelector('.star-count');
-          starCount.textContent = '★';
-        });
-    }
-  });
-});
-</script>

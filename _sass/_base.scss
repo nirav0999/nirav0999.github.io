@@ -809,3 +809,149 @@ html.transition *:after {
 .text-muted {
   color: var(--global-text-color-light) !important;
 }
+
+/* Add this to the END of your _sass/_base.scss file */
+
+/* Force dark theme for all list groups and table elements */
+.list-group {
+  background-color: var(--global-bg-color) !important;
+}
+
+.list-group-item {
+  background-color: var(--global-bg-color) !important;
+  border-color: var(--global-divider-color) !important;
+  color: var(--global-text-color) !important;
+  
+  /* Ensure all nested elements inherit dark colors */
+  * {
+    color: var(--global-text-color) !important;
+  }
+  
+  /* Fix specific elements */
+  .title, h5, h6, p, span, div {
+    color: var(--global-text-color) !important;
+    background-color: transparent !important;
+  }
+  
+  /* Links styling */
+  a {
+    color: var(--global-link-color) !important;
+    background-color: transparent !important;
+    
+    &:hover {
+      color: var(--global-hover-color) !important;
+      background-color: transparent !important;
+    }
+  }
+  
+  /* Special styling for colored titles */
+  .special-col {
+    color: var(--global-header-color) !important;
+  }
+  
+  .special-font {
+    color: var(--global-text-color) !important;
+  }
+}
+
+/* Force Bootstrap overrides */
+.list-group-item.list-group-item {
+  background-color: var(--global-bg-color) !important;
+  border-color: var(--global-divider-color) !important;
+}
+
+/* Fix any table elements that might be used */
+.table {
+  background-color: var(--global-bg-color) !important;
+  color: var(--global-text-color) !important;
+  
+  td, th {
+    background-color: var(--global-bg-color) !important;
+    color: var(--global-text-color) !important;
+    border-color: var(--global-divider-color) !important;
+  }
+}
+
+/* Fix any remaining white backgrounds in these specific layouts */
+.post {
+  background-color: var(--global-bg-color) !important;
+  
+  .post-header {
+    background-color: var(--global-bg-color) !important;
+    
+    .post-title {
+      color: var(--global-text-color) !important;
+    }
+    
+    .post-description {
+      color: var(--global-text-color-light) !important;
+    }
+  }
+  
+  /* Target the main content area */
+  ul.list-group {
+    background-color: var(--global-bg-color) !important;
+    
+    li {
+      background-color: var(--global-bg-color) !important;
+      border-color: var(--global-divider-color) !important;
+    }
+  }
+}
+
+/* Specific fixes for publications, talks, and blogs layouts */
+.publications, .talks, .blogs {
+  background-color: var(--global-bg-color) !important;
+  
+  .post {
+    background-color: var(--global-bg-color) !important;
+  }
+  
+  .list-group {
+    background-color: var(--global-bg-color) !important;
+  }
+  
+  .list-group-item {
+    background-color: var(--global-bg-color) !important;
+    border-color: var(--global-divider-color) !important;
+  }
+}
+
+/* Fix form elements in blogs page */
+.form-control {
+  background-color: var(--global-card-bg-color) !important;
+  border-color: var(--global-divider-color) !important;
+  color: var(--global-text-color) !important;
+  
+  &:focus {
+    background-color: var(--global-card-bg-color) !important;
+    border-color: var(--global-theme-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(19, 41, 75, 0.25) !important;
+  }
+  
+  &::placeholder {
+    color: var(--global-text-color-light) !important;
+  }
+}
+
+/* Fix badges/tags */
+.badge {
+  &.badge-secondary {
+    background-color: var(--global-divider-color) !important;
+    color: var(--global-text-color) !important;
+  }
+}
+
+/* Override any Bootstrap white backgrounds */
+.bg-white {
+  background-color: var(--global-bg-color) !important;
+}
+
+/* Additional fallback for stubborn white backgrounds */
+* {
+  &[style*="background-color: white"],
+  &[style*="background-color: #ffffff"],
+  &[style*="background-color: #fff"] {
+    background-color: var(--global-bg-color) !important;
+  }
+}

@@ -3,13 +3,13 @@ layout: publications
 date: 2025-07-07
 title: "Are Code Language Models Robust Against Multi-Turn Malicious Coding Prompts?
 venue: "30<sup>th</sup> Conference on Empirical Methods in Natural Language Processing (Findings), 2025 "
-link: "https://ojs.aaai.org/index.php/ICWSM/article/view/19280/19052"
-paper: "icwsm_22.pdf"
+link: "https://arxiv.org/abs/2507.19598"
+paper: "mocha_arxiv_0903.pdf"
 slides: 
 poster: 
 tldr: Introduced a new benchmark for evaluating code language models against multi-turn malicious coding prompts.
 authors: Muntasir Wahed, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, <u>Nirav Diwan</u>, Gang Wang, Dilek Hakkani-Tür, Ismini Lourentzou
-code: "https://arxiv.org/abs/2507.19598"
+code: ""
 tag: "conference"
 venue_short: "EMNLP"
 citation: |

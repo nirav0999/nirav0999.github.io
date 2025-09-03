@@ -659,7 +659,7 @@ html.transition *:after {
   background-color: var(--global-bg-color) !important;
 }
 
-/* Make publication, blog, and talk headings cyan */
-.list-group-item .title {
+/* Target the specific classes used in your publication/talk/blog titles */
+.special-col {
   color: var(--global-theme-color) !important;
 }

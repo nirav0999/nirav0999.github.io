@@ -16,7 +16,7 @@ layout: default
     <p class="desc">{{ page.subtitle }}</p>
   </header>
 
-  <!-- Main content container to enforce the minimum width -->
+  <!-- Main content container -->
   <div class="main-container">
     <article>
       {% if page.profile -%}
@@ -25,26 +25,29 @@ layout: default
           {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
           {%- assign profile_image_class = "img-fluid z-depth-1" -%}
 
-          <!-- Adjust image class based on the image_circular property -->
+          <!-- Adjust image class -->
           {%- if page.profile.image_circular %}
             {%- assign profile_image_class = profile_image_class | append: " rounded-circle" -%}
           {%- else %}
             {%- assign profile_image_class = profile_image_class | append: " square-image" -%}
           {%- endif %}
 
-          <!-- Include the image with all necessary attributes -->
+          <!-- Profile photo -->
           <img src="{{ profile_image_path }}" class="{{ profile_image_class }}" alt="{{ page.profile.image }}" style="width: 100%; height: auto;" />
+
+          <!-- Social under profile image -->
+          <div class="social-icons" style="margin-top: 10px; text-align: center;">
+            {% include social.html %}
+          </div>
         {% endif -%}
       </div>
       {%- endif %}
 
+      <!-- Content with expandable behavior -->
       <div class="clearfix">
-        {{ content }}
+        <div id="about-first-para"></div>
+        <div id="about-extra-paras" style="display: none;"></div>
       </div>
-
-      {%- unless page.social %}
-        {%- include social_lite.html %}
-      {%- endunless %}
 
       {% if page.news -%}
       <!-- News -->
@@ -55,20 +58,41 @@ layout: default
       {% if page.selected_papers -%}
         <!-- Selected papers -->
         {%- include selected_papers.html %}
-      {%- endif %}
-      {%- if page.social %}
-      <!-- Social -->
-      <div class="social">
-        <div class="contact-icons">
-          {% include social.html %}
-        </div>
-
-        <div class="contact-note">
-          {{ site.contact_note }}
-        </div>
-        
-      </div>
-      {%- endif %}
+      {% endif %}
     </article>
   </div> <!-- End of main-container -->
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const contentDiv = document.createElement("div");
+  contentDiv.innerHTML = `{{ content | strip_newlines | replace: '"', '\"' }}`;
+
+  const paras = contentDiv.querySelectorAll("p");
+  if (paras.length > 0) {
+    // First paragraph
+    const firstPara = paras[0].cloneNode(true);
+    const firstContainer = document.getElementById("about-first-para");
+    firstContainer.appendChild(firstPara);
+
+    // Add "Read more" link
+    const readMoreLink = document.createElement("a");
+    readMoreLink.href = "javascript:void(0)";
+    readMoreLink.textContent = " Read more »";
+    readMoreLink.style.color = "var(--global-theme-color)";
+    readMoreLink.addEventListener("click", function() {
+      document.getElementById("about-extra-paras").style.display = "block";
+      readMoreLink.style.display = "none";
+    });
+    firstPara.appendChild(readMoreLink);
+
+    // Remaining paragraphs
+    if (paras.length > 1) {
+      const extraContainer = document.getElementById("about-extra-paras");
+      for (let i = 1; i < paras.length; i++) {
+        extraContainer.appendChild(paras[i].cloneNode(true));
+      }
+    }
+  }
+});
+</script>

@@ -9,70 +9,80 @@ layout: default
       <p class="post-description">{{ page.description }}</p>
     </header>
 
-    <ul class="list-group">
+    <!-- Search Bar -->
+    <div class="mb-4">
+        <input type="text" id="publication-search" class="form-control" placeholder="Search publications by title or tags...">
+        <div id="search-results" class="mt-2 text-muted" style="font-size: 0.9rem;"></div>
+    </div>
+
+    <ul class="list-group" id="publications-list">
         {%- assign publications = site.publications | reverse -%} 
         {% for publication in publications %} 
-        <li class="list-group-item border-top-0 border-left-0 border-right-0">
-            <div class="d-flex justify-content-between align-items-start">
-                <div class="flex-grow-1">
-                    {% if publication.link %}
-                        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
-                            <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">{{ publication.title }}</a>
-                        </h5>
-                    {% else %}
-                        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
-                    {% endif %}
-                    <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
-                    <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.venue }}</p>
-                    {% if publication.press %}
-                        <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #ff8c00; font-weight: bold;">{{ publication.press }}</p>
-                    {% endif %}
+        <li class="list-group-item border-top-0 border-left-0 border-right-0 publication-item" 
+            data-title="{{ publication.title | downcase }}" 
+            data-venue="{{ publication.venue | downcase }}"
+            data-tags="{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}">
+            
+            <div class="publication-header">
+                {% if publication.link %}
+                    <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
+                        <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">{{ publication.title }}</a>
+                    </h5>
+                {% else %}
+                    <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">{{ publication.title }}</h5>
+                {% endif %}
+                <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">{{ publication.authors }}</p>
+                <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
+                    <span style="font-size: 0.95rem;">{{ publication.venue }}</span>
+                    <span class="ml-2">
+                        {% if publication.venue contains "Workshop" or publication.venue contains "workshop" %}
+                            <span class="badge badge-warning badge-sm">Workshop</span>
+                        {% elsif publication.venue contains "Conference" or publication.venue contains "USENIX" or publication.venue contains "ACL" or publication.venue contains "ICWSM" or publication.venue contains "AAAI" %}
+                            <span class="badge badge-success badge-sm">Conference</span>
+                        {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
+                            <span class="badge badge-info badge-sm">Journal</span>
+                        {% else %}
+                            <span class="badge badge-secondary badge-sm">Publication</span>
+                        {% endif %}
+                    </span>
                 </div>
-                <div class="publication-tags">
-                    {% if publication.venue contains "Workshop" or publication.venue contains "workshop" %}
-                        <span class="badge badge-warning">Workshop</span>
-                    {% elsif publication.venue contains "Conference" or publication.venue contains "USENIX" or publication.venue contains "ACL" or publication.venue contains "ICWSM" or publication.venue contains "AAAI" %}
-                        <span class="badge badge-success">Conference</span>
-                    {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
-                        <span class="badge badge-info">Journal</span>
-                    {% else %}
-                        <span class="badge badge-secondary">Publication</span>
-                    {% endif %}
-                </div>
+                {% if publication.press %}
+                    <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #ff8c00; font-weight: bold;">{{ publication.press }}</p>
+                {% endif %}
             </div>
             
             <div class="publication-actions mt-2">
-                <button class="btn btn-sm btn-outline-primary tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
-                <button class="btn btn-sm btn-outline-secondary citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
+                <button class="btn btn-sm btn-outline-primary action-btn tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
+                <button class="btn btn-sm btn-outline-secondary action-btn citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
                 
                 {% if publication.code %}
-                    <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
+                    <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link action-btn" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
                         <i class="fab fa-github"></i> <span class="star-count">★</span>
                     </a>
                 {% endif %}
                 {% if publication.slides %}
-                <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-warning">Slides</a>
+                <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-warning action-btn">Slides</a>
                 {% endif %}
                 {% if publication.poster %}
-                <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark">Poster</a>
+                <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark action-btn">Poster</a>
                 {% endif %}
             </div>
             
             <!-- Dynamic content area -->
-            <div class="dynamic-content mt-3"></div>
+            <div class="dynamic-content mt-2"></div>
             
             <!-- Hidden TLDR content -->
             <div id="tldr-{{ forloop.index }}" class="publication-content" style="display: none;">
-                <div class="alert alert-primary">
+                <div class="alert alert-primary compact-alert">
                     <strong>TLDR:</strong> {{ publication.tldr }}
                 </div>
             </div>
             
             <!-- Hidden Citation content -->
             <div id="citation-{{ forloop.index }}" class="publication-content" style="display: none;">
-                <div class="alert alert-secondary">
+                <div class="alert alert-secondary compact-alert">
                     <strong>Citation:</strong><br>
-                    <code>{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.</code>
+                    <code style="font-size: 0.8rem;">{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.</code>
                     <button class="btn btn-xs btn-outline-secondary ml-2 copy-citation" data-citation="{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.">Copy</button>
                 </div>
             </div>
@@ -80,6 +90,10 @@ layout: default
         </li>
         {%- endfor %}
     </ul>
+
+    <div id="no-results" style="display: none;" class="text-center text-muted mt-4">
+        <p>No publications found matching your search.</p>
+    </div>
 
 </div>
 
@@ -93,7 +107,8 @@ layout: default
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .github-link:hover {
@@ -110,10 +125,102 @@ layout: default
     font-size: 0.75rem;
     margin-left: 0.25rem;
 }
+
+.action-btn {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.compact-alert {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.badge-sm {
+    font-size: 0.75rem;
+    padding: 0.25em 0.4em;
+}
+
+.publication-header {
+    margin-bottom: 0.5rem;
+}
+
+.venue-with-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#publication-search {
+    background-color: var(--global-card-bg-color);
+    border-color: var(--global-divider-color);
+    color: var(--global-text-color);
+}
+
+#publication-search:focus {
+    background-color: var(--global-card-bg-color);
+    border-color: var(--global-theme-color);
+    color: var(--global-text-color);
+    box-shadow: 0 0 0 0.2rem rgba(38, 152, 186, 0.25);
+}
+
+#publication-search::placeholder {
+    color: var(--global-text-color-light);
+}
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('publication-search');
+    const publicationsList = document.getElementById('publications-list');
+    const noResults = document.getElementById('no-results');
+    const searchResults = document.getElementById('search-results');
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const totalCount = publicationItems.length;
+
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        publicationItems.forEach(item => {
+            const title = item.getAttribute('data-title');
+            const venue = item.getAttribute('data-venue');
+            const tags = item.getAttribute('data-tags');
+            
+            const matches = !searchTerm || 
+                          title.includes(searchTerm) || 
+                          venue.includes(searchTerm) || 
+                          tags.includes(searchTerm);
+
+            if (matches) {
+                item.style.display = 'list-item';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Update search results text
+        if (searchTerm) {
+            searchResults.textContent = `Showing ${visibleCount} of ${totalCount} publications`;
+        } else {
+            searchResults.textContent = '';
+        }
+
+        // Show/hide no results message
+        if (visibleCount === 0 && searchTerm) {
+            publicationsList.style.display = 'none';
+            noResults.style.display = 'block';
+        } else {
+            publicationsList.style.display = 'block';
+            noResults.style.display = 'none';
+        }
+    });
+
     // Handle TLDR and Citation toggles
     document.querySelectorAll('.tldr-toggle, .citation-toggle').forEach(button => {
         button.addEventListener('click', function() {
@@ -122,12 +229,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const visibleElement = dynamicContent.querySelector('#' + targetId + '-visible');
             
             if (visibleElement) {
-                // Content is already visible, so hide it
                 visibleElement.remove();
                 this.classList.remove('active');
                 this.textContent = this.textContent.replace(' ✓', '');
             } else {
-                // Content is not visible, so show it
                 const targetElement = document.getElementById(targetId);
                 const clonedElement = targetElement.cloneNode(true);
                 clonedElement.style.display = 'block';

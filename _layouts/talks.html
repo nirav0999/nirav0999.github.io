@@ -23,38 +23,31 @@ layout: default
         data-tags="{{ talk.tags | join: ' ' | downcase }}">
 
       <div class="talk-header">
-        <h5 class="title special-font" style="font-size: 1rem; margin-bottom: 0.2rem; font-weight: bold; color: gray;">
+        <h5 class="title font-weight-bold special-font" style="font-size: 1rem; margin-bottom: 0.2rem;">
+          <span class="venue-short">{{ talk.short_venue_name }}</span> /
           {% if talk.slides %}
-            <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}" 
-               target="_blank" rel="noopener noreferrer" 
-               style="color: gray; font-weight: bold; text-decoration: none;">
-              {{ talk.short_venue_name }} / {{ talk.title }}
-            </a>
+            <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}"
+               target="_blank" rel="noopener noreferrer" class="talk-title-link">{{ talk.title }}</a>
           {% else %}
-            {{ talk.short_venue_name }} / {{ talk.title }}
+            <span class="special-col">{{ talk.title }}</span>
           {% endif %}
         </h5>
-        <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
-          <span class="ml-2">
+
+        <div class="date-with-tags" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
+          <span style="font-size: 0.9rem; color: var(--global-text-color-light);">
+            {{ talk.date | date: "%B %d, %Y" }}
+          </span>
+          <span>
             {% if talk.tags %}
               {% for tag in talk.tags %}
-                <span class="badge badge-secondary badge-sm">{{ tag }}</span>
+                <span class="badge badge-secondary badge-sm">{{ tag | capitalize }}</span>
               {% endfor %}
             {% endif %}
           </span>
         </div>
-        <p style="font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--global-text-color-light);">
-          {{ talk.date | date: "%B %d, %Y" }}
-        </p>
       </div>
 
       <div class="talk-actions mt-2">
-        {% if talk.slides %}
-          <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}" 
-             target="_blank" rel="noopener noreferrer" 
-             class="btn btn-sm btn-outline-warning action-btn">Slides</a>
-        {% endif %}
-
         {% if talk.code %}
           <a href="{{ talk.code }}" target="_blank" rel="noopener noreferrer" 
              class="github-link action-btn" data-repo="{{ talk.code | replace: 'https://github.com/', '' }}">
@@ -98,10 +91,23 @@ layout: default
   margin-bottom: 0.5rem;
 }
 
-.venue-with-tags {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.venue-short {
+  color: #6c757d; /* bold gray */
+  font-weight: bold;
+}
+
+.talk-title-link {
+  color: var(--global-theme-color); /* old highlight color */
+  text-decoration: none;
+}
+
+.talk-title-link:hover {
+  color: var(--global-hover-color);
+  text-decoration: underline;
+}
+
+.date-with-tags {
+  margin-top: 0.2rem;
 }
 
 .action-btn {
@@ -138,7 +144,6 @@ layout: default
 
 .github-link:hover {
   color: var(--global-hover-color);
-  text-decoration: none;
   border-color: var(--global-theme-color);
 }
 

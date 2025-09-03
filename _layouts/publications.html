@@ -115,13 +115,7 @@ layout: default
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="flex-grow-1">
                             <strong>Citation:</strong><br>
-                            <code style="font-size: 0.85rem; background: transparent; color: inherit;">
-                                {% if publication.citation %}
-                                    {{ publication.citation }}
-                                {% else %}
-                                    {{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.
-                                {% endif %}
-                            </code>
+                            <pre><code style="font-size: 0.85rem; background: transparent; color: inherit;">{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.{% endif %}</code></pre>
                         </div>
                         <button class="btn btn-sm btn-link copy-citation p-1" data-citation="{% if publication.citation %}{{ publication.citation }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
                             <i class="fas fa-copy"></i>

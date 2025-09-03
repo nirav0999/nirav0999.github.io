@@ -15,6 +15,6 @@ citation: "@article{purpcode,
   journal = {arXiv preprint arXiv:2507.19060},
   year = {2025},
 }"
-hugginface: "https://huggingface.co/purpcode"
+huggingface: "https://huggingface.co/purpcode"
 venue_short: "Pre-print"
 ---

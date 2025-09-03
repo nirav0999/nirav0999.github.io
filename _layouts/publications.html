@@ -11,7 +11,7 @@ layout: default
 
     <!-- Search Bar -->
     <div class="mb-4">
-        <input type="text" id="publication-search" class="form-control" placeholder="Search publications by title, venue, or tags...">
+        <input type="text" id="publication-search" class="form-control" placeholder="Search by title, authors, venue, conference name, or tags...">
         <div id="search-results" class="mt-2 text-muted" style="font-size: 0.9rem;"></div>
     </div>
 
@@ -20,9 +20,10 @@ layout: default
         {% for publication in publications %} 
         <li class="list-group-item border-top-0 border-left-0 border-right-0 publication-item" 
             data-title="{{ publication.title | downcase }}" 
+            data-authors="{{ publication.authors | downcase | replace: '<u>', '' | replace: '</u>', '' }}"
             data-venue="{{ publication.venue | downcase }}"
             data-venue-short="{{ publication.venue_short | downcase }}"
-            data-tags="{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}">
+            data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}">
             
             <div class="publication-header">
                 <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
@@ -39,14 +40,29 @@ layout: default
                 <div class="venue-with-tags" style="display: flex; align-items: center; margin-bottom: 0.2rem;">
                     <span style="font-size: 0.95rem;">{{ publication.venue }}</span>
                     <span class="ml-2">
-                        {% if publication.venue contains "Workshop" or publication.venue contains "workshop" %}
-                            <span class="badge badge-warning badge-sm">Workshop</span>
-                        {% elsif publication.venue contains "Conference" or publication.venue contains "USENIX" or publication.venue contains "ACL" or publication.venue contains "ICWSM" or publication.venue contains "AAAI" %}
-                            <span class="badge badge-success badge-sm">Conference</span>
-                        {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
-                            <span class="badge badge-info badge-sm">Journal</span>
+                        {% if publication.tag %}
+                            {% case publication.tag %}
+                                {% when 'submission' %}
+                                    <span class="badge badge-primary badge-sm">Submission</span>
+                                {% when 'workshop' %}
+                                    <span class="badge badge-warning badge-sm">Workshop</span>
+                                {% when 'conference' %}
+                                    <span class="badge badge-success badge-sm">Conference</span>
+                                {% when 'journal' %}
+                                    <span class="badge badge-info badge-sm">Journal</span>
+                                {% else %}
+                                    <span class="badge badge-secondary badge-sm">{{ publication.tag | capitalize }}</span>
+                            {% endcase %}
                         {% else %}
-                            <span class="badge badge-secondary badge-sm">Publication</span>
+                            {% if publication.venue contains "Workshop" or publication.venue contains "workshop" %}
+                                <span class="badge badge-warning badge-sm">Workshop</span>
+                            {% elsif publication.venue contains "Conference" or publication.venue contains "USENIX" or publication.venue contains "ACL" or publication.venue contains "ICWSM" or publication.venue contains "AAAI" %}
+                                <span class="badge badge-success badge-sm">Conference</span>
+                            {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
+                                <span class="badge badge-info badge-sm">Journal</span>
+                            {% else %}
+                                <span class="badge badge-secondary badge-sm">Publication</span>
+                            {% endif %}
                         {% endif %}
                     </span>
                 </div>
@@ -56,12 +72,12 @@ layout: default
             </div>
             
             <div class="publication-actions mt-2">
-                <button class="btn btn-sm btn-outline-primary action-btn tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
-                <button class="btn btn-sm btn-outline-secondary action-btn citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
-                
                 {% if publication.link %}
                 <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info action-btn">Paper</a>
                 {% endif %}
+                
+                <button class="btn btn-sm btn-outline-primary action-btn tldr-toggle" data-target="tldr-{{ forloop.index }}">TLDR</button>
+                <button class="btn btn-sm btn-outline-secondary action-btn citation-toggle" data-target="citation-{{ forloop.index }}">Citation</button>
                 
                 {% if publication.code %}
                     <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link action-btn" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
@@ -208,6 +224,32 @@ layout: default
     padding: 0.25em 0.4em;
 }
 
+/* Tag colors */
+.badge-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
 .publication-header {
     margin-bottom: 0.5rem;
 }
@@ -267,12 +309,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         publicationItems.forEach(item => {
             const title = item.getAttribute('data-title');
+            const authors = item.getAttribute('data-authors');
             const venue = item.getAttribute('data-venue');
             const venueShort = item.getAttribute('data-venue-short') || '';
             const tags = item.getAttribute('data-tags');
             
             const matches = !searchTerm || 
                           title.includes(searchTerm) || 
+                          authors.includes(searchTerm) ||
                           venue.includes(searchTerm) || 
                           venueShort.includes(searchTerm) ||
                           tags.includes(searchTerm);

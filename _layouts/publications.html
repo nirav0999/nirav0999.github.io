@@ -81,25 +81,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tldr-toggle, .citation-toggle').forEach(button => {
         button.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
-            const targetElement = document.getElementById(targetId);
             const dynamicContent = this.closest('.list-group-item').querySelector('.dynamic-content');
+            const visibleElement = dynamicContent.querySelector('#' + targetId + '-visible');
             
-            if (targetElement.style.display === 'none') {
-                // Show the content
+            if (visibleElement) {
+                // Content is already visible, so hide it
+                visibleElement.remove();
+                this.classList.remove('active');
+                this.textContent = this.textContent.replace(' ✓', '');
+            } else {
+                // Content is not visible, so show it
+                const targetElement = document.getElementById(targetId);
                 const clonedElement = targetElement.cloneNode(true);
                 clonedElement.style.display = 'block';
                 clonedElement.id = targetId + '-visible';
                 dynamicContent.appendChild(clonedElement);
                 this.classList.add('active');
                 this.textContent = this.textContent + ' ✓';
-            } else {
-                // Hide the content
-                const visibleElement = dynamicContent.querySelector('#' + targetId + '-visible');
-                if (visibleElement) {
-                    visibleElement.remove();
-                }
-                this.classList.remove('active');
-                this.textContent = this.textContent.replace(' ✓', '');
             }
         });
     });

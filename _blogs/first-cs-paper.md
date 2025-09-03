@@ -1,12 +1,12 @@
 ---
 layout: blog
 date: 2024-03-15
-title: "Writing Your First Computer Science Research Paper"
+title: "Writing Your First CS Workshop Paper"
 tags: ["Computer Science", "Research", "Writing"]
 description: "Some tips on writing your first computer science research paper."
 ---
 
-*These are mostly unorganized thoughts I had while giving feedback to high school and undergrad students who were writing their first paper. If you have never written a paper, you might find this useful.*
+*These are unorganized thoughts I had while giving feedback to high school and undergrad students who were writing their first paper for a workshop. If you have never written a CS research paper, you might find this useful.*
 
 #### Starting Point
 A good starting point is to pick one of the papers you are building on top of and use that as reference for writing. An initial worry is that if your writing ends up resembling the paper you picked. Don't worry about that because as you are writing, you will get more ideas on how to differentiate.

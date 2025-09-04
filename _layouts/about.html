@@ -16,7 +16,7 @@ layout: default
     <p class="desc">{{ page.subtitle }}</p>
   </header>
 
-  <!-- Main content container -->
+  <!-- Main content container to enforce the minimum width -->
   <div class="main-container">
     <article>
       {% if page.profile -%}
@@ -25,23 +25,26 @@ layout: default
           {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
           {%- assign profile_image_class = "img-fluid z-depth-1" -%}
 
-          <!-- Adjust image class -->
+          <!-- Adjust image class based on the image_circular property -->
           {%- if page.profile.image_circular %}
             {%- assign profile_image_class = profile_image_class | append: " rounded-circle" -%}
           {%- else %}
             {%- assign profile_image_class = profile_image_class | append: " square-image" -%}
           {%- endif %}
 
-          <!-- Profile photo -->
+          <!-- Include the image with all necessary attributes -->
           <img src="{{ profile_image_path }}" class="{{ profile_image_class }}" alt="{{ page.profile.image }}" style="width: 100%; height: auto;" />
-
-          <!-- Social under profile image -->
-          <div class="social-icons" style="margin-top: 10px; text-align: center;">
-            {% include social.html %}
-          </div>
         {% endif -%}
       </div>
       {%- endif %}
+
+      <div class="clearfix">
+        {{ content }}
+      </div>
+
+      {%- unless page.social %}
+        {%- include social_lite.html %}
+      {%- endunless %}
 
       {% if page.news -%}
       <!-- News -->
@@ -52,8 +55,20 @@ layout: default
       {% if page.selected_papers -%}
         <!-- Selected papers -->
         {%- include selected_papers.html %}
-      {% endif %}
+      {%- endif %}
+      {%- if page.social %}
+      <!-- Social -->
+      <div class="social">
+        <div class="contact-icons">
+          {% include social.html %}
+        </div>
+
+        <div class="contact-note">
+          {{ site.contact_note }}
+        </div>
+        
+      </div>
+      {%- endif %}
     </article>
   </div> <!-- End of main-container -->
 </div>
-

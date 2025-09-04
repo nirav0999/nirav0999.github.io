@@ -696,20 +696,3 @@ h5.title.special-col {
     text-decoration: underline;
   }
 }
-
-.collapsible p {
-  margin: 0;
-}
-
-.collapsible.collapsed #collapsible {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-}
-
-.collapsible.expanded #collapsible {
-  max-height: 2000px; // adjust
-  opacity: 1;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-}

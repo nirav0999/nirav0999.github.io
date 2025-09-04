@@ -683,3 +683,33 @@ h5.title.special-col {
     }
   }
 }
+
+.toggle-link {
+  color: var(--global-theme-color);
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    color: var(--global-hover-color);
+    text-decoration: underline;
+  }
+}
+
+.collapsible p {
+  margin: 0;
+}
+
+.collapsible.collapsed #collapsible {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.collapsible.expanded #collapsible {
+  max-height: 2000px; // adjust
+  opacity: 1;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}

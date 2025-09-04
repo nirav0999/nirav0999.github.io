@@ -76,15 +76,13 @@ document.addEventListener("DOMContentLoaded", function() {
     firstContainer.appendChild(firstPara);
 
     // Add "Read more" link
-    const readMoreLink = document.createElement("a");
-    readMoreLink.href = "javascript:void(0)";
-    readMoreLink.textContent = " Read more »";
-    readMoreLink.style.color = "var(--global-theme-color)";
-    readMoreLink.addEventListener("click", function() {
-      document.getElementById("about-extra-paras").style.display = "block";
-      readMoreLink.style.display = "none";
-    });
-    firstPara.appendChild(readMoreLink);
+    const toggleLink = document.createElement("a");
+    toggleLink.href = "javascript:void(0)";
+    toggleLink.textContent = " Previously, »";
+    toggleLink.style.color = "var(--global-theme-color)";
+    toggleLink.style.cursor = "pointer";
+
+    firstPara.appendChild(toggleLink);
 
     // Remaining paragraphs
     if (paras.length > 1) {
@@ -93,6 +91,18 @@ document.addEventListener("DOMContentLoaded", function() {
         extraContainer.appendChild(paras[i].cloneNode(true));
       }
     }
+
+    // Toggle behavior
+    toggleLink.addEventListener("click", function() {
+      const extraContainer = document.getElementById("about-extra-paras");
+      if (extraContainer.style.display === "none") {
+        extraContainer.style.display = "block";
+        toggleLink.textContent = " Read less «";
+      } else {
+        extraContainer.style.display = "none";
+        toggleLink.textContent = " Read more »";
+      }
+    });
   }
 });
 </script>

@@ -14,9 +14,7 @@ news: true  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-
 I am a second-year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). My research focuses on the intersection of Security & Privacy and Machine Learning, with particular emphasis on practical adversarial attacks against large language models (LLMs).
-
 Recently, I co-led the creation of [PurpCode](https://purpcode-uiuc.github.io/), PurpCode is the first reasoning model for cybersafety.
 
 **Collaboration.** This is an active call for collaboration! Feel free to send me an [email](nirdiwan@gmail.com) to talk about ideas, projects, collaborations, or research questions.

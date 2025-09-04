@@ -666,3 +666,20 @@ h5.title.special-col {
 .post .list-group-item h5.title.special-col {
   color: var(--global-theme-color) !important;
 }
+
+// Social icons under profile photo
+.social-icons {
+  margin-top: 12px;
+  text-align: center;
+
+  a {
+    font-size: 1.6rem;     // larger size
+    margin: 0 8px;         // spacing
+    color: var(--global-link-color); // default link color
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-hover-color); // highlight on hover
+    }
+  }
+}

@@ -23,7 +23,7 @@ layout: default
         data-tags="{{ talk.tags | join: ' ' | downcase }}">
 
       <div class="talk-header">
-        <h5 class="title font-weight-bold special-font" style="font-size: 1rem; margin-bottom: 0.2rem;">
+        <h5 class="title font-weight-bold special-font special-col" style="font-size: 1rem; margin-bottom: 0.2rem;">
           <span class="venue-short">{{ talk.short_venue_name }}</span> /
           {% if talk.slides %}
             <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}"

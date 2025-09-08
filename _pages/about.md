@@ -35,7 +35,7 @@ Previously, I completed my research-track M.S. at the [University of Illinois Ur
 
 <span class="toggle-link" data-target="prior-research-experience">Prior Research Experience</span>
 <div id="prior-research-experience" class="collapsible-content" style="display: none;">
-Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021. I was a member of [LCS2](https://lcs2.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi). I also worked on [RecipeDB](https://cosylab.iiitd.edu.in/recipedb/), a large-scale recipe dataset, with [Prof. Ganesh Bagler](https://cosylab.iiitd.edu.in/).
+Previously, I completed my research-track M.S. at the <a href="https://cs.illinois.edu/">University of Illinois Urbana-Champaign</a>. Prior to this, I did my B.Tech. degree in Computer Science from <a href="https://www.iitg.ac.in/">IIIT Delhi</a> in June 2021. I was a member of <a href="https://lcs2.in/">LCS2</a>. Previously, I worked on watermarking fine-tuned LLM-generated text with <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (UC Davis) and <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (IIT Delhi). I also worked on <a href="https://cosylab.iiitd.edu.in/recipedb/">RecipeDB</a>, a large-scale recipe dataset, with <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.
 </div>
 
 <span class="toggle-link" data-target="industry-experience">Industry experience</span>

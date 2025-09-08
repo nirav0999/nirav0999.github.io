@@ -35,6 +35,13 @@ layout: default
           <!-- Include the image with all necessary attributes -->
           <img src="{{ profile_image_path }}" class="{{ profile_image_class }}" alt="{{ page.profile.image }}" style="width: 100%; height: auto;" />
         {% endif -%}
+        
+        {%- if page.social %}
+        <!-- Social icons under profile picture -->
+        <div class="social-icons">
+          {% include social.html %}
+        </div>
+        {%- endif %}
       </div>
       {%- endif %}
 
@@ -56,17 +63,13 @@ layout: default
         <!-- Selected papers -->
         {%- include selected_papers.html %}
       {%- endif %}
+      
       {%- if page.social %}
-      <!-- Social -->
+      <!-- Contact note only (social icons are now under profile picture) -->
       <div class="social">
-        <div class="contact-icons">
-          {% include social.html %}
-        </div>
-
         <div class="contact-note">
           {{ site.contact_note }}
         </div>
-        
       </div>
       {%- endif %}
     </article>

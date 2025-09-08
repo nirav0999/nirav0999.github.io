@@ -14,7 +14,10 @@ A good starting point is to pick one of the papers you are building on top of an
 For the paper you select, you want to ensure top quality. Two good rules of thumb are the paper should be from (a) a [top CS conference](https://chatgpt.com/share/68ac0371-2b94-8007-9bb4-42520250d0cb) (b) If possible, also from a top lab (Stanford, CS, MIT) or a lab renowned in the area (e.g Berkeley in Systems or UIUC in PL). Use [CS rankings](https://csrankings.org/#/index?all&us) for the latter.
 
 **LaTeX.** LaTeX is the domain-specific language you will likely be using to write your papers. It can be particularly annoying to deal with. The good news is that ChatGPT excels at LaTeX syntax help and troubleshooting compilation errors, and I would highly recommend using it while writing it. Also linking some beginner blogs, which may be useful to initial users of LaTeX - [Basic LaTeX tips](https://data-mining.philippe-fournier-viger.com/useful-latex-tricks-for-writing-research-papers/), [Using math in LaTeX](https://fanpu.io/blog/2023/latex-tips/#align-environment-for-multiline-equations). Additionally, install Grammarly Plugin.
+
+
 ### Writing Process & Strategy
+
 **Be verbose in your 1st draft, and then cut.** It is ok to be verbose in your first draft. Provide as much information as possible to yourself and anyone who will edit it. Generally, you want to be more concise and clear in your later iterations.
 
 **Clarity.** Once you have the first draft, prioritize clarity above everything else. The one test you can do is to make sure that your writing is clear at the bare minimum to you. This seems obvious, but something a lot of people forget while writing. For instance, the following 
@@ -22,6 +25,8 @@ For the paper you select, you want to ensure top quality. Two good rules of thum
 *Each website was evaluated using developer tools to determine its eligibility for one of the six categories. This classification was essential to analyze how the tools perform as complexity increases and to observe tool failure thresholds.*
 
 This is an unclear and unsubstantiated claim because it is not mentioned how the tools were used or applied.
+
+**Write one section at a time.** After writing a section, ask for feedback after each section. The feedback will likely be so much that you may need to rewrite the full section. This is ok and expected. The general order can be: Introduction, Related Work, Experiment Setup, Results, Discussion. 
 
 **Section-wise feedback.** There are a couple of sections that generally have a similar structure across most CS papers:
 
@@ -46,9 +51,14 @@ It is always hard and time-consuming to draw this image from scratch (even for t
 
 You can find the final draft of the main workflow image here - [AI Crawler](https://docs.google.com/drawings/d/1pvXCmqBE2zJVMVA6ESbiKwCY7IIRTCFihs0bgMX63po/edit?usp=sharing). Feel free to copy it.
 
+Note - Make sure you label the images and tables you create and mention them in the main text `\label{sec:<img_name>}`.
+
 **Tools.** For drawing figures, I recommend using Google Drawings over [draw.io](http://draw.io) - but both are fine. I also strongly recommend exporting the image as a PDF - it maintains the quality of the original image better.
+
+
 ### LLM usage
 I would discourage using LLMs to write your first draft, especially if you are writing your first research paper. The whole point of doing this exercise is to develop YOUR style of writing, which is also a way of thinking. Using LLM to do ALL your writing will diminish this. If you really want to do this:
-- **First draft** - Write a first draft of the idea. This may be broken sentences/English, just the ideas should be there, and there should be some resemblance of a style and flow. Then use an LLM to polish it up.
+- **First draft** - Write a first draft of the idea. This may be broken sentences/English, just the ideas should be there, and there should be some resemblance of a style and flow. Then use an LLM to polish it up but not changing the content too much. One way to do this is to prompt the LLM to make minimal changes while making sure the grammar is correct, the style and flow is retained.
+
 - **Telltale signs** - If you use LLM, make sure your writing does NOT have obvious telltale signs of AI - too many em dashes, "it's not just X, it's Y", overly verbose sentences – these will likely evolve, so no point in mentioning all of these, but reviewers are experienced researchers who have read hundreds of papers in the field so they recognize these patterns.
   

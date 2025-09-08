@@ -707,14 +707,35 @@ b {
 
 .collapsible-content {
     margin-top: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    background-color: var(--global-card-bg-color);
     transition: all 0.3s ease;
 }
 
-.toggle-link::after {
-    content: " ▶";
-    font-size: 0.8em;
+.toggle-link {
+    color: var(--global-text-color) !important;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
 }
 
-.toggle-link.expanded::after {
-    content: " ▼";
+.toggle-link:hover {
+    color: var(--global-hover-color) !important;
+    text-decoration: none;
+}
+
+.toggle-link::before {
+    content: "▶ ";
+    font-size: 0.8em;
+    margin-right: 0.3em;
+    transition: transform 0.3s ease;
+}
+
+.toggle-link.expanded::before {
+    content: "▼ ";
+    transform: rotate(0deg);
 }

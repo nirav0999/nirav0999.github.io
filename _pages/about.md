@@ -33,9 +33,9 @@ Previously, I completed my research-track M.S. at the [University of Illinois Ur
 Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021/ I was a member of [LCS2](https://lcs2.in/) and the [Complex Systems Lab](https://cosylab.iiitd.edu.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text (ACL Findings '21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi).
 </div> -->
 
-<span class="toggle-link" data-target="industry-experience">Prior Research Experience</span>
-<div id="industry-experience" class="collapsible-content" style="display: none;">
-Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021/ I was a member of [LCS2](https://lcs2.in/) and the [Complex Systems Lab](https://cosylab.iiitd.edu.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text (ACL Findings '21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi).
+<span class="toggle-link" data-target="prior-research-experience">Prior Research Experience</span>
+<div id="prior-research-experience" class="collapsible-content" style="display: none;">
+Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021. I was a member of [LCS2](https://lcs2.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi). I also worked on [RecipeDB](https://cosylab.iiitd.edu.in/recipedb/), a large-scale recipe dataset, with [Prof. Ganesh Bagler](https://cosylab.iiitd.edu.in/).
 </div>
 
 <span class="toggle-link" data-target="industry-experience">Industry experience</span>

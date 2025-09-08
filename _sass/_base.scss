@@ -704,3 +704,17 @@ b {
   font-weight: bold !important;
   font-weight: 700 !important;
 }
+
+.collapsible-content {
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-link::after {
+    content: " ▶";
+    font-size: 0.8em;
+}
+
+.toggle-link.expanded::after {
+    content: " ▼";
+}

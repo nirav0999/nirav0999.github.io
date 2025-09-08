@@ -696,3 +696,11 @@ h5.title.special-col {
     text-decoration: underline;
   }
 }
+
+.post strong,
+.post b,
+strong,
+b {
+  font-weight: bold !important;
+  font-weight: 700 !important;
+}

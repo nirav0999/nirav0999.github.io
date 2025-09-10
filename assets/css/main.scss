@@ -15,7 +15,7 @@ $max-content-width: {{ site.max_width }};
 ;
 
 h5.title {
-  color: #13294B !important;
+  color: var(--global-theme-color) !important;
 }
 
 .square-image {

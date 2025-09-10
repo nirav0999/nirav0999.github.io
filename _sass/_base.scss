@@ -225,6 +225,22 @@ blockquote {
 }
 
 .navbar-toggler {
+  border: 1px solid var(--global-divider-color);
+  padding: 4px 8px;
+  background-color: transparent;
+  border-radius: 4px;
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem var(--global-theme-color);
+    opacity: 0.5;
+    outline: none;
+  }
+  
+  &:hover {
+    background-color: var(--global-divider-color);
+    opacity: 0.8;
+  }
+  
   .icon-bar {
     display: block;
     width: 22px;
@@ -248,6 +264,13 @@ blockquote {
 }
 
 .navbar-toggler.collapsed {
+  border: 1px solid var(--global-divider-color);
+  
+  &:hover {
+    background-color: var(--global-divider-color);
+    opacity: 0.8;
+  }
+  
   .top-bar {
     transform: rotate(0);
   }
@@ -256,6 +279,35 @@ blockquote {
   }
   .bottom-bar {
     transform: rotate(0);
+  }
+}
+
+// Ensure navbar-toggler is visible on mobile devices
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    border: 2px solid var(--global-text-color);
+    
+    // Increase visibility in dark mode
+    &.collapsed {
+      border: 2px solid var(--global-text-color);
+      background-color: rgba(255, 255, 255, 0.1);
+      
+      .icon-bar {
+        background-color: var(--global-text-color);
+        height: 3px; // Slightly thicker for better visibility
+      }
+    }
+    
+    // Enhanced hover state on mobile
+    &:hover {
+      background-color: var(--global-theme-color);
+      border-color: var(--global-theme-color);
+      opacity: 0.9;
+      
+      .icon-bar {
+        background-color: var(--global-bg-color);
+      }
+    }
   }
 }
 

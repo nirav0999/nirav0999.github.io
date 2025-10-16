@@ -2,7 +2,7 @@
 layout: publications
 date: 2025-08-07
 title: "PurpCode: Reasoning for Safer Code Generation"
-venue: "The 39^{th} Annual Conference on Neural Information Processing Systems"
+venue: "The 39<sup>th</sup> Annual Conference on Neural Information Processing Systems"
 authors: Jiawei Liu*, <u> Nirav Diwan*</u>, Zhe Wang*, Haoyu Zhai, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, Muntasir Wahed, Yinlin Deng, Hadjer Benkraouda, Yuxiang Wei, Lingming Zhang, Ismini Lourentzou, Gang Wang
 paper: "PurpCode_arxiv_0807.pdf"
 tldr: Developed a reasoning model for secure code generation using <a href = "https://openai.com/index/deliberative-alignment/"> Deliberative Alignment</a>.
@@ -17,7 +17,7 @@ citation: |
     year = {2025},
   }
 huggingface: "https://huggingface.co/purpcode"
-venue_short: "Neurips"
+venue_short: "NeurIPS"
 tag: "conference"
 selected: true
 ---

@@ -55,6 +55,9 @@ Note - Make sure you label the images and tables you create and mention them in 
 
 **Tools.** For drawing figures, I recommend using Google Drawings over [draw.io](http://draw.io) - but both are fine. I also strongly recommend exporting the image as a PDF - it maintains the quality of the original image better.
 
+One thing that would be great is to add citations using \texttt{\string~\string\cite\{\}}. You can add the full BibTeX citation in \texttt{references.bib}, and refer to it. For instance, I added Agent S's citation in `references.bib`, cited Simular's Agent S like this Agent S~\cite{agashe2024agent} ~\cite{anthropic2025threatintel, aspose}. Try to add citations wherever you mention someone else's work.
+More detailed info \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{here}.
+
 
 ### LLM usage
 I would discourage using LLMs to write your first draft, especially if you are writing your first research paper. The whole point of doing this exercise is to develop YOUR style of writing, which is also a way of thinking. Using LLM to do ALL your writing will diminish this. If you really want to do this:

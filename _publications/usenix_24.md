@@ -25,4 +25,5 @@ citation: |
     month = aug
     }
 tag: "conference"
+selected: true
 ---

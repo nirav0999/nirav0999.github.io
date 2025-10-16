@@ -1,5 +1,96 @@
-<!-- 
-          <div class="publications">
-            <h2>selected publications</h2>
-            {% bibliography -f papers -q @*[selected=true]* %}
-          </div> -->
+<div class="selected-publications-section">
+  <h4 class="selected-publications-title">selected publications</h4>
+  {% assign ordered_publications = site.publications | sort: "date" | reverse %}
+  {% assign selected_publications = ordered_publications | where: "selected", true %}
+  {% assign use_fallback = false %}
+  {% if selected_publications.size == 0 %}
+    {% assign selected_publications = ordered_publications %}
+    {% assign use_fallback = true %}
+  {% endif %}
+
+  <ul class="selected-publications list-unstyled">
+    {% if use_fallback %}
+      {% for publication in selected_publications limit:3 %}
+        {% assign title_url = nil %}
+        {% if publication.link %}
+          {% assign title_url = publication.link %}
+        {% elsif publication.paper %}
+          {% assign title_url = publication.paper | prepend: 'assets/pdf/papers/' | relative_url %}
+        {% endif %}
+        <li class="selected-publication mb-3">
+          <h5 class="mb-1">
+            {% if publication.venue_short %}
+              <span class="badge badge-secondary mr-1">{{ publication.venue_short }}</span>
+            {% endif %}
+            {% if title_url %}
+              <a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+            {% else %}
+              {{ publication.title }}
+            {% endif %}
+          </h5>
+          {% if publication.authors %}
+            <p class="mb-1">{{ publication.authors }}</p>
+          {% endif %}
+          {% if publication.venue %}
+            <p class="text-muted mb-1">{{ publication.venue }}</p>
+          {% endif %}
+          {% if publication.tldr %}
+            <p class="small mb-2">{{ publication.tldr }}</p>
+          {% endif %}
+          <div class="selected-publication-links">
+            {% if publication.paper %}
+              <a class="btn btn-sm btn-outline-info mr-1" href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">Paper</a>
+            {% endif %}
+            {% if publication.code %}
+              <a class="btn btn-sm btn-outline-secondary" href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    {% else %}
+      {% for publication in selected_publications %}
+        {% assign title_url = nil %}
+        {% if publication.link %}
+          {% assign title_url = publication.link %}
+        {% elsif publication.paper %}
+          {% assign title_url = publication.paper | prepend: 'assets/pdf/papers/' | relative_url %}
+        {% endif %}
+        <li class="selected-publication mb-3">
+          <h5 class="mb-1">
+            {% if publication.venue_short %}
+              <span class="badge badge-secondary mr-1">{{ publication.venue_short }}</span>
+            {% endif %}
+            {% if title_url %}
+              <a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+            {% else %}
+              {{ publication.title }}
+            {% endif %}
+          </h5>
+          {% if publication.authors %}
+            <p class="mb-1">{{ publication.authors }}</p>
+          {% endif %}
+          {% if publication.venue %}
+            <p class="text-muted mb-1">{{ publication.venue }}</p>
+          {% endif %}
+          {% if publication.tldr %}
+            <p class="small mb-2">{{ publication.tldr }}</p>
+          {% endif %}
+          <div class="selected-publication-links">
+            {% if publication.paper %}
+              <a class="btn btn-sm btn-outline-info mr-1" href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">Paper</a>
+            {% endif %}
+            {% if publication.code %}
+              <a class="btn btn-sm btn-outline-secondary" href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+
+  {% if use_fallback %}
+    <p class="selected-publications-hint text-muted small mb-0">
+      Mark publications with `selected: true` in `_publications/*.md` to control this list.
+    </p>
+  {% endif %}
+</div>

@@ -3,52 +3,6 @@
  ******************************************************************************/
  
 :root {
-  --global-bg-color: #{$white-color};
-  --global-nav-bg-color: #{$dark-white-color-1};
-  --global-active-nav-color: #{$royal-purple};
-  --global-code-bg-color: #{$code-bg-color-light};
-  --global-text-color: #{$black-color};
-  --global-text-color-light: #{$grey-color};
-  --global-hcolor: #{$royal-purple-dark};
-  --global-theme-color: #{$royal-purple};
-  --global-header-color: #{$royal-purple};
-  --global-hover-color: #{$royal-purple-dark};
-  --global-link-color: #{$purple-color};
-  --global-social-color: #{$grey-900};
-  --global-footer-bg-color: #{$grey-color-dark};
-  --global-footer-text-color: #{$grey-color-light};
-  --global-footer-link-color: #{$white-color};
-  --global-distill-app-color: #{$grey-color};
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #{$white-color};
-
-  .fa-moon {
-    padding-left: 10px;
-    padding-top: 12px;
-    display : block;
-  }
-  .fa-sun {
-    display : none;
-  }
-  
-  // Light mode specific navbar-toggler styling
-  .navbar-toggler {
-    &.collapsed {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-    
-    &:hover {
-      background-color: var(--global-theme-color);
-      border-color: var(--global-theme-color);
-      
-      .icon-bar {
-        background-color: white;
-      }
-    }
-  }
-}
-
-html[data-theme='dark'] {
   --global-bg-color: #{$grey-color-dark};
   --global-nav-bg-color: #{$grey-900};
   --global-active-nav-color: #{$cyan-color};
@@ -90,6 +44,52 @@ html[data-theme='dark'] {
       
       .icon-bar {
         background-color: #{$grey-color-dark};
+      }
+    }
+  }
+}
+
+html[data-theme='light'] {
+  --global-bg-color: #{$white-color};
+  --global-nav-bg-color: #{$dark-white-color-1};
+  --global-active-nav-color: #{$royal-purple};
+  --global-code-bg-color: #{$code-bg-color-light};
+  --global-text-color: #{$black-color};
+  --global-text-color-light: #{$grey-color};
+  --global-hcolor: #{$royal-purple-dark};
+  --global-theme-color: #{$royal-purple};
+  --global-header-color: #{$royal-purple};
+  --global-hover-color: #{$royal-purple-dark};
+  --global-link-color: #{$purple-color};
+  --global-social-color: #{$grey-900};
+  --global-footer-bg-color: #{$grey-color-dark};
+  --global-footer-text-color: #{$grey-color-light};
+  --global-footer-link-color: #{$white-color};
+  --global-distill-app-color: #{$grey-color};
+  --global-divider-color: rgba(0,0,0,.1);
+  --global-card-bg-color: #{$white-color};
+
+  .fa-sun {
+    display : none;
+  }
+  .fa-moon {
+    padding-left: 10px;
+    padding-top: 12px;
+    display : block;
+  }
+  
+  // Light mode specific navbar-toggler styling
+  .navbar-toggler {
+    &.collapsed {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    &:hover {
+      background-color: var(--global-theme-color);
+      border-color: var(--global-theme-color);
+      
+      .icon-bar {
+        background-color: white;
       }
     }
   }

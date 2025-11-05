@@ -14,7 +14,9 @@ news: true  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-I am a second-year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). My research is at the intersection of Security & Privacy and Machine Learning, focusing on practical adversarial attacks on Foundation Models. I co-led the creation of [PurpCode](https://purpcode-uiuc.github.io/), which is the first reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
+I am a second-year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I study practical failure modes, misuse vectors, and threat models in Foundation Model training and deployment.
+
+Recently, I co-led the creation of [PurpCode](https://github.com/purpcode-uiuc/purpcode), which is the first reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
 
 **Internship.** I am looking for both Industrial and Academic Internships for Summer 2026 in the areas of Machine Learning, and Security & Privacy. Please reach out!
 

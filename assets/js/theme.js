@@ -52,14 +52,27 @@ let transTheme = () => {
 
 let initTheme = (theme) => {
   if (theme == null || theme == 'null') {
-    // Default to dark theme (no data-theme attribute needed since :root is dark)
-    theme = null;
-    const userPref = window.matchMedia;
-    if (userPref && userPref('(prefers-color-scheme: light)').matches) {
+    let configuredTheme = (typeof window !== 'undefined') ? window.defaultTheme : null;
+
+    if (configuredTheme === 'system') {
+      const userPref = window.matchMedia;
+      theme = (userPref && userPref('(prefers-color-scheme: light)').matches) ? 'light' : null;
+    } else if (configuredTheme === 'light') {
+      theme = 'light';
+    } else if (configuredTheme === 'dark') {
+      theme = 'dark';
+    } else if (configuredTheme) {
+      theme = configuredTheme;
+    } else {
+      const userPref = window.matchMedia;
+      if (userPref && userPref('(prefers-color-scheme: light)').matches) {
         theme = 'light';
+      } else {
+        theme = null;
+      }
     }
   }
-  
+
   setTheme(theme);
 }
 

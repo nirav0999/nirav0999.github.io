@@ -285,6 +285,7 @@ enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
 enable_blogs_page:          true  # enables blogs page in navigation
+default_theme:              light  # sets the initial color theme
 
 
 # -----------------------------------------------------------------------------

@@ -12,7 +12,7 @@ layout: default
     <div class="mb-4">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search blogs by title...">
+                <input type="text" id="searchInput" class="form-control search-input" placeholder="Search blogs by title...">
             </div>
             <div class="col-md-6 mb-3">
                 <select id="tagFilter" class="form-control">
@@ -42,21 +42,18 @@ layout: default
             data-title="{{ blog.title | downcase }}"
             data-tags="{% if blog.tags %}{{ blog.tags | join: ',' | downcase }}{% endif %}">
             
-            <h5 class="title font-weight-bold special-font special-col" 
-                style="font-size: 1rem; margin-bottom: 0.2rem;">
-                <a href="{{ blog.url | relative_url }}" style="text-decoration: none;">
-                    {{ blog.title }}
-                </a>
+            <h5 class="title font-weight-bold special-font special-col item-title">
+                <a href="{{ blog.url | relative_url }}">{{ blog.title }}</a>
             </h5>
-            
+
             {% if blog.date %}
-            <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #666;">
+            <p class="item-meta-light">
                 {{ blog.date | date: "%b %-d, %Y" }}
             </p>
             {% endif %}
-            
+
             {% if blog.excerpt or blog.description %}
-            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">
+            <p class="item-meta">
                 {{ blog.excerpt | default: blog.description | strip_html | truncatewords: 30 }}
             </p>
             {% endif %}
@@ -82,62 +79,22 @@ layout: default
     </div>
 </div>
 
+<script src="{{ '/assets/js/shared-utils.js' | relative_url }}"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const tagFilter = document.getElementById('tagFilter');
-    const blogsList = document.getElementById('blogsList');
-    const blogItems = document.querySelectorAll('.blog-item');
-    const resultsCount = document.getElementById('resultsCount');
-    const noResults = document.getElementById('noResults');
-    
     // Populate tag filter
-    const allTagsString = '{{ all_tags }}';
-    const allTags = allTagsString.split(',').filter(tag => tag.trim() !== '').sort();
-    const uniqueTags = [...new Set(allTags)];
-    
-    uniqueTags.forEach(tag => {
-        const option = document.createElement('option');
-        option.value = tag.trim();
-        option.textContent = tag.trim();
-        tagFilter.appendChild(option);
+    SharedUtils.populateTagFilter('tagFilter', '{{ all_tags }}');
+
+    // Initialize search with tag filter
+    SharedUtils.initSearch({
+        searchInputId: 'searchInput',
+        listId: 'blogsList',
+        itemSelector: '.blog-item',
+        noResultsId: 'noResults',
+        resultsCountId: 'resultsCount',
+        searchFields: ['title', 'tags'],
+        itemType: 'blogs',
+        tagFilterId: 'tagFilter'
     });
-    
-    function updateResults() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const selectedTag = tagFilter.value.toLowerCase().trim();
-        let visibleCount = 0;
-        
-        blogItems.forEach(item => {
-            const title = item.dataset.title;
-            const tags = item.dataset.tags;
-            
-            const titleMatch = !searchTerm || title.includes(searchTerm);
-            const tagMatch = !selectedTag || tags.includes(selectedTag);
-            
-            if (titleMatch && tagMatch) {
-                item.style.display = 'list-item';
-                visibleCount++;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-        
-        resultsCount.textContent = `Showing ${visibleCount} of ${blogItems.length} blogs`;
-        
-        if (visibleCount === 0) {
-            blogsList.style.display = 'none';
-            noResults.style.display = 'block';
-        } else {
-            blogsList.style.display = 'block';
-            noResults.style.display = 'none';
-        }
-    }
-    
-    searchInput.addEventListener('input', updateResults);
-    tagFilter.addEventListener('change', updateResults);
-    
-    // Initialize results count
-    updateResults();
 });
 </script>

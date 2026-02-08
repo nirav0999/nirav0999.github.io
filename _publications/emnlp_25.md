@@ -8,10 +8,12 @@ paper: "mocha_arxiv_0903.pdf"
 slides: 
 poster: 
 tldr: "Introduced a new benchmark for evaluating code language models against multi-turn malicious coding prompts."
-authors: "Muntasir Wahed, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, Nirav Diwan, Gang Wang, Dilek Hakkani-Tür, Ismini Lourentzou"
-code: "https://github.com/purpcode-uiuc/mocha"
+authors: "Muntasir Wahed, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, <u>Nirav Diwan</u>, Gang Wang, Dilek Hakkani-Tür, Ismini Lourentzou"
+# code: "https://github.com/purpcode-uiuc/mocha"
+# huggingface: "https://huggingface.co/purpcode"
 tag: "conference"
 venue_short: "EMNLP"
+selected: false
 citation: |
   @article{mocha,
     title={MOCHA: Are Code Language Models Robust Against Multi-Turn Malicious Coding Prompts?},

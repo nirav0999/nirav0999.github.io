@@ -12,6 +12,7 @@ authors: <u>Nirav Diwan</u>, Devansh Batra, Ganesh Bagler
 code: "https://github.com/cosylabiiit/recipe-knowledge-mining"
 tag: "workshop"
 venue_short: "ICDE'W"
+selected: false
 citation: |
     @inproceedings{ndiwanIR2020,
     author={Diwan, Nirav and Batra, Devansh and Bagler, Ganesh},

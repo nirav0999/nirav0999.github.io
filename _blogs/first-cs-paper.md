@@ -4,6 +4,7 @@ date: 2024-03-15
 title: "Writing Your First CS Workshop Paper"
 tags: ["Computer Science", "Research", "Writing"]
 description: "Some tips on writing your first computer science research paper."
+published: False
 ---
 
 *These are unorganized thoughts I had while giving feedback to high school and undergrad students who were writing their first paper for a workshop. If you have never written a CS research paper, you might find this useful.*
@@ -55,7 +56,7 @@ Note - Make sure you label the images and tables you create and mention them in 
 
 **Tools.** For drawing figures, I recommend using Google Drawings over [draw.io](http://draw.io) - but both are fine. I also strongly recommend exporting the image as a PDF - it maintains the quality of the original image better.
 
-One thing that would be great is to add citations using \texttt{\string~\string\cite\{\}}. You can add the full BibTeX citation in \texttt{references.bib}, and refer to it. For instance, I added Agent S's citation in `references.bib`, cited Simular's Agent S like this Agent S~\cite{agashe2024agent} ~\cite{anthropic2025threatintel, aspose}. Try to add citations wherever you mention someone else's work.
+One thing that would be great is to add citations using `\texttt{\string~\string\cite\{\}}`. You can add the full BibTeX citation in  `\texttt{references.bib}`, and refer to it. For instance, I added Agent S's citation in `references.bib`, cited Simular's Agent S like this `Agent S~\cite{agashe2024agent}`. You must add citationswherever you mention someone else's work.
 More detailed info \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{here}.
 
 

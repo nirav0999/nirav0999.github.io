@@ -6,7 +6,7 @@ layout: default
   <header class="post-header">
     <h3 class="post-title">
       {% if site.title == "blank" -%}
-        <b><span class="special">{{ site.first_name }}</span></b> {{ site.middle_name }}
+        <b>{{ site.first_name }}</b> {{ site.middle_name }}
       {%- else -%}
         {{ site.title }}
       {%- endif %}
@@ -58,10 +58,13 @@ layout: default
       {%- include news.html %}
       {%- endif %}
 
-      {%- include affiliations.html %}
       {% if page.selected_papers -%}
-        <!-- Selected papers -->
+        <!-- Selected publications -->
         {%- include selected_papers.html %}
+      {%- endif %}
+
+      {%- if site.show_affiliations %}
+      {%- include affiliations.html %}
       {%- endif %}
       
       {%- if page.social %}

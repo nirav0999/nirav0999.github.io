@@ -4,10 +4,14 @@
 
 // Typography
 
+html {
+  font-size: 18px; // base size (~2pt increase from default 16px)
+}
+
 body {
   // font-family: 'Inconsolata', monospace;
   font-family: 'Tahoma';
-  font-size: 1.05rem; // subtle increase for improved readability
+  font-size: 1rem;
 }
 
 p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
@@ -598,10 +602,6 @@ footer.sticky-bottom {
         max-height: 0px;
         overflow: hidden;
         text-align: justify;
-        transition-property: 0.15s ease;
-        -moz-transition: 0.15s ease;
-        -ms-transition: 0.15s ease;
-        -o-transition: 0.15s ease;
         transition: all 0.15s ease;
 
         p {
@@ -616,10 +616,6 @@ footer.sticky-bottom {
       }
       .hidden.open {
         max-height: 100em;
-        transition-property: 0.15s ease;
-        -moz-transition: 0.15s ease;
-        -ms-transition: 0.15s ease;
-        -o-transition: 0.15s ease;
         transition: all 0.15s ease;
       }
       div.abstract.hidden {
@@ -746,19 +742,6 @@ h5.title.special-col {
   }
 }
 
-.toggle-link {
-  color: var(--global-theme-color);
-  cursor: pointer;
-  font-weight: 500;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-
-  &:hover {
-    color: var(--global-hover-color);
-    text-decoration: underline;
-  }
-}
-
 .post strong,
 .post b,
 strong,
@@ -769,6 +752,7 @@ b {
 
 .collapsible-content {
     margin-top: 0.5rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     border: 1px solid var(--global-divider-color);
     border-radius: 8px;
@@ -800,4 +784,404 @@ b {
 .toggle-link.expanded::before {
     content: "▼ ";
     transform: rotate(0deg);
+}
+
+// Affiliations section
+.affiliations {
+    margin-top: 2rem;
+}
+
+.affiliation-table {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 3rem 0.5rem;
+}
+
+.affiliation-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.affiliation-logo {
+    display: block;
+    margin: 0 auto;
+}
+
+.affiliation-logo-sm {
+    width: 80px;
+}
+
+.affiliation-logo-md {
+    width: 120px;
+}
+
+.affiliation-logo-lg {
+    width: 150px;
+}
+
+.affiliation-text {
+    padding: 10px;
+    font-size: 0.75rem;
+}
+
+// Social links
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links .separator {
+    color: var(--global-text-color);
+}
+
+// =============================================================================
+// Shared Components - Used across publications, talks, blogs layouts
+// =============================================================================
+
+// Search inputs
+.search-input {
+    background-color: var(--global-card-bg-color);
+    border-color: var(--global-divider-color);
+    color: var(--global-text-color);
+
+    &:focus {
+        background-color: var(--global-card-bg-color);
+        border-color: var(--global-theme-color);
+        color: var(--global-text-color);
+        box-shadow: 0 0 0 0.2rem rgba(38, 152, 186, 0.25);
+    }
+
+    &::placeholder {
+        color: var(--global-text-color-light);
+    }
+}
+
+// Action buttons (TLDR, Citation, Slides, etc.)
+.action-btn {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+// =============================================================================
+// Year-grouped layout (publications, talks)
+// =============================================================================
+
+// Year section wrapper
+.year-section {
+    margin-bottom: 1.5rem;
+}
+
+// Year heading - right-aligned, muted, with top border
+.year-heading {
+    color: var(--global-divider-color);
+    border-top: 1px solid var(--global-divider-color);
+    padding-top: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+// Publication/talk card - clean card with bottom border
+.pub-card,
+.talk-card {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--global-divider-color);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+// Color legend at top of page
+.color-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .venue-badge {
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        &.active {
+            opacity: 1;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor;
+        }
+    }
+}
+
+// Venue badge - colored pill above the title
+.venue-badge {
+    display: inline-block;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.3em 0.85em;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.35rem;
+    background-color: var(--global-theme-color); // default fallback
+
+    &.venue-conference { background-color: #28a745; }
+    &.venue-workshop  { background-color: #e6a817; }
+    &.venue-journal   { background-color: #17a2b8; }
+}
+
+// Minimal pill buttons for Paper, TLDR, Citation, etc.
+.pub-btn {
+    display: inline-block;
+    font-size: 0.88rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color);
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    transition: all 0.15s ease;
+
+    &:hover {
+        border-color: var(--global-theme-color);
+        color: var(--global-theme-color);
+        text-decoration: none;
+    }
+
+    &.active {
+        background-color: var(--global-theme-color);
+        border-color: var(--global-theme-color);
+        color: #fff;
+    }
+}
+
+// Citation box - monospace, proper padding, subtle background
+.citation-box {
+    background-color: var(--global-code-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+
+    pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: hidden;
+
+        code {
+            background: transparent;
+            padding: 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            color: var(--global-text-color);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: block;
+        }
+
+        .cite-line {
+            display: block;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+    }
+
+    .copy-btn {
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+    }
+}
+
+// Content boxes (TLDR, Citation display)
+.content-box {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.25rem;
+    background-color: transparent;
+}
+
+.tldr-content {
+    color: var(--global-theme-color);
+    border-color: var(--global-theme-color);
+
+    strong {
+        color: inherit;
+    }
+}
+
+.citation-content {
+    color: var(--global-text-color);
+    border-color: var(--global-divider-color);
+}
+
+// GitHub link styling
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--global-text-color);
+    border: 1px solid var(--global-divider-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+
+    &:hover {
+        color: var(--global-hover-color);
+        text-decoration: none;
+        border-color: var(--global-theme-color);
+    }
+
+    i {
+        margin-right: 0.25rem;
+    }
+}
+
+.star-count {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+// HuggingFace link styling
+.huggingface-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--global-text-color);
+    border: 1px solid var(--global-divider-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+
+    &:hover {
+        color: #ff6b1a;
+        text-decoration: none;
+        border-color: #ff6b1a;
+    }
+}
+
+.hf-icon {
+    margin-right: 0.25rem;
+    font-size: 0.9rem;
+}
+
+// Badge sizes
+.badge-sm {
+    font-size: 0.75rem;
+    padding: 0.25em 0.4em;
+}
+
+// Copy button
+.copy-btn {
+    color: var(--global-text-color-light);
+    border: none;
+    padding: 0.25rem;
+
+    &:hover {
+        color: var(--global-hover-color);
+    }
+}
+
+// Item headers (publications, talks)
+.item-header {
+    margin-bottom: 0.5rem;
+}
+
+.item-title {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.item-meta {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.item-venue {
+    font-style: italic;
+}
+
+.item-meta-light {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+}
+
+.item-press {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+// Venue/date with tags layout
+.meta-with-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.venue-short {
+    color: var(--global-text-color-light);
+    font-weight: normal;
+}
+
+// News card styling
+.news-card {
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    padding: 15px;
+    background-color: var(--global-card-bg-color);
+}
+
+.news-scroll {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.news-table {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.news-date {
+    width: 100px;
+    min-width: 100px;
+    vertical-align: top;
+    padding-right: 10px;
+    color: var(--global-text-color-light);
+    white-space: nowrap;
+}
+
+.news-content {
+    word-wrap: break-word;
+    word-break: break-word;
+    max-width: 0;
+    color: var(--global-text-color);
 }

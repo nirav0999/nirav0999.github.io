@@ -11,12 +11,12 @@ tldr: Unaligned model can identify high-quality preference pairs for alignment, 
 link: "https://arxiv.org/abs/2501.15109"
 tag: "workshop"
 venue_short: "AAAI'W"
+selected: false
 citation: |
   @article{ndiwan2025clear,
-  title={Clear Preferences Leave Traces: Reference Model-Guided Sampling for Preference Learning},
-  author={Diwan, Nirav and Ergen, Tolga and Shim, Dongsub and Lee, Honglak},
-  journal={arXiv preprint arXiv:2501.15109},
-  year={2025}
+   title={Clear Preferences Leave Traces: Reference Model-Guided Sampling for Preference Learning},
+   author={Diwan, Nirav and Ergen, Tolga and Shim, Dongsub and Lee, Honglak},
+   journal={arXiv preprint arXiv:2501.15109},
+   year={2025}
   }
-tag: workshop
 ---

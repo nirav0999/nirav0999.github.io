@@ -1,96 +1,127 @@
-<div class="selected-publications-section">
-  <h4 class="selected-publications-title">selected publications</h4>
-  {% assign ordered_publications = site.publications | sort: "date" | reverse %}
-  {% assign selected_publications = ordered_publications | where: "selected", true %}
-  {% assign use_fallback = false %}
-  {% if selected_publications.size == 0 %}
-    {% assign selected_publications = ordered_publications %}
-    {% assign use_fallback = true %}
-  {% endif %}
+{% assign ordered_publications = site.publications | sort: "date" | reverse %}
+{% assign selected_publications = ordered_publications | where: "selected", true %}
 
-  <ul class="selected-publications list-unstyled">
-    {% if use_fallback %}
-      {% for publication in selected_publications limit:3 %}
-        {% assign title_url = nil %}
-        {% if publication.link %}
-          {% assign title_url = publication.link %}
-        {% elsif publication.paper %}
-          {% assign title_url = publication.paper | prepend: 'assets/pdf/papers/' | relative_url %}
-        {% endif %}
-        <li class="selected-publication mb-3">
-          <h5 class="mb-1">
-            {% if publication.venue_short %}
-              <span class="badge badge-secondary mr-1">{{ publication.venue_short }}</span>
-            {% endif %}
-            {% if title_url %}
-              <a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
-            {% else %}
-              {{ publication.title }}
-            {% endif %}
-          </h5>
-          {% if publication.authors %}
-            <p class="mb-1">{{ publication.authors }}</p>
-          {% endif %}
-          {% if publication.venue %}
-            <p class="text-muted mb-1">{{ publication.venue }}</p>
-          {% endif %}
-          {% if publication.tldr %}
-            <p class="small mb-2">{{ publication.tldr }}</p>
-          {% endif %}
-          <div class="selected-publication-links">
-            {% if publication.paper %}
-              <a class="btn btn-sm btn-outline-info mr-1" href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">Paper</a>
-            {% endif %}
-            {% if publication.code %}
-              <a class="btn btn-sm btn-outline-secondary" href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
-            {% endif %}
-          </div>
-        </li>
-      {% endfor %}
-    {% else %}
-      {% for publication in selected_publications %}
-        {% assign title_url = nil %}
-        {% if publication.link %}
-          {% assign title_url = publication.link %}
-        {% elsif publication.paper %}
-          {% assign title_url = publication.paper | prepend: 'assets/pdf/papers/' | relative_url %}
-        {% endif %}
-        <li class="selected-publication mb-3">
-          <h5 class="mb-1">
-            {% if publication.venue_short %}
-              <span class="badge badge-secondary mr-1">{{ publication.venue_short }}</span>
-            {% endif %}
-            {% if title_url %}
-              <a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
-            {% else %}
-              {{ publication.title }}
-            {% endif %}
-          </h5>
-          {% if publication.authors %}
-            <p class="mb-1">{{ publication.authors }}</p>
-          {% endif %}
-          {% if publication.venue %}
-            <p class="text-muted mb-1">{{ publication.venue }}</p>
-          {% endif %}
-          {% if publication.tldr %}
-            <p class="small mb-2">{{ publication.tldr }}</p>
-          {% endif %}
-          <div class="selected-publication-links">
-            {% if publication.paper %}
-              <a class="btn btn-sm btn-outline-info mr-1" href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">Paper</a>
-            {% endif %}
-            {% if publication.code %}
-              <a class="btn btn-sm btn-outline-secondary" href="{{ publication.code }}" target="_blank" rel="noopener noreferrer">Code</a>
-            {% endif %}
-          </div>
-        </li>
-      {% endfor %}
-    {% endif %}
-  </ul>
+{% if selected_publications.size > 0 %}
+<div class="selected-publications-section" style="margin-top: 2.5rem;">
+  <h2 style="display: flex; align-items: baseline; gap: 0.75rem;">
+    <span style="color: var(--global-text-color);">Selected Publications</span>
+    <a href="{{ '/publications/' | relative_url }}" style="font-size: 0.85rem; font-weight: normal;">View all &rarr;</a>
+  </h2>
 
-  {% if use_fallback %}
-    <p class="selected-publications-hint text-muted small mb-0">
-      Mark publications with `selected: true` in `_publications/*.md` to control this list.
-    </p>
-  {% endif %}
+  {% for publication in selected_publications %}
+  <div class="pub-card">
+    <div class="item-header">
+      {% if publication.venue_short %}
+        {% assign venue_class = "venue-conference" %}
+        {% if publication.tag == "workshop" %}
+          {% assign venue_class = "venue-workshop" %}
+        {% elsif publication.tag == "journal" %}
+          {% assign venue_class = "venue-journal" %}
+        {% elsif publication.venue contains "Workshop" or publication.venue contains "workshop" %}
+          {% assign venue_class = "venue-workshop" %}
+        {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
+          {% assign venue_class = "venue-journal" %}
+        {% endif %}
+        <span class="venue-badge {{ venue_class }}">{{ publication.venue_short }}</span>
+      {% endif %}
+
+      <h5 class="title font-weight-bold special-font special-col item-title">
+        {% if publication.link %}
+          <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+        {% else %}
+          {{ publication.title }}
+        {% endif %}
+      </h5>
+
+      <p class="item-meta">{{ publication.authors }}</p>
+      <p class="item-meta item-venue">{{ publication.venue }}</p>
+
+      {% if publication.press %}
+        <p class="item-press">{{ publication.press }}</p>
+      {% endif %}
+    </div>
+
+    <div class="publication-actions mt-2">
+      {% if publication.link %}
+        <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Paper</a>
+      {% endif %}
+
+      <button class="pub-btn tldr-toggle" data-target="tldr-selected-{{ forloop.index }}">TLDR</button>
+      <button class="pub-btn citation-toggle" data-target="citation-selected-{{ forloop.index }}">Citation</button>
+
+      {% if publication.code %}
+        <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link pub-btn" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
+          <i class="fab fa-github"></i> <span class="star-count">★</span>
+        </a>
+      {% endif %}
+
+      {% if publication.huggingface %}
+        <a href="{{ publication.huggingface }}" target="_blank" rel="noopener noreferrer" class="pub-btn">
+          <span class="hf-icon">🤗</span> HF
+        </a>
+      {% endif %}
+
+      {% if publication.slides %}
+        <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Slides</a>
+      {% endif %}
+      {% if publication.poster %}
+        <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Poster</a>
+      {% endif %}
+    </div>
+
+    <!-- Dynamic content area -->
+    <div class="dynamic-content mt-2"></div>
+
+    <!-- Hidden TLDR content -->
+    <div id="tldr-selected-{{ forloop.index }}" class="publication-content" style="display: none;">
+      <div class="content-box tldr-content">
+        <strong>TLDR:</strong> {{ publication.tldr }}
+      </div>
+    </div>
+
+    <!-- Hidden Citation content -->
+    <div id="citation-selected-{{ forloop.index }}" class="publication-content" style="display: none;">
+      <div class="citation-box">
+        <div class="d-flex justify-content-between align-items-start">
+          <div class="flex-grow-1">
+            <pre><code>{% if publication.citation %}{{ publication.citation | strip }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.{% endif %}</code></pre>
+          </div>
+          <button class="pub-btn copy-btn flex-shrink-0" data-citation="{% if publication.citation %}{{ publication.citation | strip }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
+
+<script src="{{ '/assets/js/shared-utils.js' | relative_url }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var section = document.querySelector('.selected-publications-section');
+    if (!section) return;
+
+    // Wrap each citation line in a .cite-line span for per-line hanging indent
+    section.querySelectorAll('.citation-box pre code').forEach(function(code) {
+        var lines = code.textContent.split('\n');
+        code.textContent = '';
+        lines.forEach(function(line) {
+            var span = document.createElement('span');
+            span.className = 'cite-line';
+            span.textContent = line;
+            code.appendChild(span);
+        });
+    });
+
+    // Initialize toggles within this section
+    SharedUtils.initToggles('.selected-publications-section .tldr-toggle, .selected-publications-section .citation-toggle');
+
+    // Initialize copy citation buttons
+    SharedUtils.initCopyButtons('.selected-publications-section .copy-btn', 'data-citation');
+
+    // Fetch GitHub star counts
+    SharedUtils.fetchGitHubStars('.selected-publications-section .github-link');
+});
+</script>
+{% endif %}

@@ -13,23 +13,21 @@ code: "https://github.com/LCS2-IIITD/ACL-FFLM"
 venue_short: "ACL"
 press: "Dean's Thesis Appreciation Award at IIIT-Delhi"
 tag: "conference"
+selected: true
 citation: | 
     @inproceedings{ndiwanFingerprinting2021,
-    title = "Fingerprinting Fine-tuned Language Models in the Wild",
-    author = "Diwan, Nirav  and
-      Chakraborty, Tanmoy  and
-      Shafiq, Zubair",
-    editor = "Zong, Chengqing  and
-      Xia, Fei  and
-      Li, Wenjie  and
-      Navigli, Roberto",
-    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
-    month = aug,
-    year = "2021",
-    address = "Online",
-    publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2021.findings-acl.409/",
-    doi = "10.18653/v1/2021.findings-acl.409",
-    pages = "4652--4664"
+     title = "Fingerprinting Fine-tuned Language Models in the Wild",
+     author = "Diwan, Nirav  and
+     Chakraborty, Tanmoy  and
+     Shafiq, Zubair",
+     editor = "Zong, Chengqing and Xia, Fei  and Li, Wenjie  andNavigli, Roberto",
+     booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+     month = aug,
+     year = "2021",
+     address = "Online",
+     publisher = "Association for Computational Linguistics",
+     url = "https://aclanthology.org/2021.findings-acl.409/",
+     doi = "10.18653/v1/2021.findings-acl.409",
+     pages = "4652--4664"
     }
 ---

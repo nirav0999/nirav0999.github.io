@@ -7,6 +7,9 @@
             {%- if site.scholar_userid -%}
             <a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
             {% endif %}
+            {%- if site.cv_pdf -%}
+            <a href="{{ site.cv_pdf | prepend: 'assets/pdf/' | relative_url }}" target="_blank" rel="noopener noreferrer" title="CV"><i class="ai ai-cv"></i></a>
+            {% endif %}
             {%- if site.publons_id -%}
             <a href="https://publons.com/a/{{ site.publons_id }}/" title="Publons"><i class="ai ai-publons"></i></a>
             {% endif %}
@@ -20,7 +23,7 @@
             <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             {% endif %}
             {%- if site.twitter_username -%}
-            <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://x.com/{{ site.twitter_username }}" title="X"><i class="fa-brands fa-x-twitter"></i></a>
             {% endif %}
             {%- if site.fb_username -%}
             <a href="https://www.facebook.com/{{ site.fb_username }}/" title="Facebook"><i class="fab fa-facebook-f"></i></a>

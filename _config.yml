@@ -66,30 +66,30 @@ publons_id: # your ID on Publons
 research_gate_profile: # your profile on ResearchGate
 blogger_url: # your blogger URL
 work_url: # work page URL
+cv_pdf: Nirav_CV.pdf # CV filename in assets/pdf/
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 dblp_url: # your DBLP profile url
 stackoverflow_id: #your stackoverflow id
 
-contact_note: >
-  Use these handles to reach me.
+contact_note:
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
-google_analytics:  G-WP6HR71G8Z # your google-analytics ID (format: UA-XXXXXXXXX)
+google_analytics:  G-WP6HR71G8Z # your google-analytics ID (GA4 format: G-XXXXXXXXX)
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
-bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
+bing_site_verification:  # put your bing-site-verification ID (Bing Webmaster)
 
 # -----------------------------------------------------------------------------
 # Blog
 # -----------------------------------------------------------------------------
 
 blog_name: al-folio # blog_name will be displayed in your blog page
-blog_nav_title:  # your blog must have a title for it to be displayed in the nav bar
+blog_nav_title: Blogs # your blog must have a title for it to be displayed in the nav bar
 blog_description: a simple whitespace theme for academics
 # permalink: /blog/:year/:title/
 
@@ -100,6 +100,14 @@ pagination:
 # Comments
 disqus_shortname:  # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+
+# Giscus Comments (https://giscus.app)
+# To set up: 1) Enable Discussions on your repo, 2) Install Giscus app, 3) Get config from giscus.app
+giscus:
+  repo: nirav0999/nirav0999.github.io
+  repo_id: R_kgDOKkzKKA
+  category: General
+  category_id: DIC_kwDOKkzKKM4C2Bry
 
 # External sources.
 # If you have blog posts published on medium.com or other exteranl sources,
@@ -127,6 +135,7 @@ collections:
     output: true
     permalink: /blogs/:name/
 news_limit: 15
+show_affiliations: false
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -239,7 +248,7 @@ filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, select
 # Responsive WebP Images
 # -----------------------------------------------------------------------------
 
-enable_responsive_images: true # enables responsive images for your site (recomended, see https://github.com/alshedivat/al-folio/issues/537)
+enable_responsive_images: true # enables responsive images for your site (recommended, see https://github.com/alshedivat/al-folio/issues/537)
 
 imagemagick:
   enabled: true # make it 'false' if not using responsive images
@@ -274,7 +283,7 @@ enable_google_analytics:    true  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification
-enable_masonry:             true   # enables automatic project cards arangement
+enable_masonry:             true   # enables automatic project cards arrangement
 enable_math:                true   # enables math typesetting (uses MathJax)
 enable_tooltips:            false  # enables automatic tooltip links generated
                                    # for each section titles on pages and posts
@@ -285,7 +294,7 @@ enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
 enable_blogs_page:          true  # enables blogs page in navigation
-default_theme:              light  # sets the initial color theme
+default_theme:              dark  # sets the initial color theme
 
 
 # -----------------------------------------------------------------------------
@@ -301,8 +310,8 @@ bootstrap:
     css: "sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY="
     js: "sha256-SyTu6CwrfOhaznYZPoolVw2rxoY7lKYKQvqbtqN93HI="
 fontawesome:
-  version: "5.15.4"
-  integrity: "sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4="
+  version: "6.5.1"
+  integrity: "sha256-o4jGnKbt9bS0T4FhHUbEe5BrMojBOANRwnkUVthoX4s="
 jquery:
   version: "3.6.0"
   integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

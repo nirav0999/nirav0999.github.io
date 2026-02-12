@@ -5,7 +5,7 @@ title: "Cracks in the Vault? Extracting Memorized Data from Differentially Priva
 tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
-published: true
+published: false
 toc: true
 authors:
   - name: Nirav Diwan

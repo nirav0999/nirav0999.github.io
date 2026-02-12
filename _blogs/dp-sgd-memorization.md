@@ -1,7 +1,7 @@
 ---
 layout: blog
 date: 2026-02-08
-title: "Crack in the Vault? Extracting Memorized Data from Differentially Private Pre-trained LLM"
+title: "Cracks in the Vault? Extracting Memorized Data from Differentially Private Pre-trained LLM"
 tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
@@ -16,7 +16,7 @@ authors:
 
 Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had no detectable memorization. 
 
-This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma shows $7.6$% *exact() memorization and $12.7%$ approximate memorization.  A simple untargeted extraction experiment also shows that VaultGemma emits Personally Identifiable Information (PII).
+This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma shows $7.6$% *exact() memorization and $12.7%$ approximate memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
 
 ## VaultGemma's Extracted Text
 
@@ -47,8 +47,6 @@ The Westminster Guide
 .....</span></code></pre>
 
 <p style="text-align: justify;"><em> <b>Example 3 (Untargeted Extraction) </b>: Given a very simple <span style="color: teal;">prompt template</span> VaultGemma completes the (a) full employee name (Mark Brown) (confirmed on <a href="https://www.linkedin.com/in/mark-brown-43603162/?originalSubdomain=uk">linkedin</a>), (b) the correct employer and url (westminster.gov.uk). We also confirm that the email (redacted) exists, and the Phone Number (redacted) has the correct country code.</em></p>  
-
-The rest of this post explains the gap between the numbers and VaultGemma's reported zero, what the attack looks like, and the findings.
 
 ## VaultGemma's Evaluation Methodology
 
@@ -158,11 +156,7 @@ For each of the 200 queries, a template is randomly selected and the \{name\} pl
 
 *Table 1: Targeted extraction with $k=1$, $t=0.0$ (greedy decoding). $d_{edit}$ thresholds as a percentage of suffix length.*
 
-At the approximate threshold of $d_{edit} < 20\%$, nearly one in five sequences (18.1%) are recoverable.
-
-Gemma2-2B uses the same training recipe as VaultGemma (which adopts the Gemma 2 architecture and data) but is trained *without* DP-SGD. Assuming the training data is shared, the comparison isolates the effect of the privacy mechanism: DP-SGD reduces exact memorization from 10.9% to 7.6%, a 30% relative reduction.
-
-Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more---though this comparison crosses model families and does not isolate size alone.
+DP-SGD with ε≤2 reduces memorization of frequently-occurring sequences by ~30% relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
 
 ### Finding 2: Multiple trials amplify extraction
 
@@ -200,7 +194,7 @@ Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consis
 
 *Table 2: Targeted extraction with $k=5$ trials, $t=0.6$. Same benchmark, more attempts.*
 
-With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%---a 29% relative increase from simply querying the model more times. The attack is trivially parallelizable.
+With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%. This is a 29% relative increase from simply querying the model more times, making the attack trivially parallelizable
 
 <div style="float: right; margin: 0 0 1em 1.5em; max-width: 55%;">
   <img src="/assets/img/memorization_vs_suffix_length.png" alt="Memorization vs. suffix length for VaultGemma-1B and Gemma2-2B" style="width: 100%;">
@@ -209,26 +203,25 @@ With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%---a 29% 
 
 An interesting subtlety: the relative gap between VaultGemma and Gemma2-2B *narrows* under multiple trials. At $k=1$, Gemma2-2B has 43% higher exact memorization ($10.9\%$ vs $7.6\%$). At $k=5$, the gap drops to 39% ($13.6\%$ vs $9.8\%$). DP's protective effect appears to erode slightly as the adversary gains more query budget, though a direct comparison is confounded by model size differences (1B vs. 2B parameters).
 
-
 ### Finding 3: Memorization persists for long sequences
 Varying the suffix length from 50 to 75 tokens, VaultGemma's exact memorization decreases from 7.6% to 4.3%—still substantial, corresponding to at least 2–3 full sentences reproduced verbatim.
 
-### Finding 4: Untargeted prompts elicit real PII
+### Finding 4: Untargeted prompts might give real PII
+In 2 out of 200 queries (1%), the extracted information was confirmed to correspond to real individuals. Example 3 listed at the top is one such case. To be clear, this is NOT *calibrated* evidence of memorization. It cannot be confirmed without access to the training data. But it is surprising that even with a very strong privacy guarantee, and with a small budget of 200 queries we were able to find real PII.
 
-In 2 out of 200 queries (1%), the extracted information was confirmed to correspond to real individuals. Example 3 listed at the top is one such case.To be clear, this is NOT *calibrated* evidence of memorization. It is hard to  without access to the training data. But it is  surprising that even with a very strong privacy guarantee, and with a small budget of 200 queries we were able to find real PII.
+## Conclusion and Open Questions
 
-## Conclusion
-Despite a fairly strong $\epsilon \leq 2$ -privacy guarantee, VaultGemma's ability to memorize PII from its training data is surprising.
-There are more interesting open questions which are worth exploring:
+**What we know**
+(a) Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and report tail risk, not single-point averages.
 
-There a number of open questions which are worth exploring:
-(a) What exactly is the effect of the 
-(b) Should be measured for DP-SGD–trained language models
-(c) How memorization 
+**What we don't know**
+(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing k times contributes k independent gradients—each bounded by DP individually, but what about collectively? Memorization risk increases for LLMs with $k$, interesting to see this happens with DP-SGD too. 
 
-We aim to answer these questions and understand them better. 
+(b) *Can we build better calibirated probes for DP-SGD models?* Our untargeted test surfaced externally checked PII in 1% of 200 prompts. This motivates a more structured PII-leakage evaluation with explicit base rates, standardized prompting, and reproducible verification.
 
-This work is ongoing! We plan to open-source code, data and evaluations soon. In case you are interested in contributing, please reach out to me at nirdiwan@gmail.com.
+More broadly, while DP-SGD provides theoretical privacy guarantees, what this notion of privacy guarantees mean for memorization in LLMs, what changes can be make to ensure we can provide *relevant* guarantees, and how they can be properly implemented for practical defenses requires more `(questions, experiments, robust evaluation)`.
+
+We aim to answer these questions and understand them better. We plan to open-source code, data and evaluations soon. In case you are interested in contributing to this project, please reach out to me at nirdiwan@gmail.com.
 
 ## References
 

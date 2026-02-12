@@ -5,7 +5,7 @@ title: "Cracks in the Vault? Extracting Memorized Data from Differentially Priva
 tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
-published: false
+published: true
 toc: true
 authors:
   - name: Nirav Diwan
@@ -156,7 +156,7 @@ For each of the 200 queries, a template is randomly selected and the \{name\} pl
 
 *Table 1: Targeted extraction with $k=1$, $t=0.0$ (greedy decoding). $d_{edit}$ thresholds as a percentage of suffix length.*
 
-DP-SGD with ε≤2 reduces memorization of frequently-occurring sequences by ~30% relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
+DP-SGD reduces memorization of frequently-occurring sequences by $~30%$ relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
 
 ### Finding 2: Multiple trials amplify extraction
 
@@ -201,7 +201,7 @@ With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%. This is
   <p><em>Figure 1: Exact and approximate memorization rates as suffix length increases from 50 to 75 tokens.</em></p>
 </div>
 
-An interesting subtlety: the relative gap between VaultGemma and Gemma2-2B *narrows* under multiple trials. At $k=1$, Gemma2-2B has 43% higher exact memorization ($10.9\%$ vs $7.6\%$). At $k=5$, the gap drops to 39% ($13.6\%$ vs $9.8\%$). DP's protective effect appears to erode slightly as the adversary gains more query budget, though a direct comparison is confounded by model size differences (1B vs. 2B parameters).
+An interesting subtlety: the relative gap between VaultGemma and Gemma2-2B *narrows* under multiple trials. At $k=1$, Gemma2-2B has 43% higher exact memorization ($10.9\%$ vs $7.6\%$). At $k=5$, the gap drops to 39% ($13.6\%$ vs $9.8\%$). DP's protective effect appears to erode slightly as the adversary gains more query budget, though a direct comparison is confounded by model size differences (1B vs. 2B parameters) -- same as Finding 1.
 
 ### Finding 3: Memorization persists for long sequences
 Varying the suffix length from 50 to 75 tokens, VaultGemma's exact memorization decreases from 7.6% to 4.3%—still substantial, corresponding to at least 2–3 full sentences reproduced verbatim.

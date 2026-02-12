@@ -20,8 +20,7 @@ Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai
 
 **Internship.** I am looking for both Industrial and Academic Internships for Summer 2026 in the areas of Machine Learning, and Security & Privacy. Feel free to reach out!
 
-**Collaboration.** This is an open call for collaboration! Feel free to send me an [email](mailto:nirdiwan@gmail.com) to talk about ideas, projects, collaborations, or research questions.
-
+**Collaboration.** I am actively looking to work with undergrads and MS students! Feel free to send me an [email](mailto:nirdiwan@gmail.com) with the title \[Attention\] to ask about contributing.
 
 
 <span class="toggle-link" data-target="industry-experience">Industry experience</span>

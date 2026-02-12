@@ -212,12 +212,12 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 ## Conclusion and Open Questions
 
 **What we know**<br>
-(a) Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and report tail risk, not single-point averages.
+(a) Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and report tail risk not just single-point averages.
 
 **What we don't know**<br>
-(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing k times contributes k independent gradients—each bounded by DP individually, but what about collectively? Memorization risk increases for LLMs with $k$, interesting to see this happens with DP-SGD too. 
+(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing k times contributes k independent gradients where each sequence bounded by DP individually, but not collectively? Memorization risk increases for LLMs with $k$, interesting to see this happens with DP-SGD too. 
 
-(b) *Can we build better calibirated probes for DP-SGD models?* Our untargeted test surfaced externally checked PII in 1% of 200 prompts. This motivates a more structured PII-leakage evaluation with explicit base rates, standardized prompting, and reproducible verification.
+(b) *Can we build better calibirated probes for DP-SGD models?* Our untargeted test surfaced externally checked PII in 1% of 200 prompts. This motivates a more structured PII-leakage evaluation.
 
 More broadly, while DP-SGD provides theoretical privacy guarantees, what this notion of privacy guarantees mean for memorization in LLMs, what changes can be make to ensure we can provide *relevant* guarantees, and how they can be properly implemented for practical defenses requires more `(questions, experiments, robust evaluation)`.
 

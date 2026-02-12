@@ -11,6 +11,9 @@ layout: default
 
     <!-- Color legend (clickable filters) -->
     <div class="color-legend">
+        <span class="venue-badge venue-outline active" data-filter="all">All</span>
+        <span class="venue-badge venue-outline" data-filter="selected">Selected</span>
+        <span class="legend-separator"></span>
         <span class="venue-badge venue-conference" data-filter="conference">Conference</span>
         <span class="venue-badge venue-workshop" data-filter="workshop">Workshop</span>
         <span class="venue-badge venue-journal" data-filter="journal">Journal</span>
@@ -34,7 +37,8 @@ layout: default
                 data-authors="{{ publication.authors | downcase | replace: '<u>', '' | replace: '</u>', '' }}"
                 data-venue="{{ publication.venue | downcase }}"
                 data-venue-short="{{ publication.venue_short | downcase }}"
-                data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}">
+                data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}"
+                data-selected="{% if publication.selected %}true{% else %}false{% endif %}">
 
                 <div class="item-header">
                     {% if publication.venue_short %}
@@ -175,8 +179,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (activeLegendFilter) {
-                var tags = item.getAttribute('data-tags') || '';
-                matchesLegend = tags.includes(activeLegendFilter);
+                if (activeLegendFilter === 'selected') {
+                    matchesLegend = item.getAttribute('data-selected') === 'true';
+                } else {
+                    var tags = item.getAttribute('data-tags') || '';
+                    matchesLegend = tags.includes(activeLegendFilter);
+                }
             }
 
             if (matchesSearch && matchesLegend) {
@@ -210,12 +218,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    var allBadge = document.querySelector('.color-legend .venue-badge[data-filter="all"]');
+
     legendBadges.forEach(function(badge) {
         badge.addEventListener('click', function() {
             var filter = this.getAttribute('data-filter');
-            if (activeLegendFilter === filter) {
+            if (filter === 'all' || activeLegendFilter === filter) {
+                // Reset to "All"
                 activeLegendFilter = '';
-                this.classList.remove('active');
+                legendBadges.forEach(function(b) { b.classList.remove('active'); });
+                allBadge.classList.add('active');
             } else {
                 legendBadges.forEach(function(b) { b.classList.remove('active'); });
                 activeLegendFilter = filter;

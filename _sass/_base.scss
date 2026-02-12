@@ -924,6 +924,13 @@ b {
             box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor;
         }
     }
+
+    .legend-separator {
+        width: 1px;
+        height: 1.4em;
+        background-color: var(--global-divider-color);
+        margin: 0 0.15rem;
+    }
 }
 
 // Venue badge - colored pill above the title
@@ -941,6 +948,22 @@ b {
     &.venue-conference { background-color: #28a745; }
     &.venue-workshop  { background-color: #e6a817; }
     &.venue-journal   { background-color: #17a2b8; }
+
+    &.venue-outline {
+        background-color: transparent;
+        color: var(--global-text-color);
+        border: 1.5px solid var(--global-text-color);
+    }
+
+    // Blog tag color palette (auto-assigned per unique tag)
+    &.venue-tag-0 { background-color: #28a745; } // green
+    &.venue-tag-1 { background-color: #007bff; } // blue
+    &.venue-tag-2 { background-color: #17a2b8; } // teal
+    &.venue-tag-3 { background-color: #e6a817; } // orange
+    &.venue-tag-4 { background-color: #6f42c1; } // purple
+    &.venue-tag-5 { background-color: #dc3545; } // red
+    &.venue-tag-6 { background-color: #e83e8c; } // pink
+    &.venue-tag-7 { background-color: #6610f2; } // indigo
 }
 
 // Minimal pill buttons for Paper, TLDR, Citation, etc.

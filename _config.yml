@@ -222,7 +222,7 @@ scholar:
   last_name: Diwan
   first_name: [Nirav, N.]
 
-  style: apa
+  style: ieee
   locale: en
 
   source: /_bibliography/

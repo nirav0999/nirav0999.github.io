@@ -13,10 +13,34 @@ layout: default
             </time>
             {% endif %}
             
+            {%- assign all_blog_tags_str = '' -%}
+            {%- assign all_blogs_sorted = site.blogs | sort: 'date' | reverse -%}
+            {%- for b in all_blogs_sorted -%}
+                {%- if b.tags -%}
+                    {%- for t in b.tags -%}
+                        {%- unless all_blog_tags_str contains t -%}
+                            {%- if all_blog_tags_str != '' -%}
+                                {%- assign all_blog_tags_str = all_blog_tags_str | append: ',' | append: t -%}
+                            {%- else -%}
+                                {%- assign all_blog_tags_str = t -%}
+                            {%- endif -%}
+                        {%- endunless -%}
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- endfor -%}
+            {%- assign blog_unique_tags = all_blog_tags_str | split: ',' -%}
+
             {% if page.tags %}
-            <div class="mt-2">
+            <div class="post-tags">
                 {% for tag in page.tags %}
-                <span class="badge badge-secondary mr-1">{{ tag }}</span>
+                    {%- assign tag_color_index = 0 -%}
+                    {%- for ut in blog_unique_tags -%}
+                        {%- if ut == tag -%}
+                            {%- assign tag_color_index = forloop.index0 | modulo: 8 -%}
+                            {%- break -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                    <span class="venue-badge venue-tag-{{ tag_color_index }}">{{ tag }}</span>
                 {% endfor %}
             </div>
             {% endif %}
@@ -25,11 +49,50 @@ layout: default
         {% if page.description %}
         <p class="post-description">{{ page.description }}</p>
         {% endif %}
+
+        {% if page.authors %}
+        <div class="post-authors">
+            {% for author in page.authors %}
+            <div class="post-author">
+                {% if author.url %}<a href="{{ author.url }}" target="_blank" rel="noopener noreferrer">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if author.title %}, {{ author.title }}{% endif %}{% if author.affiliation %}, {{ author.affiliation }}{% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </header>
     
-    <article class="post-content">
+    {% if page.toc %}
+    <nav class="toc-nav" id="toc-nav">
+        <strong>Contents</strong>
+        <ul id="toc-list"></ul>
+    </nav>
+    {% endif %}
+
+    <article class="post-content" id="post-content">
         {{ content }}
     </article>
+
+    {% if page.toc %}
+    <script>
+    (function() {
+        var article = document.getElementById('post-content');
+        var tocList = document.getElementById('toc-list');
+        var headings = article.querySelectorAll('h2, h3');
+        var skip = {'references': true, 'citation': true};
+
+        headings.forEach(function(h) {
+            if (skip[h.textContent.trim().toLowerCase()]) return;
+            var li = document.createElement('li');
+            if (h.tagName === 'H3') li.classList.add('toc-sub');
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+    })();
+    </script>
+    {% endif %}
     
     <div class="post-footer mt-4">
         <hr>
@@ -81,11 +144,32 @@ layout: default
     margin-bottom: 1.5rem;
 }
 
-.post-content {
-    line-height: 1.6;
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin-top: 0.5em;
 }
 
-.post-content h2, .post-content h3, .post-content h4 {
+.post-content {
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.post-content h2 {
+    font-size: 1.6em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.post-content h3 {
+    font-size: 1.35em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.post-content h4 {
+    font-size: 1.15em;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -126,8 +210,96 @@ layout: default
 .post-content table {
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
-    display: block;
     margin: 1.5rem 0;
+    border-collapse: collapse;
+}
+
+.post-content table th,
+.post-content table td {
+    border: 1px solid var(--global-divider-color, #ddd);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.post-content table th {
+    font-weight: 600;
+}
+
+.post-content table thead {
+    border-bottom: 2px solid var(--global-divider-color, #ddd);
+}
+
+/* Bibliography references in blog posts */
+.post-content ol.bibliography {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.post-content ol.bibliography li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Authors */
+.post-authors {
+    margin-top: 0.5em;
+}
+
+.post-author {
+    font-size: 0.92em;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.post-author a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.post-author a:hover {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+/* Table of contents */
+.toc-nav {
+    background: var(--global-card-bg-color);
+    border-left: 3px solid var(--global-divider-color);
+    padding: 0.75em 1em;
+    margin: 1.5em 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.toc-nav strong {
+    display: block;
+    margin-bottom: 0.5em;
+    color: var(--global-text-color);
+}
+
+.toc-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-nav li {
+    margin: 0.3em 0;
+}
+
+.toc-nav li.toc-sub {
+    padding-left: 1.2em;
+}
+
+.toc-nav a {
+    text-decoration: none;
+    color: var(--global-text-color);
+}
+
+.toc-nav a:hover {
+    color: var(--global-hover-color);
+    text-decoration: underline;
 }
 </style>

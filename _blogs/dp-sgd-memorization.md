@@ -16,7 +16,7 @@ authors:
 
 Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had no detectable memorization. 
 
-This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma shows $7.6$% *exact() memorization and $12.7%$ approximate memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
+This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma shows $7.6$% *exact* memorization and $12.7%$ approximate memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
 
 ## VaultGemma's Extracted Text
 
@@ -211,10 +211,10 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 
 ## Conclusion and Open Questions
 
-**What we know**
+**What we know**<br>
 (a) Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and report tail risk, not single-point averages.
 
-**What we don't know**
+**What we don't know**<br>
 (a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing k times contributes k independent gradients—each bounded by DP individually, but what about collectively? Memorization risk increases for LLMs with $k$, interesting to see this happens with DP-SGD too. 
 
 (b) *Can we build better calibirated probes for DP-SGD models?* Our untargeted test surfaced externally checked PII in 1% of 200 prompts. This motivates a more structured PII-leakage evaluation with explicit base rates, standardized prompting, and reproducible verification.

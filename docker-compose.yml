@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:4.3.0
+    container_name: al-folio-site
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+    command: >
+      bash -c "bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload"
+    environment:
+      - JEKYLL_ENV=development

@@ -6,7 +6,7 @@ tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
 published: true
-toc: false
+toc: true
 authors:
   - name: Nirav Diwan
     title: PhD Student
@@ -24,8 +24,6 @@ This was a surprising result, and we wanted to understand it better. In contrast
 
 The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
-* TOC
-{:toc}
 
 ## VaultGemma's Extracted Text
 

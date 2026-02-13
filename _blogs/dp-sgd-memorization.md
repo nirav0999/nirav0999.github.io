@@ -12,10 +12,10 @@ authors:
     title: PhD Student
     affiliation: University of Illinois Urbana-Champaign
     url: https://nirav0999.github.io
-  - name: Daniel Alabi
-    title: Assistant Professor
-    affiliation: University of Illinois Urbana-Champaign
-    url: https://alabidan.me/
+  # - name: Daniel Alabi
+  #   title: Assistant Professor
+  #   affiliation: University of Illinois Urbana-Champaign
+  #   url: https://alabidan.me/
 ---
 
 Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had no detectable memorization. 

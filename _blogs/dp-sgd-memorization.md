@@ -5,18 +5,27 @@ title: "Cracks in the Vault? Extracting Memorized Data from Differentially Priva
 tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
-published: false
-toc: true
+published: true
+toc: false
 authors:
   - name: Nirav Diwan
     title: PhD Student
     affiliation: University of Illinois Urbana-Champaign
     url: https://nirav0999.github.io
+  - name: Daniel Alabi
+    title: Assistant Professor
+    affiliation: University of Illinois Urbana-Champaign
+    url: https://alabidan.me/
 ---
 
 Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had no detectable memorization. 
 
-This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma shows $7.6$% *exact* memorization and $12.7%$ approximate memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
+This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma has $7.6$% *exact* memorization and $12.7%$ *approximate* memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
+
+The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
+
+* TOC
+{:toc}
 
 ## VaultGemma's Extracted Text
 
@@ -209,17 +218,20 @@ Varying the suffix length from 50 to 75 tokens, VaultGemma's exact memorization 
 ### Finding 4: Untargeted prompts might give real PII
 In 2 out of 200 queries (1%), the extracted information was confirmed to correspond to real individuals. Example 3 listed at the top is one such case. To be clear, this is NOT *calibrated* evidence of memorization. It cannot be confirmed without access to the training data. But it is surprising that even with a very strong privacy guarantee, and with a small budget of 200 queries we were able to find real PII.
 
-## Conclusion and Open Questions
+## What this means?
 
-**What we know**<br>
-(a) Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and report tail risk not just single-point averages.
+**What this evaluation says**<br>
+Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples.
 
-**What we don't know**<br>
-(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing k times contributes k independent gradients where each sequence bounded by DP individually, but not collectively? Memorization risk increases for LLMs with $k$, interesting to see this happens with DP-SGD too. 
+**What this evaluation does NOT say**<br>
+This does NOT break the DP guarantee of VaultGemma. 
 
-(b) *Can we build better calibirated probes for DP-SGD models?* Our untargeted test surfaced externally checked PII in 1% of 200 prompts. This motivates a more structured PII-leakage evaluation.
+**What we think is interesting**<br>
+(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; interesting if this persists under DP-SGD too (*The question is why should it not?*)
 
-More broadly, while DP-SGD provides theoretical privacy guarantees, what this notion of privacy guarantees mean for memorization in LLMs, what changes can be make to ensure we can provide *relevant* guarantees, and how they can be properly implemented for practical defenses requires more `(questions, experiments, robust evaluation)`.
+(b) *Can we build better calibrated probes for DP-SGD models?* Our untargeted test surfaced externally verified PII in 1% of 200 prompts. This motivates a more structured and statistically grounded PII-leakage evaluation.
+
+More broadly, while DP-SGD provides theoretical privacy guarantees, what does this notion of privacy mean in practice for memorization in LLMs? What changes are required to provide meaningful empirical guarantees, and what `(question, experiment, evaluation)` are needed to support them?
 
 We aim to answer these questions and understand them better. We plan to open-source code, data and evaluations soon. In case you are interested in contributing to this project, please reach out to me at nirdiwan@gmail.com.
 

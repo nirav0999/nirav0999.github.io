@@ -5,7 +5,7 @@ title: "Cracks in the Vault? Extracting Memorized Data from Differentially Priva
 tags: ["DP-SGD", "Research", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
-published: true
+published: false
 toc: true
 authors:
   - name: Nirav Diwan
@@ -20,7 +20,7 @@ authors:
 
 Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had no detectable memorization. 
 
-This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma has $7.6$% *exact* memorization and $12.7%$ *approximate* memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
+This was a surprising result, and we wanted to understand it better. In contrast to the report, we detect memorization for VaultGemma when checked for *frequently occurring, high entropy* sequences in the training data. Precisely, on a benchmark of 15k such samples from the PILE training dataset, VaultGemma has $7.6$% *exact* memorization and $12.7$% *approximate* memorization. A simple untargeted extraction experiment also shows that VaultGemma emits some Personally Identifiable Information (PII).
 
 The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
@@ -219,7 +219,7 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 ## What this means?
 
 **What this evaluation says**<br>
-Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples. Important, to state that the current results do NOT break the DP guarantee of VaultGemma. 
+Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples. Important to state that the current results do NOT break the DP guarantee of VaultGemma. 
 
 **What we think is interesting**<br>
 (a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; interesting if this persists under DP-SGD too (*The question is why should it not?*)

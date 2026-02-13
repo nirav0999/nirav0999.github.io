@@ -219,10 +219,7 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 ## What this means?
 
 **What this evaluation says**<br>
-Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples.
-
-**What this evaluation does NOT say**<br>
-This does NOT break the DP guarantee of VaultGemma. 
+Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples. Important, to state that the current results do NOT break the DP guarantee of VaultGemma. 
 
 **What we think is interesting**<br>
 (a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; interesting if this persists under DP-SGD too (*The question is why should it not?*)

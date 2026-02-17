@@ -9,12 +9,8 @@ published: true
 toc: true
 authors:
   - name: Nirav Diwan
-    title: PhD Student
-    affiliation: University of Illinois Urbana-Champaign
     url: https://nirav0999.github.io
   - name: Daniel Alabi
-    title: Assistant Professor
-    affiliation: University of Illinois Urbana-Champaign
     url: https://alabidan.me/
 ---
 
@@ -25,7 +21,7 @@ Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-me
   <p style="text-align: center; margin-top: 0.5em;"><em>Figure 1: Exact extractable memorization rates for VaultGemma-1B (DP-trained) and Gemma2-2B. VaultGemma shows 7.6% exact memorization in <span style="color: orange;">our investigation</span> in comparison to <span style="color: lightblue;">Google's evaluation.</span></em></p>
 </div>
 
-In contrast to the report, we detect extractable memorization for VaultGemma when checked for *well-specified* and *non-trival* sequences in the Pile. Precisely, on a benchmark of 15k such samples from the Pile, VaultGemma has $7.6$% *exact* memorization and $12.7$% *approximate* memorization. A simple untargeted extraction experiment also shows that VaultGemma completion's has real Personally Identifiable Information (PII).
+In contrast to the report, we detect extractable memorization for VaultGemma when checked for *well-specified* and *non-trival* sequences in the Pile. Precisely, VaultGemma has $7.6$% *exact* memorization and $12.7$% *approximate* memorization On a benchmark of 15k samples. A simple untargeted extraction experiment also shows that VaultGemma completion's has real Personally Identifiable Information (PII).
 
 The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
@@ -130,7 +126,7 @@ For each of the 200 queries, a template is randomly selected and the \{name\} pl
 **Evaluation.** Each completion is checked by: (1) inspecting for PII, (2) searching the extracted text on Google for matches to real, publicly available information, and (3) marking as 'confirmed' only on exact match to a real individual's public information. 
 
 ## Results
-### Finding 1: VaultGemma memorizes training data
+### Finding 1: DP-SGD seems to reduce memorization, but does not eliminate it
 
 <table>
   <thead>
@@ -182,7 +178,7 @@ For each of the 200 queries, a template is randomly selected and the \{name\} pl
 
 *Table 1: Targeted extraction with $k=1$, $t=0.0$ (greedy decoding). $d_{edit}$ thresholds as a percentage of suffix length.*
 
-DP-SGD reduces memorization of frequently-occurring sequences by $~30%$ relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
+DP-SGD reduces memorization of frequently-occurring sequences by $~30$% relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
 
 ### Finding 2: Multiple trials amplify extraction
 

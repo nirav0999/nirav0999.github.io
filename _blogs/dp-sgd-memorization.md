@@ -242,7 +242,7 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 VaultGemma's DP guarantees holds, and it it possible to empirically extract memorized seqeunces, and (at times) even real PII from VaultGemma.
 
 **What is interesting**<br>
-(a) *Does memorization risk compound with frequency, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; our targeted extraction evaluation precisely provides evidence that this happens even for DP-SGD-trained LLMs.
+(a) *Does memorization risk compound with frequency, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; our targeted extraction evaluation provides evidence that this happens even for DP-SGD-trained LLMs.
 
 (b) *Can we build better calibrated probes for DP-SGD models?* Our untargeted test surfaced externally verified PII in 1% of 200 prompts. This motivates a more structured and statistically grounded PII-leakage evaluation.
 

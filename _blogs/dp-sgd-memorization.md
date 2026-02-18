@@ -101,7 +101,7 @@ Since the benchmark uses GPT-Neo's tokenizer, all sequences are decoded to text 
 
 **Evaluation.** Given black-box query access to a model $f$, the adversary queries $f(p)$. For each prefix $p$:
 - Generate completions at temperature $t \in \{0.0, 0.6\}$
-- Perform $k \in \{1, 5\}$ independent trials
+- Perform $k \in \\{1, 5\\}$ independent trials
 - Compute edit distance between generated and ground-truth suffix token sequences
 
 **Metrics.** For each prefix $p_i$, generate $k$ completions. Compute the token-level distance between each completion and the ground-truth suffix $q_i$, and keep the minimum:

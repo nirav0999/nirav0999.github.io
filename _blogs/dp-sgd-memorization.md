@@ -16,14 +16,15 @@ authors:
 
 In September 2025, Google released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report empirically found that VaultGemma had 0 detectable memorization. This was a surprising result, and we wanted to understand it better. 
 
+**TL;DR:** The evaluation tested in VaultGemma's report is consistent under the per-record DP guarantee, but one that structurally avoids the sequences most likely to be memorized. Specifically, Vaultgemma evaluated for samples appearing likely appearing *once*, and single-occurrence sequences are almost never memorized or practically extractable for LLMs. We investigate two gaps this leaves open. First, we run a targeted extraction attack on sequences that are well-specified, high-entropy, and frequent - the conditions under which per-record DP provides the weakest protection. Second, we run an untargeted extraction attack using simple prompt templates, and find that VaultGemma generates real, externally verified PII under a very small attack budget (200 queries).
+
+The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
+
 <div style="float: right; margin: 0 0 1em 1.5em; max-width: 100%;">
   <img src="/assets/img/exact_memorization.png" alt="Exact extractable memorization comparison between VaultGemma-1B and Gemma2-2B" style="width: 100%;">
   <p style="text-align: center; margin-top: 0.5em;"><em>Figure 1: Exact extractable memorization rates for VaultGemma-1B (DP-trained) and Gemma2-2B. VaultGemma shows 7.6% exact memorization in <span style="color: orange;">our investigation</span> in comparison to <span style="color: lightblue;">Google's evaluation.</span></em></p>
 </div>
 
-**TL;DR:** The evaluation tested in VaultGemma's report is consistent under the per-record DP guarantee, but one that structurally avoids the sequences most likely to be memorized. Specifically, Vaultgemma evaluated for samples appearing likely appearing *once*, and single-occurrence sequences are almost never memorized or practically extractible for LLMs. We investigate two gaps this leaves open. First, we run a targeted extraction attack on sequences that are well-specified, high-entropy, and frequent - the conditions under which per-record DP provides the weakest protection. We find 7.6% exact memorization and 12.7% approximate memorization on a benchmark of 15k such sequences. Second, we run an untargeted extraction attack using simple prompt templates, and find that VaultGemma generates real, externally verified PII in 1% of 200 queries. 
-
-The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
 ## VaultGemma's Extracted Text
 
@@ -239,7 +240,7 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 ## What this means?
 
 **What this evaluation says**<br>
-VaultGemma's DP guarantees holds, and it it possible to empirically extract memorized seqeunces, and (at times) even real PII from VaultGemma.
+VaultGemma's DP guarantees holds, and it is possible to empirically extract memorized seqeunces, and (at times) even real PII from VaultGemma.
 
 **What is interesting**<br>
 (a) *Does memorization risk compound with frequency, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; our targeted extraction evaluation provides evidence that this happens even for DP-SGD-trained LLMs.

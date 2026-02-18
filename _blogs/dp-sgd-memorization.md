@@ -1,7 +1,7 @@
 ---
 layout: blog
 date: 2026-02-08
-title: "Cracks in the Vault? Extracting Memorized Data from Differentially Private Pre-trained LLM"
+title: "Extracting Memorized Data from Differentially Private Pre-trained LLM"
 tags: ["DP-SGD", "Memorization"]
 description: "An investigation into VaultGemma's memorization."
 comments: true
@@ -14,14 +14,14 @@ authors:
     url: https://alabidan.me/
 ---
 
-Google recently released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report found that VaultGemma had 0 detectable memorization. This was a surprising result, and we wanted to understand it better. 
+In September 2025, Google released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report empirically found that VaultGemma had 0 detectable memorization. This was a surprising result, and we wanted to understand it better. 
 
 <div style="float: right; margin: 0 0 1em 1.5em; max-width: 100%;">
   <img src="/assets/img/exact_memorization.png" alt="Exact extractable memorization comparison between VaultGemma-1B and Gemma2-2B" style="width: 100%;">
   <p style="text-align: center; margin-top: 0.5em;"><em>Figure 1: Exact extractable memorization rates for VaultGemma-1B (DP-trained) and Gemma2-2B. VaultGemma shows 7.6% exact memorization in <span style="color: orange;">our investigation</span> in comparison to <span style="color: lightblue;">Google's evaluation.</span></em></p>
 </div>
 
-In contrast to the report, we detect extractable memorization for VaultGemma when checked for *well-specified* and *non-trival* sequences in the Pile. Precisely, VaultGemma has $7.6$% *exact* memorization and $12.7$% *approximate* memorization On a benchmark of 15k samples. A simple untargeted extraction experiment also shows that VaultGemma completion's has real Personally Identifiable Information (PII).
+**TL;DR:** The evaluation tested in VaultGemma's report is consistent under the guarantee per-record DP guarantee, but one that structurally avoids the sequences most likely to be memorized. Specifically, Vaultgemma evaluated for samples appearing likely appearing *once*, and single-occurrence sequences are almost never memorized or practically extractible for LLMs. We investigate two gaps this leaves open. First, we run a targeted extraction attack on sequences that are well-specified, high-entropy, and frequent - the conditions under which per-record DP provides the weakest protection. We find 7.6% exact memorization and 12.7% approximate memorization on a benchmark of 15k such sequences. Second, we run an untargeted extraction attack using simple prompt templates, and find that VaultGemma generates real, externally verified PII in 1% of 200 queries. 
 
 The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
@@ -61,9 +61,14 @@ First, let's understand VaultGemma's evaluation methodology from their technical
 
 > We subsample roughly 1M training data samples distributed uniformly across different corpora and test for discoverable extraction of this content using a prefix of length 50 and a suffix of length 50.
 
-Uniform sampling over a large web-scale corpus will likely produce a test set dominated by sequences that appear *exactly once*. And sequences that appear once are almost never memorized. Duplication count is a strong predictor of memorization for LLMs {% cite carlini2022quantifying --file dp-sgd-memorization %}. It is also important to note that some sequences are naturally low-entropy and highly predictable. Even if they appear multiple times, the model may reproduce them because they are highly predictable. 
+Uniform sampling over a large web-scale corpus will likely produce a test set dominated by sequences that appear *exactly once*. And sequences that appear once are almost never memorized. Duplication count is a strong predictor of memorization for LLMs {% cite carlini2022quantifying --file dp-sgd-memorization %}. It is also important to note that some sequences are naturally low-entropy and highly predictable. Even if they appear multiple times, the model may reproduce them because they are highly predictable.
+%
+While this methodology is consistent with their guarantee, it does not account for different ways in which privacy may be leaked in LLMs.
 
-## Targeted extraction
+## Attack 1: Untargeted Extraction
+
+
+##  Targeted extraction
 
 The key difference in our investigation is *how* the test sequences are chosen. Instead of uniformly sampling from the training distribution, we focus on sequences that are 
 well-specified, nontrivial, and not impossible. We evaluate on 15,000 prefix-suffix pairs from the Carlini et al. {% cite lm_extraction_benchmark_2023 --file dp-sgd-memorization %} extraction benchmark—a curated subset of the Pile.
@@ -178,7 +183,7 @@ For each of the 200 queries, a template is randomly selected and the \{name\} pl
 
 *Table 1: Targeted extraction with $k=1$, $t=0.0$ (greedy decoding). $d_{edit}$ thresholds as a percentage of suffix length.*
 
-DP-SGD reduces memorization of frequently-occurring sequences by $~30$% relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. This may be one reason causing the memorization. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
+DP-SGD reduces memorization of frequently-occurring sequences by $~30$% relative to a non-DP baseline (Gemma2-2B), but does not eliminate it. This is consistent with DP's per-example guarantee: the guarantee bounds each occurrence's contribution, but duplicated sequences accumulate signal across multiple bounded contributions. Gemma-7B (no DP, 7$\times$ the parameters, Gemma 1 family) reaches 13.6%, consistent with the known scaling effect that larger models memorize more.
 
 ### Finding 2: Multiple trials amplify extraction
 
@@ -216,7 +221,7 @@ DP-SGD reduces memorization of frequently-occurring sequences by $~30$% relative
 
 *Table 2: Targeted extraction with $k=5$ trials, $t=0.6$. Same benchmark, more attempts.*
 
-With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%. This is a 29% relative increase from simply querying the model more times, making the attack trivially parallelizable
+With 5 trials at $t=0.6$, VaultGemma's exact memorization rises to 9.8%. This is a 29% relative increase from simply querying the model more times, making the attack trivially parallelizable.
 
 <div style="float: right; margin: 0 0 1em 1.5em; max-width: 55%;">
   <img src="/assets/img/memorization_vs_suffix_length.png" alt="Memorization vs. suffix length for VaultGemma-1B and Gemma2-2B" style="width: 100%;">
@@ -234,14 +239,14 @@ In 2 out of 200 queries (1%), the extracted information was confirmed to corresp
 ## What this means?
 
 **What this evaluation says**<br>
-Under adversarial evaluation, DP-SGD ($\epsilon \le 2$) reduces but does not eliminate memorization of frequently occurring, high-entropy sequences. Therefore, evaluation for DP-trained LMs should be adversarial and not just limited to unform samples. Important to state that the current results do NOT break the DP guarantee of VaultGemma. 
+VaultGemma's DP guarantees holds, and it it possible to empirically extract memorized seqeunces, and (at times) even real PII from VaultGemma.
 
 **What is interesting**<br>
-(a) *Does memorization risk compound with frequency k, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; interesting if this persists under DP-SGD too (*The question is why should it not?*)
+(a) *Does memorization risk compound with frequency, even under DP-SGD?* A sequence appearing $k$ times contributes $k$ separate gradient updates. While DP bounds the influence of each individual record, repeated occurrences increase aggregate influence (consistent with group privacy and frequency effects). We know memorization risk increases with $k$ in standard LLM training; our targeted extraction evaluation precisely provides evidence that this happens even for DP-SGD.
 
 (b) *Can we build better calibrated probes for DP-SGD models?* Our untargeted test surfaced externally verified PII in 1% of 200 prompts. This motivates a more structured and statistically grounded PII-leakage evaluation.
 
-More broadly, while DP-SGD provides theoretical privacy guarantees, what does this notion of privacy mean in practice for memorization in LLMs? What changes are required to provide meaningful empirical guarantees, and what `(question, experiment, evaluation)` are needed to support them?
+More broadly, DP-SGD’s per-record guarantees can still permit practical leakage in failure cases. Therefore, training and evaluation for DP-SGD-based private LLMs should include these for broader picture of privacy.
 
 We aim to answer these questions and understand them better. We plan to open-source code, data and evaluations soon. In case you are interested in contributing to this project, please reach out to me at nirdiwan@gmail.com.
 

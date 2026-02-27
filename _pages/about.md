@@ -16,12 +16,13 @@ social: true  # includes social icons at the bottom of the page
 ---
 I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I study security risks in foundation model training and deployment.
 
-Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge), which is the first reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
+Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge), which is the first *open-source* reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
+
+I completed my Undergrad from IIIT-Delhi, where I had the good fortune of working with <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (now at IIT Delhi), and <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (at UC Davis), and <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.
 
 **Internship.** I am looking for both Industrial and Academic Internships for Summer 2026 in the areas of Machine Learning, and Security & Privacy. Feel free to reach out!
 
-**Collaboration.** I am actively looking to work with undergrads and MS students! Feel free to send me an [email](mailto:nirdiwan@gmail.com) with the title \[Attention\] to ask about contributing.
-
+**Collaboration.** I am always looking to work with undergrads and MS students! Feel free to send me an [email](mailto:nirdiwan@gmail.com) with the title \[Together\] in the subject line!
 
 <span class="toggle-link" data-target="industry-experience">Industry experience</span>
 <div id="industry-experience" class="collapsible-content" style="display: none;">

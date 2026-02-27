@@ -16,7 +16,7 @@ authors:
 
 In September 2025, Google released VaultGemma {% cite sinha2025vaultgemma --file dp-sgd-memorization %}, a 1B parameter language model trained from scratch with differentially private stochastic gradient descent (DP-SGD). The accompanying tech report empirically found that VaultGemma had 0 detectable memorization. This was a surprising result, and we wanted to understand it better. 
 
-**TL;DR:** The evaluation tested in VaultGemma's report is consistent under the per-record DP guarantee, but one that structurally avoids the sequences most likely to be memorized. Specifically, Vaultgemma evaluated for samples appearing likely appearing *once*, and single-occurrence sequences are almost never memorized or practically extractable for LLMs. We investigate two gaps this leaves open. First, we run a targeted extraction attack on sequences that are well-specified, high-entropy, and frequent - the conditions under which per-record DP provides the weakest protection. Second, we run an untargeted extraction attack using simple prompt templates, and find that VaultGemma generates real, externally verified PII under a very small attack budget (200 queries).
+**TL;DR:** The evaluation tested in VaultGemma's report is consistent under the per-record DP guarantee, but one that structurally misses the sequences most likely to be memorized. Specifically, Vaultgemma evaluated for samples appearing likely appearing *once*, and single-occurrence sequences are almost never memorized or practically extractable for LLMs. We investigate two gaps this leaves open. First, we run a targeted extraction attack on sequences that are well-specified, high-entropy, and frequent - the conditions under which per-record DP provides the weakest protection. Second, we run an untargeted extraction attack using simple prompt templates, and find that VaultGemma generates real, externally verified PII under a very small attack budget (200 queries).
 
 The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-text), our evaluation strategy and how it differs from VaultGemma's Strategy, and [what these results means](#what-this-means).
 
@@ -24,7 +24,6 @@ The rest of the blog shows [examples of extracted text](#vaultgemmas-extracted-t
   <img src="/assets/img/exact_memorization.png" alt="Exact extractable memorization comparison between VaultGemma-1B and Gemma2-2B" style="width: 100%;">
   <p style="text-align: center; margin-top: 0.5em;"><em>Figure 1: Exact extractable memorization rates for VaultGemma-1B (DP-trained) and Gemma2-2B. VaultGemma shows 7.6% exact memorization in <span style="color: orange;">our investigation</span> in comparison to <span style="color: lightblue;">Google's evaluation.</span></em></p>
 </div>
-
 
 ## VaultGemma's Extracted Text
 

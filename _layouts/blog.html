@@ -52,11 +52,11 @@ layout: default
 
         {% if page.authors %}
         <div class="post-authors">
-            {% for author in page.authors %}
             <div class="post-author">
-                {% if author.url %}<a href="{{ author.url }}" target="_blank" rel="noopener noreferrer">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if author.title %}, {{ author.title }}{% endif %}{% if author.affiliation %}, {{ author.affiliation }}{% endif %}
+                {% for author in page.authors %}
+                    {% if author.url %}<a href="{{ author.url }}" target="_blank" rel="noopener noreferrer">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
         {% endif %}
     </header>
@@ -244,10 +244,11 @@ layout: default
 /* Authors */
 .post-authors {
     margin-top: 0.5em;
+    margin-bottom: 2em;
 }
 
 .post-author {
-    font-size: 0.92em;
+    font-size: 1.05em;
     font-style: italic;
     line-height: 1.6;
 }
@@ -268,7 +269,8 @@ layout: default
     background: var(--global-card-bg-color);
     border-left: 3px solid var(--global-divider-color);
     padding: 0.75em 1em;
-    margin: 1.5em 0;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
     font-size: 0.9em;
     line-height: 1.4;
 }

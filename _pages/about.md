@@ -14,7 +14,7 @@ news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I study security risks in foundation model training and deployment.
+I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I also collaborate with <a href="https://chandrasekaran-group.github.io/">Prof. Varun Chandrasekaran</a> and <a href="https://www.huan-zhang.com/">Prof. Huan Zhang</a>. I study security risks in foundation model training and deployment. 
 
 Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge), which is the first *open-source* reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
 

@@ -4,7 +4,7 @@ date: 2024-03-15
 title: "Writing Your First CS Workshop Paper"
 tags: ["Computer Science", "Research", "Writing"]
 description: "Some tips on writing your first computer science research paper."
-published: False
+published: false
 ---
 
 *These are unorganized thoughts I had while giving feedback to high school and undergrad students who were writing their first paper for a workshop. If you have never written a CS research paper, you might find this useful.*

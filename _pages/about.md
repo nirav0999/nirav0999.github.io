@@ -14,11 +14,15 @@ news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I also collaborate with <a href="https://chandrasekaran-group.github.io/">Prof. Varun Chandrasekaran</a> and <a href="https://www.huan-zhang.com/">Prof. Huan Zhang</a>. I study security risks in foundation model training and deployment. 
+I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I also collaborate with <a href="https://chandrasekaran-group.github.io/">Prof. Varun Chandrasekaran</a> and <a href="https://www.huan-zhang.com/">Prof. Huan Zhang</a>. I study security risks in foundation model training and deployment. My research is driven by three core questions:
+- What is the root cause of unsafe failure modes in LLMs?
+- What are the threat models that adversaries can exploit in foundation model training and deployment?
+- How can we train safe and secure models?
+
 
 Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge), which is the first *open-source* reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
 
-I completed my Undergrad from IIIT-Delhi, where I had the good fortune of working with <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (now at IIT Delhi), and <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (at UC Davis), and <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.
+I completed my undergraduate studies from IIIT-Delhi, where I had the good fortune of working with <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (now at IIT Delhi), and <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (at UC Davis), and <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.
 
 **Internship.** I am looking for both Industrial and Academic Internships for Summer 2026 in the areas of Machine Learning, and Security & Privacy. Feel free to reach out!
 

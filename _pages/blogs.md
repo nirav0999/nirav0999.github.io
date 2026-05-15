@@ -1,8 +1,8 @@
 ---
 layout: blogs
 permalink: /blogs/
-title: Blogs
+title: Blog
 
-pg_title: Blogs
+pg_title: Blog
 description: Just a place for me to put my thoughts down.
 ---

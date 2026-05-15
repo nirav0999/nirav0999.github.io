@@ -70,7 +70,11 @@ layout: default
 
                 <div class="publication-actions mt-2">
                     {% if publication.link %}
-                    <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="pub-btn">Paper</a>
+                    {% if publication.paper %}
+                    <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
+                    {% else %}
+                    <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
+                    {% endif %}
                     {% endif %}
 
                     <button class="pub-btn tldr-toggle" data-target="tldr-{{ year_group.name }}-{{ forloop.index }}">TLDR</button>

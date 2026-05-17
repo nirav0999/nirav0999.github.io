@@ -19,7 +19,6 @@ I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University 
 - What are the threat models that adversaries can exploit in foundation model training and deployment?
 - How can we train safe and secure models?
 
-
 Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge), which is the first *open-source* reasoning model for cybersafety, winning the [Amazon Nova AI Challenge](https://www.amazon.science/nova-ai-challenge/pushing-the-boundaries-of-secure-ai-winners-of-the-amazon-nova-ai-challenge) (2025).
 
 I completed my undergraduate studies from IIIT-Delhi, where I had the good fortune of working with <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (now at IIT Delhi), and <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (at UC Davis), and <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.

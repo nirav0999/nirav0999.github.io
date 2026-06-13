@@ -14,7 +14,7 @@ citation: |
     title = {CoT-Guard: Small Models for Strong Practical Monitoring},
     author = {Diwan, Nirav and Wang, Han and Kapusuzoglu, Berkcan and Moradi, Ramin and Iyengar, Giri and Sahu, Sambit and Zhang, Huan and Wang, Gang},
     journal = {arXiv preprint arXiv:2605.12746},
-    year = {2026},
+    year = {2026}
   }
 venue_short: "Submission"
 tag: "conference"

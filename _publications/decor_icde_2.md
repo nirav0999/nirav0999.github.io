@@ -14,12 +14,12 @@ tag: "workshop"
 venue_short: "ICDE'W"
 selected: false
 citation: |
-    @inproceedings{kalraNutri2020,
-     author={Kalra, Jushaan and Batra, Devansh and Diwan, Nirav and Bagler, Ganesh},
-     booktitle={2020 IEEE 36th International Conference on Data Engineering Workshops (ICDEW)}, 
-     title={Nutritional Profile Estimation in Cooking Recipes}, 
-     year={2020},
-     pages={82-87},
-     doi={10.1109/ICDEW49219.2020.000-3}
-    }
+  @inproceedings{kalraNutri2020,
+    author = {Kalra, Jushaan and Batra, Devansh and Diwan, Nirav and Bagler, Ganesh},
+    booktitle = {2020 IEEE 36th International Conference on Data Engineering Workshops (ICDEW)},
+    title = {Nutritional Profile Estimation in Cooking Recipes},
+    year = {2020},
+    pages = {82-87},
+    doi = {10.1109/ICDEW49219.2020.000-3}
+  }
 ---

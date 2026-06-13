@@ -14,12 +14,12 @@ tag: "workshop"
 venue_short: "ICDE'W"
 selected: false
 citation: |
-    @inproceedings{ndiwanIR2020,
-     author={Diwan, Nirav and Batra, Devansh and Bagler, Ganesh},
-     booktitle={2020 IEEE 36th International Conference on Data Engineering Workshops (ICDEW)}, 
-     title={A Named Entity Based Approach to Model Recipes}, 
-     year={2020},
-     pages={88-93},
-     doi={10.1109/ICDEW49219.2020.000-2}
-    }
+  @inproceedings{ndiwanIR2020,
+    author = {Diwan, Nirav and Batra, Devansh and Bagler, Ganesh},
+    booktitle = {2020 IEEE 36th International Conference on Data Engineering Workshops (ICDEW)},
+    title = {A Named Entity Based Approach to Model Recipes},
+    year = {2020},
+    pages = {88-93},
+    doi = {10.1109/ICDEW49219.2020.000-2}
+  }
 ---

@@ -12,7 +12,7 @@ citation: |
     title = {Extractable Memorization from a Differentially Private Pre-trained LLM},
     author = {Diwan, Nirav and Wang, Gang and Alabi, Daniel},
     journal = {Theory and Practice of Differential Privacy (TPDP) Workshop},
-    year = {2026},
+    year = {2026}
   }
 venue_short: "TPDP 2026"
 tag: "workshop"

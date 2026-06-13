@@ -13,9 +13,9 @@ venue_short: "AICS@AAAI'W"
 selected: false
 citation: |
   @article{bhardwaj2026beyond,
-   title={Beyond BeautifulSoup: Benchmarking LLM-Powered Web Scraping for Everyday Users},
-   author={Bhardwaj, Arth and Diwan, Nirav and Wang, Gang},
-   journal={arXiv preprint arXiv:2601.06301},
-   year={2026}
+    title = {Beyond BeautifulSoup: Benchmarking LLM-Powered Web Scraping for Everyday Users},
+    author = {Bhardwaj, Arth and Diwan, Nirav and Wang, Gang},
+    journal = {arXiv preprint arXiv:2601.06301},
+    year = {2026}
   }
 ---

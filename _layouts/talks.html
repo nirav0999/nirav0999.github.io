@@ -31,10 +31,11 @@ layout: default
           data-title="{{ talk.title | downcase }}"
           data-invited="{% if talk.invited %}true{% else %}false{% endif %}">
 
+        {% if talk.short_venue_name %}
+          <span class="venue-badge">{{ talk.short_venue_name }}</span>
+        {% endif %}
+        <span class="item-year">{{ talk.date | date: "%Y" }}</span>
         <div class="item-header">
-          {% if talk.short_venue_name %}
-            <span class="venue-badge{% if talk.invited %} venue-conference{% endif %}">{{ talk.short_venue_name }}</span>
-          {% endif %}
           <h5 class="title font-weight-bold special-font special-col item-title">
             {% if talk.slides %}
               <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}"

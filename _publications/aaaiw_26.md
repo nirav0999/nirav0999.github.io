@@ -4,7 +4,6 @@ date: 2026-01-02
 title: "Beyond BeautifulSoup: Benchmarking LLM-Powered Web Scraping for Everyday Users"
 venue: "2<sup>nd</sup> Artificial Intelligence for Cyber Security (AICS) Workshop (Oral), AAAI, 2026"
 authors: Arth Bhardwaj, <u>Nirav Diwan</u>, Gang Wang
-paper: "aaai_w_26.pdf"
 slides: 
 poster: 
 tldr: Everyday users (like me) can now use LLMs to scrape websites for information pretty easily.

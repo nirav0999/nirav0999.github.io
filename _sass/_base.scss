@@ -5,13 +5,13 @@
 // Typography
 
 html {
-  font-size: 18px; // base size (~2pt increase from default 16px)
+  font-size: 17px;
 }
 
 body {
-  // font-family: 'Inconsolata', monospace;
-  font-family: 'Tahoma';
+  font-family: $font-sans;
   font-size: 1rem;
+  line-height: 1.6;
 }
 
 p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
@@ -64,7 +64,7 @@ figure, img {
 }
 
 .special-font {
-font-family: 'Trebuchet MS', sans-serif;
+font-family: $font-sans;
 }
 
 blockquote {
@@ -444,11 +444,11 @@ footer.sticky-bottom {
     .page-link {
       color: var(--global-text-color);
       &:hover {
-        color: $black-color;
+        color: var(--global-theme-color);
       }
     }
     &.active .page-link {
-      color: $white-color;
+      color: var(--global-bg-color);
       background-color: var(--global-theme-color);
       &:hover {
         background-color: var(--global-hover-color);
@@ -705,6 +705,18 @@ html.transition *:after {
   color: var(--global-text-color) !important;
 }
 
+// Blog list rows — tighten the white space to match the pub/talk cards.
+.blog-item {
+  padding: 0.6rem 0;
+  line-height: 1.4;
+
+  .item-title { margin-bottom: 0.1rem; }
+  .item-meta-light { margin-bottom: 0.2rem; }
+
+  // Tag row sits right above the divider — no trailing gap.
+  > :last-child { margin-bottom: 0; }
+}
+
 /* Target Bootstrap's specific classes */
 .list-group .list-group-item {
   background-color: var(--global-bg-color) !important;
@@ -875,139 +887,207 @@ b {
 // Year-grouped layout (publications, talks)
 // =============================================================================
 
-// Year section wrapper
-.year-section {
-    margin-bottom: 1.5rem;
-}
-
-// Year heading - right-aligned, muted, with top border
+// The publication/talk list flows as one uninterrupted run; the year is shown
+// per-card (.item-year), so the grouping rows are not rendered.
 .year-heading {
-    color: var(--global-divider-color);
-    border-top: 1px solid var(--global-divider-color);
-    padding-top: 0.75rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    text-align: right;
-    font-size: 1.25rem;
-    font-weight: 600;
+    display: none;
 }
 
-// Publication/talk card - clean card with bottom border
+// Publication/talk card — venue-as-masthead: venue code in a fixed-width
+// left gutter, hairline rule, content in the second column.
 .pub-card,
 .talk-card {
-    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 7rem 1fr auto;
+    column-gap: 1.25rem;
+    padding: 0.6rem 0 0.35rem;
     border-bottom: 1px solid var(--global-divider-color);
+    line-height: 1.4;
+
+    .item-header,
+    .publication-actions,
+    .talk-actions,
+    .dynamic-content,
+    .publication-content {
+        grid-column: 2;
+    }
+
+    // Year — muted, right-aligned in its own column, aligned with the title row.
+    .item-year {
+        grid-column: 3;
+        grid-row: 1;
+        align-self: start;
+        font-family: $font-mono;
+        font-size: 0.8rem;
+        color: var(--global-text-color-light);
+        white-space: nowrap;
+        padding-top: 0.1rem;
+    }
+
+    // Tighten the metadata rhythm (global line-height 1.6 is for prose).
+    .item-header { margin-bottom: 0; }
+    .item-title { margin-bottom: 0.1rem; }
+    .item-meta,
+    .item-press { margin-bottom: 0.1rem; }
+
+    // Last meta line sits right above the actions — drop its trailing margin.
+    .item-header > :last-child { margin-bottom: 0; }
+
+    // A little breathing room above the action row.
+    .publication-actions,
+    .talk-actions {
+        margin-top: 0.45rem !important;
+    }
 
     &:last-child {
         border-bottom: none;
     }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr auto;
+        column-gap: 0.75rem;
+
+        .venue-badge { grid-column: 1; }
+        .item-year { grid-column: 2; grid-row: 1; }
+
+        .item-header,
+        .publication-actions,
+        .talk-actions,
+        .dynamic-content,
+        .publication-content {
+            grid-column: 1 / -1;
+        }
+    }
 }
 
-// Color legend at top of page
+// Filter legend at top of page — plain text tabs, accent underline when active.
 .color-legend {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
 
+    // Reset the masthead-gutter styling; here .venue-badge is a text tab.
     .venue-badge {
+        all: unset;
         cursor: pointer;
-        opacity: 0.6;
-        transition: opacity 0.2s ease;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--global-text-color-light);
+        border-bottom: 1.5px solid transparent;
+        padding-bottom: 1px;
+        transition: color 0.15s ease, border-color 0.15s ease;
 
         &:hover {
-            opacity: 0.85;
+            color: var(--global-text-color);
         }
 
         &.active {
-            opacity: 1;
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor;
+            color: var(--global-theme-color);
+            border-bottom-color: var(--global-theme-color);
         }
     }
 
     .legend-separator {
         width: 1px;
-        height: 1.4em;
+        height: 1em;
         background-color: var(--global-divider-color);
-        margin: 0 0.15rem;
+        margin: 0;
     }
 }
 
-// Venue badge - colored pill above the title
+// Venue masthead — monospace venue code in the left gutter, hairline rule.
+// No pills, no category color: the acronym is the design.
 .venue-badge {
-    display: inline-block;
-    color: #fff;
-    font-size: 0.88rem;
-    font-weight: 700;
-    padding: 0.3em 0.85em;
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.35rem;
-    background-color: var(--global-theme-color); // default fallback
+    grid-column: 1;
+    align-self: start;
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--global-text-color-light);
+    text-align: right;
+    padding-right: 1.25rem;
+    border-right: 1px solid var(--global-divider-color);
+    line-height: 1.5;
 
-    &.venue-conference { background-color: #28a745; }
-    &.venue-workshop  { background-color: #e6a817; }
-    &.venue-journal   { background-color: #17a2b8; }
-
-    &.venue-outline {
-        background-color: transparent;
-        color: var(--global-text-color);
-        border: 1.5px solid var(--global-text-color);
+    @media (max-width: 576px) {
+        grid-column: 1;
+        text-align: left;
+        padding-right: 0;
+        border-right: none;
+        margin-bottom: 0.35rem;
     }
-
-    // Blog tag color palette (auto-assigned per unique tag)
-    &.venue-tag-0 { background-color: #28a745; } // green
-    &.venue-tag-1 { background-color: #007bff; } // blue
-    &.venue-tag-2 { background-color: #17a2b8; } // teal
-    &.venue-tag-3 { background-color: #e6a817; } // orange
-    &.venue-tag-4 { background-color: #6f42c1; } // purple
-    &.venue-tag-5 { background-color: #dc3545; } // red
-    &.venue-tag-6 { background-color: #e83e8c; } // pink
-    &.venue-tag-7 { background-color: #6610f2; } // indigo
 }
 
-// Minimal pill buttons for Paper, TLDR, Citation, etc.
-.pub-btn {
+// Blog tags reuse .venue-badge but aren't masthead codes — reset to quiet
+// outlined chips (one accent, no rainbow).
+.blog-item .venue-badge {
+    all: unset;
     display: inline-block;
-    font-size: 0.88rem;
-    padding: 0.3rem 0.75rem;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--global-text-color-light);
     border: 1px solid var(--global-divider-color);
     border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+}
+
+// Action links — underline-grow on hover, no boxes.
+.pub-btn {
+    display: inline-block;
+    position: relative;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0;
+    border: none;
     background: transparent;
-    color: var(--global-text-color);
+    color: var(--global-text-color-light);
     text-decoration: none;
     cursor: pointer;
-    margin-right: 0.3rem;
+    margin-right: 1.1rem;
     margin-bottom: 0.3rem;
-    transition: all 0.15s ease;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1.5px;
+        background: var(--global-theme-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.15s ease;
+    }
 
     &:hover {
-        border-color: var(--global-theme-color);
-        color: var(--global-theme-color);
+        color: var(--global-text-color);
         text-decoration: none;
+        &::after { transform: scaleX(1); }
     }
 
     &.active {
-        background-color: var(--global-theme-color);
-        border-color: var(--global-theme-color);
-        color: #fff;
+        color: var(--global-theme-color);
+        &::after { transform: scaleX(1); }
     }
 }
 
 // Citation box - monospace, proper padding, subtle background
 .citation-box {
-    background-color: var(--global-code-bg-color);
-    border: 1px solid var(--global-divider-color);
-    border-radius: 6px;
-    padding: 0.75rem 1rem;
+    background-color: var(--global-news-bg-color);
+    border: none;
+    border-radius: 1px;
+    padding: 0.85rem 1rem;
     margin-top: 0.5rem;
 
     pre {
         margin: 0;
         padding: 0;
         background: transparent;
-        font-size: 0.82rem;
-        line-height: 1.5;
+        font-size: 0.78rem;
+        line-height: 1.55;
         white-space: pre-wrap;
         word-wrap: break-word;
         overflow-x: hidden;
@@ -1015,17 +1095,17 @@ b {
         code {
             background: transparent;
             padding: 0;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            color: var(--global-text-color);
+            font-family: $font-mono;
+            color: var(--global-text-color-light);
             white-space: pre-wrap;
             word-wrap: break-word;
             display: block;
         }
 
+        // BibTeX carries its own indentation — render it verbatim, no extra
+        // hanging indent (which was double-indenting every line).
         .cite-line {
             display: block;
-            padding-left: 2em;
-            text-indent: -2em;
         }
     }
 
@@ -1035,28 +1115,28 @@ b {
     }
 }
 
-// Content boxes (TLDR, Citation display)
+// Content boxes (TLDR, Citation display) — soft inset, no hard border, ink text.
 .content-box {
-    padding: 0.75rem;
+    padding: 0.85rem 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    border: 1px solid var(--global-divider-color);
-    border-radius: 0.25rem;
-    background-color: transparent;
+    border: none;
+    border-radius: 1px;
+    background-color: var(--global-news-bg-color);
 }
 
 .tldr-content {
-    color: var(--global-theme-color);
-    border-color: var(--global-theme-color);
+    color: var(--global-text-color);
 
     strong {
-        color: inherit;
+        color: var(--global-text-color-light);
+        font-weight: 600;
     }
 }
 
 .citation-content {
     color: var(--global-text-color);
-    border-color: var(--global-divider-color);
 }
 
 // GitHub link styling
@@ -1102,9 +1182,9 @@ b {
     margin-bottom: 0.25rem;
 
     &:hover {
-        color: #ff6b1a;
+        color: var(--global-theme-color);
         text-decoration: none;
-        border-color: #ff6b1a;
+        border-color: var(--global-theme-color);
     }
 }
 
@@ -1157,8 +1237,8 @@ b {
 .item-press {
     font-size: 0.95rem;
     margin-bottom: 0.2rem;
-    color: #ff8c00;
-    font-weight: bold;
+    color: var(--global-text-color);
+    font-weight: 600;
 }
 
 // Venue/date with tags layout
@@ -1174,30 +1254,35 @@ b {
     font-weight: normal;
 }
 
-// News card styling
+// News — soft inset panel: faint tint, barely-rounded, no hard border.
 .news-card {
-    border: 1px solid var(--global-divider-color);
-    border-radius: 8px;
-    padding: 15px;
-    background-color: var(--global-card-bg-color);
+    border: none;
+    border-radius: 1px;
+    padding: 1.1rem 1.35rem;
+    background-color: var(--global-news-bg-color);
 }
 
 .news-scroll {
-    overflow-y: scroll;
-    max-height: 200px;
+    overflow-y: visible;
+    max-height: none;
 }
 
 .news-table {
     width: 100%;
-    font-size: 12px;
+    font-size: 0.95rem;
     line-height: 1.4;
+
+    td {
+        padding-top: 0.18rem;
+        padding-bottom: 0.18rem;
+    }
 }
 
 .news-date {
-    width: 100px;
-    min-width: 100px;
+    width: 110px;
+    min-width: 110px;
     vertical-align: top;
-    padding-right: 10px;
+    padding-right: 14px;
     color: var(--global-text-color-light);
     white-space: nowrap;
 }
@@ -1207,6 +1292,9 @@ b {
     word-break: break-word;
     max-width: 0;
     color: var(--global-text-color);
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
 }
 
 .research-questions {

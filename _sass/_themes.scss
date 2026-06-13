@@ -1,95 +1,100 @@
 /*******************************************************************************
- * Themes
+ * Themes — strict 3-color system (background, ink, accent).
+ * All --global-*-color vars resolve to one of three roles; greys are ink at
+ * an opacity, never a new hue.
+ *
+ * NOTE: the theme JS removes the data-theme attribute for dark mode, so
+ * :root MUST be the dark theme and html[data-theme='light'] the light one.
+ * The default theme is chosen by _config.yml `default_theme` + theme.js, not
+ * by which selector lives on :root.
  ******************************************************************************/
- 
+
 :root {
-  --global-bg-color: #{$grey-color-dark};
-  --global-nav-bg-color: #{$grey-900};
-  --global-active-nav-color: #{$cyan-color};
+  --global-bg-color: #{$bg-color-dark};
+  --global-nav-bg-color: #{$bg-color-dark};
+  --global-active-nav-color: #{$accent-color-dark};
   --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$white-color};
-  --global-text-color-light: #{$grey-color-light};
-  --global-hcolor: #{$cyan-color};
-  --global-theme-color: #{$cyan-color};
-  --global-header-color: #{$cyan-color};
-  --global-hover-color: #{$light-cyan-color};
-  --global-link-color: #{$cyan-color};
-  --global-social-color: #{$grey-color-light};
-  --global-footer-bg-color: #{$grey-color-light};
-  --global-footer-text-color: #{$grey-color-dark};
-  --global-footer-link-color: #{$black-color};
-  --global-distill-app-color: #{$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{$grey-900};
+  --global-text-color: #{$ink-color-dark};
+  --global-text-color-light: #{$ink-muted-dark};
+  --global-hcolor: #{$accent-color-dark};
+  --global-theme-color: #{$accent-color-dark};
+  --global-header-color: #{$ink-color-dark};
+  --global-hover-color: #{lighten($accent-color-dark, 8%)};
+  --global-link-color: #{$accent-color-dark};
+  --global-social-color: #{$ink-muted-dark};
+  --global-footer-bg-color: #{$bg-color-dark};
+  --global-footer-text-color: #{$ink-muted-dark};
+  --global-footer-link-color: #{$accent-color-dark};
+  --global-distill-app-color: #{$ink-muted-dark};
+  --global-divider-color: #{$ink-rule-dark};
+  --global-card-bg-color: #{$bg-color-dark};
+  --global-border-color: #{$ink-border-dark};
+  --global-news-bg-color: #{rgba($ink-color-dark, .03)};
 
   .fa-sun {
     padding-left: 10px;
     padding-top: 12px;
-    display : block;
+    display: block;
   }
   .fa-moon {
-    display : none;
+    display: none;
   }
-  
-  // Dark mode specific navbar-toggler styling for better visibility
+
   .navbar-toggler {
     &.collapsed {
       background-color: rgba(255, 255, 255, 0.1);
-      border-color: #{$white-color};
+      border-color: #{$ink-color-dark};
     }
-    
     &:hover {
       background-color: var(--global-theme-color);
       border-color: var(--global-theme-color);
-      
       .icon-bar {
-        background-color: #{$grey-color-dark};
+        background-color: #{$bg-color-dark};
       }
     }
   }
 }
 
 html[data-theme='light'] {
-  --global-bg-color: #{$white-color};
-  --global-nav-bg-color: #{$dark-white-color-1};
-  --global-active-nav-color: #{$cyan-color};
+  --global-bg-color: #{$bg-color};
+  --global-nav-bg-color: #{$bg-color};
+  --global-active-nav-color: #{$accent-color};
   --global-code-bg-color: #{$code-bg-color-light};
-  --global-text-color: #{$black-color};
-  --global-text-color-light: #{$grey-color};
-  --global-hcolor: #{$cyan-color};
-  --global-theme-color: #{$cyan-color};
-  --global-header-color: #{$cyan-color};
-  --global-hover-color: #{darken($cyan-color, 12%)};
-  --global-link-color: #{$cyan-color};
-  --global-social-color: #{$grey-900};
-  --global-footer-bg-color: #{$grey-color-dark};
-  --global-footer-text-color: #{$grey-color-light};
-  --global-footer-link-color: #{$white-color};
-  --global-distill-app-color: #{$grey-color};
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #{$white-color};
+  --global-text-color: #{$ink-color};
+  --global-text-color-light: #{$ink-muted};
+  --global-hcolor: #{$accent-color};
+  --global-theme-color: #{$accent-color};
+  --global-header-color: #{$ink-color};
+  --global-hover-color: #{darken($accent-color, 12%)};
+  --global-link-color: #{$accent-color};
+  --global-social-color: #{$ink-muted};
+  --global-footer-bg-color: #{$bg-color};
+  --global-footer-text-color: #{$ink-muted};
+  --global-footer-link-color: #{$accent-color};
+  --global-distill-app-color: #{$ink-muted};
+  --global-divider-color: #{$ink-rule};
+  --global-card-bg-color: #{$bg-color};
+  --global-border-color: #{$ink-border};
+  --global-news-bg-color: #{rgba($ink-color, .015)};
 
   .fa-sun {
-    display : none;
+    display: none;
   }
   .fa-moon {
     padding-left: 10px;
     padding-top: 12px;
-    display : block;
+    display: block;
   }
-  
-  // Light mode specific navbar-toggler styling
+
   .navbar-toggler {
     &.collapsed {
       background-color: rgba(0, 0, 0, 0.05);
     }
-    
     &:hover {
       background-color: var(--global-theme-color);
       border-color: var(--global-theme-color);
-      
       .icon-bar {
-        background-color: white;
+        background-color: var(--global-bg-color);
       }
     }
   }

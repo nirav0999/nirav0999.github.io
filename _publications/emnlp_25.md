@@ -15,10 +15,11 @@ tag: "conference"
 venue_short: "EMNLP"
 selected: false
 citation: |
-  @article{mocha,
+  @inproceedings{wahed2025mocha,
     title={MOCHA: Are Code Language Models Robust Against Multi-Turn Malicious Coding Prompts?},
-    author={Wahed, Muntasir and Zhou, Xiaona and Nguyen, Kiet A and Yu, Tianjiao and Diwan, Nirav and Wang, Gang and Hakkani-T{\"u}r, Dilek and Lourentzou, Ismini},
-    journal={arXiv preprint arXiv:2507.19598},
+    author={Wahed, Muntasir and Zhou, Xiaona and Nguyen, Kiet A and Yu, Tianjiao and Diwan, Nirav and Wang, Gang and Hakkani-Tur, Dilek and Lourentzou, Ismini},
+    booktitle={Findings of the Association for Computational Linguistics: EMNLP 2025},
+    pages={22922--22948},
     year={2025}
   }
 ---

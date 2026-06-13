@@ -5,7 +5,7 @@
     <div class="table-responsive news-scroll">
       <table class="table table-sm table-borderless news-table">
       {%- assign news = site.news | reverse -%}
-      {% for item in news %}
+      {% for item in news limit: site.news_limit %}
         <tr>
           <td class="news-date">
             {{ item.date | date: "%b %-d, %Y" }}

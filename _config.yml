@@ -88,9 +88,9 @@ bing_site_verification:  # put your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
+blog_name: Nirav Diwan # blog_name will be displayed in your blog page
 blog_nav_title: Blogs # your blog must have a title for it to be displayed in the nav bar
-blog_description: a simple whitespace theme for academics
+blog_description: Notes on AI security, safety, and research
 # permalink: /blog/:year/:title/
 
 # Pagination
@@ -124,9 +124,6 @@ collections:
       layout: post
     output: false
     permalink: /news/:path/
-  projects:
-    output: false
-    permalink: /projects/:path/
   talks:
     output: false
   publications:
@@ -134,7 +131,7 @@ collections:
   blogs:
     output: true
     permalink: /blogs/:name/
-news_limit: 15
+news_limit: 10
 show_affiliations: false
 
 # -----------------------------------------------------------------------------
@@ -163,6 +160,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - drafts
 keep_files:
   - CNAME
   - .nojekyll
@@ -283,18 +281,17 @@ enable_google_analytics:    true  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification
-enable_masonry:             true   # enables automatic project cards arrangement
+enable_masonry:             false  # disabled: projects/masonry layout not used
 enable_math:                true   # enables math typesetting (uses MathJax)
 enable_tooltips:            false  # enables automatic tooltip links generated
                                    # for each section titles on pages and posts
 enable_darkmode:            true    # enables switching between light/dark modes
 enable_navbar_social:       false  # enables displaying social links in the
                                    # navbar on the about page
-enable_project_categories:  true   # enables categorization of projects into
-                                   # multiple categories
+enable_project_categories:  false  # disabled: projects collection removed
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
 enable_blogs_page:          true  # enables blogs page in navigation
-default_theme:              dark  # sets the initial color theme
+default_theme:              light # sets the initial color theme
 
 
 # -----------------------------------------------------------------------------

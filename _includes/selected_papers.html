@@ -10,24 +10,17 @@
 
   {% for publication in selected_publications %}
   <div class="pub-card">
+    {% if publication.venue_short %}
+      <span class="venue-badge">{{ publication.venue_short }}</span>
+    {% endif %}
     <div class="item-header">
-      {% if publication.venue_short %}
-        {% assign venue_class = "venue-conference" %}
-        {% if publication.tag == "workshop" %}
-          {% assign venue_class = "venue-workshop" %}
-        {% elsif publication.tag == "journal" %}
-          {% assign venue_class = "venue-journal" %}
-        {% elsif publication.venue contains "Workshop" or publication.venue contains "workshop" %}
-          {% assign venue_class = "venue-workshop" %}
-        {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
-          {% assign venue_class = "venue-journal" %}
-        {% endif %}
-        <span class="venue-badge {{ venue_class }}">{{ publication.venue_short }}</span>
-      {% endif %}
-
       <h5 class="title font-weight-bold special-font special-col item-title">
         {% if publication.link %}
+          {% if publication.paper %}
           <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+          {% else %}
+          <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+          {% endif %}
         {% else %}
           {{ publication.title }}
         {% endif %}
@@ -43,7 +36,11 @@
 
     <div class="publication-actions mt-2">
       {% if publication.link %}
-        <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Paper</a>
+        {% if publication.paper %}
+        <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
+        {% else %}
+        <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
+        {% endif %}
       {% endif %}
 
       <button class="pub-btn tldr-toggle" data-target="tldr-selected-{{ forloop.index }}">TLDR</button>

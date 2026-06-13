@@ -11,8 +11,8 @@ layout: default
 
     <!-- Color legend (clickable filters) -->
     <div class="color-legend">
-        <span class="venue-badge venue-outline active" data-filter="all">All</span>
-        <span class="venue-badge venue-outline" data-filter="selected">Selected</span>
+        <span class="venue-badge venue-outline" data-filter="all">All</span>
+        <span class="venue-badge venue-outline active" data-filter="selected">Selected</span>
         <span class="legend-separator"></span>
         <span class="venue-badge venue-conference" data-filter="conference">Conference</span>
         <span class="venue-badge venue-workshop" data-filter="workshop">Workshop</span>
@@ -40,23 +40,18 @@ layout: default
                 data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}"
                 data-selected="{% if publication.selected %}true{% else %}false{% endif %}">
 
+                {% if publication.venue_short %}
+                    <span class="venue-badge">{{ publication.venue_short }}</span>
+                {% endif %}
+                <span class="item-year">{{ publication.date | date: "%Y" }}</span>
                 <div class="item-header">
-                    {% if publication.venue_short %}
-                        {% assign venue_class = "venue-conference" %}
-                        {% if publication.tag == "workshop" %}
-                            {% assign venue_class = "venue-workshop" %}
-                        {% elsif publication.tag == "journal" %}
-                            {% assign venue_class = "venue-journal" %}
-                        {% elsif publication.venue contains "Workshop" or publication.venue contains "workshop" %}
-                            {% assign venue_class = "venue-workshop" %}
-                        {% elsif publication.venue contains "Journal" or publication.venue contains "Oxford" %}
-                            {% assign venue_class = "venue-journal" %}
-                        {% endif %}
-                        <span class="venue-badge {{ venue_class }}">{{ publication.venue_short }}</span>
-                    {% endif %}
                     <h5 class="title font-weight-bold special-font special-col item-title">
                         {% if publication.link %}
+                            {% if publication.paper %}
                             <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+                            {% else %}
+                            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
+                            {% endif %}
                         {% else %}
                             {{ publication.title }}
                         {% endif %}
@@ -159,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch GitHub star counts
     SharedUtils.fetchGitHubStars('.github-link');
 
-    // Legend filter
-    var activeLegendFilter = '';
+    // Legend filter — default to "Selected".
+    var activeLegendFilter = 'selected';
     var legendBadges = document.querySelectorAll('.color-legend .venue-badge[data-filter]');
     var pubItems = document.querySelectorAll('.publication-item');
     var noResults = document.getElementById('no-results');
@@ -242,5 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     searchInput.addEventListener('input', applyFilters);
+
+    // Apply the default ("Selected") filter on page load.
+    applyFilters();
 });
 </script>

@@ -1,54 +1,36 @@
 /*******************************************************************************
  * Variables used throughout the theme.
- * To adjust anything, simply edit the variables below and rebuild the theme.
+ *
+ * Strict 3-color system: one background, one ink, one accent.
+ * Everything else (dividers, muted text, borders) is ink at an opacity —
+ * NOT a new color. Do not reintroduce additional hues.
  ******************************************************************************/
 
+// Light mode
+$bg-color:        #ffffff !default;   // the one background
+$ink-color:       #1a1a1a !default;   // text
+$accent-color:    #1a56db !default;   // links AND theme/active — one accent
 
-// Colors
-$red-color:           #FF3636 !default;
-$red-color-dark:      #930000 !default;
-$orange-color:        #f27c05 !default;
-$orange-color-dark:   #ff450d !default;
-$blue-color:          #027eea !default;
-$blue-color-dark:     #00369f !default;
-$cyan-color:          #2698BA !default;
-$light-cyan-color:    lighten($cyan-color, 25%);
-$uiuc-blue:           #13294B !default;
-$uiuc-blue-light:     lighten($uiuc-blue, 10%) !default;
-$uiuc-blue-dark:      darken($uiuc-blue, 10%) !default;
-$nirav-blue:          #0077BE !default;
-$nirav-blue-light:    lighten($nirav-blue, 15%) !default;
-$nirav-blue-dark:     darken($nirav-blue, 15%) !default;
-$link-color:          $cyan-color !default;
-$green-color:         #00ab37 !default;
-$green-color-lime:    #B7D12A !default;
-$green-color-dark:    #009f06 !default;
-$green-color-light:   #ddffdd !default;
-$green-color-bright:  #11D68B !default;
-$purple-color:        #B509AC !default;
-$purple-color-light:  lighten($purple-color, 15%) !default;
-$purple-color-dark:   darken($purple-color, 15%) !default;
-$light-purple-color:  lighten($purple-color, 25%);
-$royal-purple:        #7851A9 !default;
-$royal-purple-dark:   darken($royal-purple, 10%) !default;
-$royal-purple-light:  lighten($royal-purple, 15%) !default;
-$pink-color:          #f92080 !default;
-$pink-color-light:    #ffdddd !default;
-$yellow-color:        #efcc00 !default;
+// Dark mode mirror (same three roles)
+$bg-color-dark:     #16181c !default;
+$ink-color-dark:    #e8e8e8 !default;
+$accent-color-dark: lighten($accent-color, 15%) !default;
 
-$grey-color:          #828282 !default;
-$grey-color-light:    lighten($grey-color, 40%);
-$grey-color-dark:     #1C1C1D;
-$grey-900:            #212529;
+// Ink at opacities — derived greys, not new colors
+$ink-muted:       rgba($ink-color, .55);    // venue codes, meta, captions
+$ink-rule:        rgba($ink-color, .12);    // dividers, hairlines
+$ink-border:      rgba($ink-color, .18);    // resting borders
 
-$white-color: #ffffff !default;
-$dark-white-color: #e9e7e7 !default;
-$dark-white-color-1: #f5f1f1 !default;
+$ink-muted-dark:  rgba($ink-color-dark, .55);
+$ink-rule-dark:   rgba($ink-color-dark, .14);
+$ink-border-dark: rgba($ink-color-dark, .22);
 
-$black-color: #000000 !default;
+// Code block background (accent tint, kept very faint)
+$code-bg-color-light: rgba($accent-color, 0.05);
+$code-bg-color-dark:  rgba($ink-color-dark, 0.06);
 
-
-// Theme colors
-
-$code-bg-color-light:     rgba($purple-color, 0.05);
-$code-bg-color-dark:      #2c3237 !default;
+// Type
+$font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
+            "Helvetica Neue", Arial, sans-serif !default;
+$font-mono: "SF Mono", "JetBrains Mono", "Fira Code", ui-monospace,
+            "Menlo", monospace !default;

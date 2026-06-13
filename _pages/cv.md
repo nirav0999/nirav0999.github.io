@@ -5,5 +5,5 @@ title: CV
 description: My life journey!
 nav: true
 nav_order: 3
-resume_pdf: Nirav_Diwan_CV.pdf
+resume_pdf: Nirav_CV.pdf
 ---

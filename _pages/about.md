@@ -11,7 +11,7 @@ profile:
   alt: "Nirav Diwan"
 
 news: true  # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # selected papers hidden from the homepage
 social: true  # includes social icons at the bottom of the page
 ---
 I am a 2<sup>nd</sup> year Ph.D. student in Computer Science at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/), advised by [Prof. Gang Wang](https://gangw.cs.illinois.edu/) in the [Siebel School of Computing and Data Science](https://siebelschool.illinois.edu/). I also collaborate with <a href="https://chandrasekaran-group.github.io/">Prof. Varun Chandrasekaran</a> and <a href="https://www.huan-zhang.com/">Prof. Huan Zhang</a>. I study security risks in foundation model training and deployment. My research is driven by three core questions:
@@ -55,16 +55,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-
-<!-- Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021/ I was a member of [LCS2](https://lcs2.in/) and the [Complex Systems Lab](https://cosylab.iiitd.edu.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text (ACL Findings '21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi). -->
-
-<!-- <span class="toggle-link" data-target="industry-experience">Security of ML Models</span>
-<div id="industry-experience" class="collapsible-content" style="display: none;">
-Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021/ I was a member of [LCS2](https://lcs2.in/) and the [Complex Systems Lab](https://cosylab.iiitd.edu.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text (ACL Findings '21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi).
-</div>
-
-<span class="toggle-link" data-target="industry-experience">Using ML for Attacks</span>
-<div id="industry-experience" class="collapsible-content" style="display: none;">
-Previously, I completed my research-track M.S. at the [University of Illinois Urbana-Champaign](https://cs.illinois.edu/). Prior to this, I did my B.Tech. degree in Computer Science from [IIIT Delhi](https://www.iitg.ac.in/) in June 2021/ I was a member of [LCS2](https://lcs2.in/) and the [Complex Systems Lab](https://cosylab.iiitd.edu.in/).  Previously, I worked on watermarking fine-tuned LLM-generated text (ACL Findings '21) with [Prof. Zubair Shafiq](https://web.cs.ucdavis.edu/~zubair/) (UC Davis) and [Prof. Tanmoy Chakraborty](https://tanmoychak.com/) (IIT Delhi).
-</div> -->

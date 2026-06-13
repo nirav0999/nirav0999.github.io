@@ -3,7 +3,7 @@ layout: publications
 date: 2026-05-06
 title: "CoT-Guard: Small Models for Strong Practical Monitoring"
 venue: "Submission"
-authors: <u>Nirav Diwan*</u>, Han Wang*, Berkcan Kapusuzoglu, Ramin Moradi, Giri Iyengar, Sambit Sahu, Huan Zhang, Gang Wang
+authors: <u>Nirav Diwan</u>*, Han Wang*, Berkcan Kapusuzoglu, Ramin Moradi, Giri Iyengar, Sambit Sahu, Huan Zhang, Gang Wang
 paper: "cot_guard.pdf"
 link: "https://arxiv.org/abs/2605.12746"
 code: "https://github.com/nirav0999/CoT-Guard"

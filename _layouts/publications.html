@@ -39,85 +39,9 @@ layout: default
                 data-venue-short="{{ publication.venue_short | downcase }}"
                 data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}"
                 data-selected="{% if publication.selected %}true{% else %}false{% endif %}">
-
-                {% if publication.venue_short %}
-                    <span class="venue-badge">{{ publication.venue_short }}</span>
-                {% endif %}
-                <span class="item-year">{{ publication.date | date: "%Y" }}</span>
-                <div class="item-header">
-                    <h5 class="title font-weight-bold special-font special-col item-title">
-                        {% if publication.link %}
-                            {% if publication.paper %}
-                            <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
-                            {% else %}
-                            <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>
-                            {% endif %}
-                        {% else %}
-                            {{ publication.title }}
-                        {% endif %}
-                    </h5>
-                    <p class="item-meta">{{ publication.authors }}</p>
-                    <p class="item-meta item-venue">{{ publication.venue }}</p>
-                    {% if publication.press %}
-                        <p class="item-press">{{ publication.press }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="publication-actions mt-2">
-                    {% if publication.link %}
-                    {% if publication.paper %}
-                    <a href="{{ publication.paper | prepend: 'assets/pdf/papers/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
-                    {% else %}
-                    <a href="{{ publication.link }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if publication.link_label %}{{ publication.link_label }}{% else %}Paper{% endif %}</a>
-                    {% endif %}
-                    {% endif %}
-
-                    <button class="pub-btn tldr-toggle" data-target="tldr-{{ year_group.name }}-{{ forloop.index }}">TLDR</button>
-                    <button class="pub-btn citation-toggle" data-target="citation-{{ year_group.name }}-{{ forloop.index }}">Citation</button>
-
-                    {% if publication.code %}
-                        <a href="{{ publication.code }}" target="_blank" rel="noopener noreferrer" class="github-link pub-btn" data-repo="{{ publication.code | replace: 'https://github.com/', '' }}">
-                            <i class="fab fa-github"></i> <span class="star-count">★</span>
-                        </a>
-                    {% endif %}
-
-                    {% if publication.huggingface %}
-                        <a href="{{ publication.huggingface }}" target="_blank" rel="noopener noreferrer" class="pub-btn">
-                            <span class="hf-icon">🤗</span> HF
-                        </a>
-                    {% endif %}
-
-                    {% if publication.slides %}
-                    <a href="{{ publication.slides }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Slides</a>
-                    {% endif %}
-                    {% if publication.poster %}
-                    <a href="{{ publication.poster }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Poster</a>
-                    {% endif %}
-                </div>
-
-                <!-- Dynamic content area -->
-                <div class="dynamic-content mt-2"></div>
-
-                <!-- Hidden TLDR content -->
-                <div id="tldr-{{ year_group.name }}-{{ forloop.index }}" class="publication-content" style="display: none;">
-                    <div class="content-box tldr-content">
-                        <strong>TLDR:</strong> {{ publication.tldr }}
-                    </div>
-                </div>
-
-                <!-- Hidden Citation content -->
-                <div id="citation-{{ year_group.name }}-{{ forloop.index }}" class="publication-content" style="display: none;">
-                    <div class="citation-box">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div class="flex-grow-1">
-                                <pre><code>{% if publication.citation %}{{ publication.citation | strip }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ publication.title }}." {{ publication.venue }}, {{ publication.date | date: "%Y" }}.{% endif %}</code></pre>
-                            </div>
-                            <button class="pub-btn copy-btn flex-shrink-0" data-citation="{% if publication.citation %}{{ publication.citation | strip }}{% else %}{{ publication.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ publication.title }}.&quot; {{ publication.venue }}, {{ publication.date | date: '%Y' }}.{% endif %}" title="Copy citation">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                {% assign card_uid = year_group.name | append: "-" | append: forloop.index %}
+                {% assign card_year = publication.date | date: "%Y" %}
+                {% include pub_card.html publication=publication uid=card_uid year=card_year %}
             </div>
             {%- endfor %}
         </div>

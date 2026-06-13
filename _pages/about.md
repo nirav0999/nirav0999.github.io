@@ -25,7 +25,7 @@ Recently, I co-led the creation of [PurpCode](https://www.amazon.science/nova-ai
 
 I completed my undergraduate studies from IIIT-Delhi, where I had the good fortune of working with <a href="https://tanmoychak.com/">Prof. Tanmoy Chakraborty</a> (now at IIT Delhi), and <a href="https://web.cs.ucdavis.edu/~zubair/">Prof. Zubair Shafiq</a> (at UC Davis), and <a href="https://cosylab.iiitd.edu.in/">Prof. Ganesh Bagler</a>.
 
-**Internship.** I am looking for both Industrial and Academic Internships for Summer 2026 in the areas of Machine Learning, and Security & Privacy. Feel free to reach out!
+**Internship.** I am looking for both Industrial and Academic Internships in the areas of Machine Learning, and Security & Privacy. Feel free to reach out!
 
 **Collaboration.** I am always looking to work with undergrads and MS students! Feel free to send me an [email](mailto:nirdiwan@gmail.com) with the title \[Together\] in the subject line!
 

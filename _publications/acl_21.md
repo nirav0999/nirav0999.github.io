@@ -11,7 +11,7 @@ tldr: Developed an LM-based classifier to fingerprint AI-generated text for 100+
 link: "https://aclanthology.org/2021.findings-acl.409"
 code: "https://github.com/LCS2-IIITD/ACL-FFLM"
 venue_short: "ACL"
-press: "Dean's Thesis Appreciation Award at IIIT-Delhi"
+press: "🏅 Dean's Thesis Appreciation Award at IIIT-Delhi"
 tag: "conference"
 selected: true
 citation: | 

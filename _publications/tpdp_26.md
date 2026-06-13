@@ -14,7 +14,7 @@ citation: |
     journal = {Theory and Practice of Differential Privacy (TPDP) Workshop},
     year = {2026}
   }
-venue_short: "TPDP 2026"
+venue_short: "TPDP"
 tag: "workshop"
 selected: true
 ---

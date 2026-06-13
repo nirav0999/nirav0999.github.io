@@ -9,7 +9,7 @@ poster:
 tldr: Everyday users (like me) can now use LLMs to scrape websites for information pretty easily.
 link: "https://arxiv.org/abs/2601.06301"
 tag: "workshop"
-venue_short: "AICS@AAAI'W"
+venue_short: "AAAI'W"
 selected: false
 citation: |
   @article{bhardwaj2026beyond,

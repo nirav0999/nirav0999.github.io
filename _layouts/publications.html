@@ -11,8 +11,8 @@ layout: default
 
     <!-- Color legend (clickable filters) -->
     <div class="color-legend">
-        <span class="venue-badge venue-outline active" data-filter="all">All</span>
-        <span class="venue-badge venue-outline" data-filter="selected">Selected</span>
+        <span class="venue-badge venue-outline" data-filter="all">All</span>
+        <span class="venue-badge venue-outline active" data-filter="selected">Selected</span>
         <span class="legend-separator"></span>
         <span class="venue-badge venue-conference" data-filter="conference">Conference</span>
         <span class="venue-badge venue-workshop" data-filter="workshop">Workshop</span>
@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch GitHub star counts
     SharedUtils.fetchGitHubStars('.github-link');
 
-    // Legend filter
-    var activeLegendFilter = '';
+    // Legend filter — default to "Selected".
+    var activeLegendFilter = 'selected';
     var legendBadges = document.querySelectorAll('.color-legend .venue-badge[data-filter]');
     var pubItems = document.querySelectorAll('.publication-item');
     var noResults = document.getElementById('no-results');
@@ -237,5 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     searchInput.addEventListener('input', applyFilters);
+
+    // Apply the default ("Selected") filter on page load.
+    applyFilters();
 });
 </script>

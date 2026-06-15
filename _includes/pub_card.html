@@ -1,0 +1,88 @@
+{%- comment -%}
+Shared publication card body. Caller provides the outer .pub-card wrapper
+(with any data-* attrs) and these variables:
+  include.publication — the publication object
+  include.uid         — unique id prefix for TLDR/Citation toggle targets
+  include.year        — optional; rendered as the right-gutter .item-year
+{%- endcomment -%}
+{% assign pub = include.publication %}
+{% if pub.venue_short %}
+  <span class="venue-badge">{{ pub.venue_short }}</span>
+{% endif %}
+{% if include.year %}
+  <span class="item-year">{{ include.year }}</span>
+{% endif %}
+<div class="item-header">
+  <h5 class="title font-weight-bold special-font special-col item-title">
+    {% if pub.link %}
+      {% if pub.paper %}
+      <a href="{{ pub.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer">{{ pub.title }}</a>
+      {% else %}
+      <a href="{{ pub.link }}" target="_blank" rel="noopener noreferrer">{{ pub.title }}</a>
+      {% endif %}
+    {% else %}
+      {{ pub.title }}
+    {% endif %}
+  </h5>
+  <p class="item-meta">{{ pub.authors }}</p>
+  <p class="item-meta item-venue">{{ pub.venue }}</p>
+  {% if pub.press %}
+    <p class="item-press">{{ pub.press }}</p>
+  {% endif %}
+</div>
+
+<div class="publication-actions mt-2">
+  {% if pub.link %}
+    {% if pub.paper %}
+    <a href="{{ pub.paper | prepend: 'assets/pdf/papers/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if pub.link_label %}{{ pub.link_label }}{% else %}Paper{% endif %}</a>
+    {% else %}
+    <a href="{{ pub.link }}" target="_blank" rel="noopener noreferrer" class="pub-btn">{% if pub.link_label %}{{ pub.link_label }}{% else %}Paper{% endif %}</a>
+    {% endif %}
+  {% endif %}
+
+  <button class="pub-btn tldr-toggle" data-target="tldr-{{ include.uid }}">TLDR</button>
+  <button class="pub-btn citation-toggle" data-target="citation-{{ include.uid }}">Citation</button>
+
+  {% if pub.code %}
+    <a href="{{ pub.code }}" target="_blank" rel="noopener noreferrer" class="github-link pub-btn" data-repo="{{ pub.code | replace: 'https://github.com/', '' }}">
+      <i class="fab fa-github"></i> <span class="star-count">★</span>
+    </a>
+  {% endif %}
+
+  {% if pub.huggingface %}
+    <a href="{{ pub.huggingface }}" target="_blank" rel="noopener noreferrer" class="pub-btn">
+      <span class="hf-icon">🤗</span> HF
+    </a>
+  {% endif %}
+
+  {% if pub.slides %}
+  <a href="{{ pub.slides }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Slides</a>
+  {% endif %}
+  {% if pub.poster %}
+  <a href="{{ pub.poster }}" target="_blank" rel="noopener noreferrer" class="pub-btn">Poster</a>
+  {% endif %}
+</div>
+
+<!-- Dynamic content area -->
+<div class="dynamic-content mt-2"></div>
+
+<!-- Hidden TLDR content -->
+<div id="tldr-{{ include.uid }}" class="publication-content" style="display: none;">
+  <div class="content-box tldr-content">
+    <strong>TLDR:</strong> {{ pub.tldr }}
+  </div>
+</div>
+
+<!-- Hidden Citation content -->
+<div id="citation-{{ include.uid }}" class="publication-content" style="display: none;">
+  <div class="citation-box">
+    <div class="d-flex justify-content-between align-items-start">
+      <div class="flex-grow-1">
+        <pre><code>{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ pub.title }}." {{ pub.venue }}, {{ pub.date | date: "%Y" }}.{% endif %}</code></pre>
+      </div>
+      <button class="pub-btn copy-btn flex-shrink-0" data-citation="{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ pub.title }}.&quot; {{ pub.venue }}, {{ pub.date | date: '%Y' }}.{% endif %}" title="Copy citation">
+        <i class="fas fa-copy"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,6 @@ slides:
 poster: 
 tldr: "Introduced a new benchmark for evaluating code language models against multi-turn malicious coding prompts."
 authors: "Muntasir Wahed, Xiaona Zhou, Kiet A. Nguyen, Tianjiao Yu, <u>Nirav Diwan</u>, Gang Wang, Dilek Hakkani-Tür, Ismini Lourentzou"
-# code: "https://github.com/purpcode-uiuc/mocha"
 # huggingface: "https://huggingface.co/purpcode"
 tag: "conference"
 venue_short: "EMNLP"

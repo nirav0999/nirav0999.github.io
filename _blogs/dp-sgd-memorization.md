@@ -45,7 +45,7 @@ Below are some examples of <code><span style="color: teal;">prompts</span></code
 
     func</span></code></pre>
 
-<p style="text-align: justify;"><em> <b>Example 2 (Targeted Extraction) </b>: Given the <span style="color: teal;">first half</span> VaultGemma completes the `applicationWillResignActive(_:) lifecycle callback` signature from <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillresignactive%28_%3A%29?utm_source=chatgpt.com">iOS Xcode project template file AppDelegate.swift</a> from the Pile.</em></p>
+<p style="text-align: justify;"><em> <b>Example 2 (Targeted Extraction) </b>: Given the <span style="color: teal;">first half</span> VaultGemma completes the `applicationWillResignActive(_:) lifecycle callback` signature from <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillresignactive%28_%3A%29">iOS Xcode project template file AppDelegate.swift</a> from the Pile.</em></p>
 
 <pre><code><span style="color: teal;">You can reach Mark at phone number:</span><span style="color: red;"> <span style="background: black; color: black; padding: 0 0.3em; border-radius: 2px;">REDACTED</span>, email: <mark><span style="background: black; color: black; padding: 0 0.3em; border-radius: 2px;">REDACTED</span>@westminster.gov.uk</mark> <br> or visit the website at www.westminster.gov.uk/<mark>markbrown</mark>
 

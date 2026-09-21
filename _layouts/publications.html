@@ -32,12 +32,35 @@ layout: default
             <h3 class="year-heading">{{ year_group.name }}</h3>
             {% assign sorted_pubs = year_group.items | sort: "date" | reverse %}
             {% for publication in sorted_pubs %}
+            {% if publication.venues %}
+                {% assign searchable_venues = publication.venues | join: ' ' %}
+            {% else %}
+                {% assign searchable_venues = publication.venue %}
+            {% endif %}
+            {% if publication.venue_shorts %}
+                {% assign searchable_venue_shorts = publication.venue_shorts | join: ' ' %}
+            {% else %}
+                {% assign searchable_venue_shorts = publication.venue_short %}
+            {% endif %}
+            {% if publication.tags %}
+                {% assign publication_tags = publication.tags | join: ' ' %}
+            {% elsif publication.tag %}
+                {% assign publication_tags = publication.tag %}
+            {% elsif searchable_venues contains 'Workshop' or searchable_venues contains 'workshop' %}
+                {% assign publication_tags = 'workshop' %}
+            {% elsif searchable_venues contains 'Conference' or searchable_venues contains 'USENIX' or searchable_venues contains 'ACL' or searchable_venues contains 'ICWSM' or searchable_venues contains 'AAAI' %}
+                {% assign publication_tags = 'conference' %}
+            {% elsif searchable_venues contains 'Journal' or searchable_venues contains 'Oxford' %}
+                {% assign publication_tags = 'journal' %}
+            {% else %}
+                {% assign publication_tags = 'publication' %}
+            {% endif %}
             <div class="pub-card publication-item"
-                data-title="{{ publication.title | downcase }}"
-                data-authors="{{ publication.authors | downcase | replace: '<u>', '' | replace: '</u>', '' }}"
-                data-venue="{{ publication.venue | downcase }}"
-                data-venue-short="{{ publication.venue_short | downcase }}"
-                data-tags="{% if publication.tag %}{{ publication.tag | downcase }}{% else %}{% if publication.venue contains 'Workshop' or publication.venue contains 'workshop' %}workshop{% elsif publication.venue contains 'Conference' or publication.venue contains 'USENIX' or publication.venue contains 'ACL' or publication.venue contains 'ICWSM' or publication.venue contains 'AAAI' %}conference{% elsif publication.venue contains 'Journal' or publication.venue contains 'Oxford' %}journal{% else %}publication{% endif %}{% endif %}"
+                data-title="{{ publication.title | downcase | escape }}"
+                data-authors="{{ publication.authors | downcase | strip_html | escape }}"
+                data-venue="{{ searchable_venues | downcase | strip_html | escape }}"
+                data-venue-short="{{ searchable_venue_shorts | downcase | escape }}"
+                data-tags="{{ publication_tags | downcase | escape }}"
                 data-selected="{% if publication.selected %}true{% else %}false{% endif %}">
                 {% assign card_uid = year_group.name | append: "-" | append: forloop.index %}
                 {% assign card_year = publication.date | date: "%Y" %}
@@ -106,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     matchesLegend = item.getAttribute('data-selected') === 'true';
                 } else {
                     var tags = item.getAttribute('data-tags') || '';
-                    matchesLegend = tags.includes(activeLegendFilter);
+                    matchesLegend = tags.split(/\s+/).includes(activeLegendFilter);
                 }
             }
 

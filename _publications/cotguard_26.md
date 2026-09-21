@@ -2,7 +2,9 @@
 layout: publications
 date: 2026-05-06
 title: "CoT-Guard: Small Models for Strong Practical Monitoring"
-venue: "Submission"
+venues:
+  - "Submission"
+  - '<a href="https://advml-frontier.github.io/">AdvML-Frontiers × CoTMA Workshop</a> (Oral), COLM, 2026'
 authors: <u>Nirav Diwan</u>*, Han Wang*, Berkcan Kapusuzoglu, Ramin Moradi, Giri Iyengar, Sambit Sahu, Huan Zhang, Gang Wang
 paper: "cot_guard.pdf"
 link: "https://arxiv.org/abs/2605.12746"
@@ -13,10 +15,14 @@ citation: |
   @article{cotguard2026,
     title = {CoT-Guard: Small Models for Strong Practical Monitoring},
     author = {Diwan, Nirav and Wang, Han and Kapusuzoglu, Berkcan and Moradi, Ramin and Iyengar, Giri and Sahu, Sambit and Zhang, Huan and Wang, Gang},
-    journal = {arXiv preprint arXiv:2605.12746},
+    journal = {AdvML-Frontiers × CoTMA Workshop at COLM},
     year = {2026}
   }
-venue_short: "Submission"
-tag: "conference"
+venue_shorts:
+  - "Submission"
+  - "COLM'W"
+tags:
+  - "conference"
+  - "workshop"
 selected: true
 ---

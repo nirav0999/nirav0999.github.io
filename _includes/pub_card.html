@@ -4,10 +4,19 @@ Shared publication card body. Caller provides the outer .pub-card wrapper
   include.publication — the publication object
   include.uid         — unique id prefix for TLDR/Citation toggle targets
   include.year        — optional; rendered as the right-gutter .item-year
+
+Publications may use plural `venues` and `venue_shorts` arrays. The singular
+`venue` and `venue_short` fields remain supported for existing entries.
 {%- endcomment -%}
 {% assign pub = include.publication %}
-{% if pub.venue_short %}
-  <span class="venue-badge">{{ pub.venue_short }}</span>
+{% if pub.venue_shorts %}
+  <span class="venue-badge">
+    {% for venue_short in pub.venue_shorts %}
+      <span class="venue-badge-label">{{ venue_short }}</span>
+    {% endfor %}
+  </span>
+{% elsif pub.venue_short %}
+  <span class="venue-badge"><span class="venue-badge-label">{{ pub.venue_short }}</span></span>
 {% endif %}
 {% if include.year %}
   <span class="item-year">{{ include.year }}</span>
@@ -25,7 +34,13 @@ Shared publication card body. Caller provides the outer .pub-card wrapper
     {% endif %}
   </h5>
   <p class="item-meta">{{ pub.authors }}</p>
-  <p class="item-meta item-venue">{{ pub.venue }}</p>
+  {% if pub.venues %}
+    {% for venue in pub.venues %}
+      <p class="item-meta item-venue">{{ venue }}</p>
+    {% endfor %}
+  {% elsif pub.venue %}
+    <p class="item-meta item-venue">{{ pub.venue }}</p>
+  {% endif %}
   {% if pub.press %}
     <p class="item-press">{{ pub.press }}</p>
   {% endif %}
@@ -78,9 +93,9 @@ Shared publication card body. Caller provides the outer .pub-card wrapper
   <div class="citation-box">
     <div class="d-flex justify-content-between align-items-start">
       <div class="flex-grow-1">
-        <pre><code>{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ pub.title }}." {{ pub.venue }}, {{ pub.date | date: "%Y" }}.{% endif %}</code></pre>
+        <pre><code>{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. "{{ pub.title }}." {% if pub.venues %}{{ pub.venues | join: '; ' | strip_html }}{% else %}{{ pub.venue | strip_html }}{% endif %}, {{ pub.date | date: "%Y" }}.{% endif %}</code></pre>
       </div>
-      <button class="pub-btn copy-btn flex-shrink-0" data-citation="{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ pub.title }}.&quot; {{ pub.venue }}, {{ pub.date | date: '%Y' }}.{% endif %}" title="Copy citation">
+      <button class="pub-btn copy-btn flex-shrink-0" data-citation="{% if pub.citation %}{{ pub.citation | strip }}{% else %}{{ pub.authors | replace: '<u>', '' | replace: '</u>', '' }}. &quot;{{ pub.title }}.&quot; {% if pub.venues %}{{ pub.venues | join: '; ' | strip_html | escape }}{% else %}{{ pub.venue | strip_html | escape }}{% endif %}, {{ pub.date | date: '%Y' }}.{% endif %}" title="Copy citation">
         <i class="fas fa-copy"></i>
       </button>
     </div>

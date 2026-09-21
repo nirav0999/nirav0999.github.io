@@ -1021,6 +1021,12 @@ b {
     }
 }
 
+// A publication may have more than one venue abbreviation. Keep them stacked
+// in the same masthead gutter without changing the single-venue layout.
+.venue-badge-label {
+    display: block;
+}
+
 // Blog tags reuse .venue-badge but aren't masthead codes — reset to quiet
 // outlined chips (one accent, no rainbow).
 .blog-item .venue-badge {

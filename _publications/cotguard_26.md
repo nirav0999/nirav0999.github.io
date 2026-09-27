@@ -3,8 +3,8 @@ layout: publications
 date: 2026-05-06
 title: "CoT-Guard: Small Models for Strong Practical Monitoring"
 venues:
-  - "40<sup>th</sup> Annual Conference on Neural Information Processing Systems (NeurIPS 2026)"
-  - '<a href="https://advml-frontier.github.io/">AdvML-Frontiers × CoTMA Workshop</a> (Oral), COLM, 2026'
+  - '<a href="https://neurips.cc/Conferences/2026">40<sup>th</sup> Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</a>'
+  - '<a href="https://advml-frontier.github.io/">AdvML-Frontiers × CoTMA Workshop (Oral), COLM, 2026</a>'
 authors: <u>Nirav Diwan</u>*, Han Wang*, Berkcan Kapusuzoglu, Ramin Moradi, Giri Iyengar, Sambit Sahu, Huan Zhang, Gang Wang
 paper: "cot_guard.pdf"
 link: "https://arxiv.org/abs/2605.12746"

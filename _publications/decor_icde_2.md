@@ -2,7 +2,7 @@
 layout: publications
 date: 2020-03-01
 title: Nutritional Profile Estimation in Cooking Recipes
-venue: 3<sup>rd</sup> International Workshop on Data Engineering meets Intelligent Food & Cooking Recipes, 2020
+venue: '<a href="https://research.nii.ac.jp/decor/decor2020.html">3<sup>rd</sup> International Workshop on Data Engineering meets Intelligent Food & Cooking Recipes, 2020</a>'
 link: "https://arxiv.org/pdf/2004.12184.pdf"
 paper: "icdew_2.pdf"
 slides: 

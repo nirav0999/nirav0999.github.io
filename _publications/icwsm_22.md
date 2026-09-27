@@ -2,7 +2,7 @@
 layout: publications
 date: 2022-05-01
 title: Weakening the Inner strength - Spotting core collusive users in the YouTube Blackmarket
-venue: "16<sup>th</sup> International AAAI Conference on Web and Social Media, 2022"
+venue: '<a href="https://www.icwsm.org/2022/index.html/">16<sup>th</sup> International AAAI Conference on Web and Social Media, 2022</a>'
 link: "https://ojs.aaai.org/index.php/ICWSM/article/view/19280/19052"
 paper: "icwsm_22.pdf"
 slides: 

@@ -3,7 +3,7 @@ layout: publications
 date: 2026-05-06
 title: "CoT-Guard: Small Models for Strong Practical Monitoring"
 venues:
-  - "Submission"
+  - "Conference on Neural Information Processing Systems (NeurIPS 2026)"
   - '<a href="https://advml-frontier.github.io/">AdvML-Frontiers × CoTMA Workshop</a> (Oral), COLM, 2026'
 authors: <u>Nirav Diwan</u>*, Han Wang*, Berkcan Kapusuzoglu, Ramin Moradi, Giri Iyengar, Sambit Sahu, Huan Zhang, Gang Wang
 paper: "cot_guard.pdf"
@@ -12,14 +12,14 @@ code: "https://github.com/nirav0999/CoT-Guard"
 huggingface: "https://huggingface.co/CoT-Guard"
 tldr: We introduce a practical threat model for CoT Monitoring and train small models (≤4B) to outperform large models using RL.
 citation: |
-  @article{cotguard2026,
+  @inproceedings{cotguard2026,
     title = {CoT-Guard: Small Models for Strong Practical Monitoring},
     author = {Diwan, Nirav and Wang, Han and Kapusuzoglu, Berkcan and Moradi, Ramin and Iyengar, Giri and Sahu, Sambit and Zhang, Huan and Wang, Gang},
-    journal = {AdvML-Frontiers × CoTMA Workshop at COLM},
-    year = {2026}
+    booktitle = {Advances in Neural Information Processing Systems},
+    year = {2026},
   }
 venue_shorts:
-  - "Submission"
+  - "NeurIPS"
   - "COLM'W"
 tags:
   - "conference"

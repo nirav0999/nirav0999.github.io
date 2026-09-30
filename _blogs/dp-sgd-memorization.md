@@ -11,6 +11,7 @@ authors:
   - name: Nirav Diwan
     url: https://nirav0999.github.io
   - name: Gang Wang
+    url: https://gangw.cs.illinois.edu/
   - name: Daniel Alabi
     url: https://alabidan.me/
 ---

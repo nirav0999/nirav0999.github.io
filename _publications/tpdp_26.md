@@ -2,7 +2,9 @@
 layout: publications
 date: 2026-04-01
 title: "Extractable Memorization from a Differentially Private Pre-trained LLM"
-venue: '<a href="https://tpdp.journalprivacyconfidentiality.org/2026/">Theory and Practice of Differential Privacy (TPDP) Workshop, 2026</a>'
+venues:
+  - '<a href="https://tpdp.journalprivacyconfidentiality.org/2026/">Theory and Practice of Differential Privacy (TPDP) Workshop, 2026</a>'
+  - '<a href="https://flmsec.github.io/">Foundations of Language Model Security Workshop, NeurIPS 2026</a>'
 authors: <u>Nirav Diwan</u>, Gang Wang, Daniel Alabi
 link: "https://nirav0999.github.io/blogs/dp-sgd-memorization/"
 link_label: "Blog"
@@ -14,7 +16,9 @@ citation: |
     journal = {Theory and Practice of Differential Privacy (TPDP) Workshop},
     year = {2026}
   }
-venue_short: "TPDP"
+venue_shorts:
+  - "TPDP"
+  - "FLMSEC"
 tag: "workshop"
 selected: true
 ---

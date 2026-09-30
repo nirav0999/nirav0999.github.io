@@ -10,6 +10,7 @@ toc: true
 authors:
   - name: Nirav Diwan
     url: https://nirav0999.github.io
+  - name: Gang Wang
   - name: Daniel Alabi
     url: https://alabidan.me/
 ---
@@ -255,7 +256,7 @@ We aim to answer these questions and understand them better. We plan to open-sou
 ```bibtex
 @article{diwan2025extracting,
   title={Extracting Memorized Data from a Differentially Private Language Model},
-  author={Diwan, Nirav and Alabi, Daniel},
+  author={Diwan, Nirav and Wang, Gang and Alabi, Daniel},
   institution={University of Illinois Urbana-Champaign},
   year={2025}
 }

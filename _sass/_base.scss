@@ -905,6 +905,7 @@ b {
     line-height: 1.4;
 
     .item-header,
+    .publication-tldr,
     .publication-actions,
     .talk-actions,
     .dynamic-content,
@@ -951,12 +952,29 @@ b {
         .item-year { grid-column: 2; grid-row: 1; }
 
         .item-header,
+        .publication-tldr,
         .publication-actions,
         .talk-actions,
         .dynamic-content,
         .publication-content {
             grid-column: 1 / -1;
         }
+    }
+}
+
+.publication-tldr {
+    margin: 0.5rem 0 0;
+    padding: 0.45rem 0.7rem;
+    border-left: 2px solid var(--global-theme-color);
+    background-color: var(--global-news-bg-color);
+    color: var(--global-text-color);
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    strong {
+        color: var(--global-theme-color);
+        font-size: 0.78rem;
+        margin-right: 0.3rem;
     }
 }
 

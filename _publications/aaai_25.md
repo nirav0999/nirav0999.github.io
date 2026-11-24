@@ -9,6 +9,7 @@ slides:
 poster: 
 tldr: Unaligned model can identify high-quality preference pairs for alignment, even when it may not know it is better.
 link: "https://arxiv.org/abs/2501.15109"
+openreview: "https://openreview.net/forum?id=Cu7uQgBM5G"
 tag: "workshop"
 venue_short: "AAAI'W"
 selected: false

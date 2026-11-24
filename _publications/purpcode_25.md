@@ -8,6 +8,7 @@ paper: "PurpCode_arxiv_0807.pdf"
 tldr: Developed a reasoning model for secure code generation using <a href = "https://openai.com/index/deliberative-alignment/"> Deliberative Alignment</a>.
 code: "https://github.com/purpcode-uiuc/purpcode"
 link: "https://arxiv.org/abs/2507.19060"
+openreview: "https://openreview.net/forum?id=VUoY5kacG5"
 press: "🥇 Winner of Amazon Nova AI Challenge 2025"
 citation: |
   @article{purpcode,

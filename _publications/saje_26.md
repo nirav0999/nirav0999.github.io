@@ -15,7 +15,7 @@ tags:
 link: "https://openreview.net/forum?id=Jl8306AZ2D"
 openreview: "https://openreview.net/forum?id=Jl8306AZ2D"
 tldr: "We use OpenAI Model Spec to jailbreak OpenAI's GPT-OSS-20B better than other black-box jailbreaking baselines."
-selected: false
+selected: true
 citation: |
   @misc{saje2026,
     title = {SAJE: Turning Model Specifications Against the Model},

@@ -27,6 +27,11 @@ layout: default
       <h3 class="year-heading">{{ year_group.name }}</h3>
       {% assign sorted_talks = year_group.items | sort: "date" | reverse %}
       {% for talk in sorted_talks %}
+      {% if talk.slides_url %}
+        {% assign talk_slides_url = talk.slides_url | relative_url %}
+      {% else %}
+        {% assign talk_slides_url = talk.slides | prepend: 'assets/pdf/talks/' | relative_url %}
+      {% endif %}
       <div class="talk-card talk-item"
           data-title="{{ talk.title | downcase }}"
           data-invited="{% if talk.invited %}true{% else %}false{% endif %}">
@@ -37,20 +42,20 @@ layout: default
         <span class="item-year">{{ talk.date | date: "%Y" }}</span>
         <div class="item-header">
           <h5 class="title font-weight-bold special-font special-col item-title">
-            {% if talk.slides %}
-              <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}"
+            {% if talk.slides or talk.slides_url %}
+              <a href="{{ talk_slides_url }}"
                  target="_blank" rel="noopener noreferrer">{{ talk.title }}</a>
             {% else %}
               <span class="special-col">{{ talk.title }}</span>
             {% endif %}
           </h5>
 
-          <p class="item-meta-light">{{ talk.date | date: "%B %d, %Y" }}</p>
+          <p class="item-meta-light">{% if talk.year_only %}{{ talk.date | date: "%Y" }}{% else %}{{ talk.date | date: "%B %d, %Y" }}{% endif %}</p>
         </div>
 
         <div class="talk-actions mt-2">
-          {% if talk.slides %}
-            <a href="{{ talk.slides | prepend: 'assets/pdf/talks/' | relative_url }}"
+          {% if talk.slides or talk.slides_url %}
+            <a href="{{ talk_slides_url }}"
                target="_blank" rel="noopener noreferrer"
                class="pub-btn">Slides</a>
           {% endif %}

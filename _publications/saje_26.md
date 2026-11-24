@@ -4,7 +4,7 @@ date: 2026-10-31
 title: "SAJE: Turning Model Specifications Against the Model"
 venues:
   - "Under review"
-  - '<a href="https://trustworthy-ai-for-good.github.io/">AI4Good Workshop (Oral Presentation)</a>'
+  - '<a href="https://trustworthy-ai-for-good.github.io/">AI4Good Workshop at NeurIPS 2026 (Oral Presentation)</a>'
   - '<a href="https://flmsec.github.io/">Foundations of Language Model Security Workshop (FLMSec), NeurIPS 2026 (Poster)</a>'
 venue_shorts:
   - "Under review"
